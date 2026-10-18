@@ -60,6 +60,10 @@ const api = {
   updateCompte: (id, data) => apiRequest(`/comptes/${id}`, { method: "PUT", body: data }),
   deleteCompte: (id) => apiRequest(`/comptes/${id}`, { method: "DELETE" }),
 
+  getTransactions: (compteId) => apiRequest(compteId ? `/transactions?compteId=${compteId}` : "/transactions"),
+  createTransaction: (data) => apiRequest("/transactions", { method: "POST", body: data }),
+  deleteTransaction: (id) => apiRequest(`/transactions/${id}`, { method: "DELETE" }),
+
   getDashboardSummary: () => apiRequest("/dashboard/summary"),
 };
 
@@ -70,7 +74,7 @@ function requireAuth() {
 }
 
 function formatMontant(value) {
-  return new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value || 0) + " €";
+  return new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value || 0) + " FCFA";
 }
 
 function showToast(message, type = "success") {

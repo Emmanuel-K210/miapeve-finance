@@ -54,7 +54,7 @@ function openCompteModal(compte) {
         </div>
         <div class="field">
           <label>Solde</label>
-          <input class="input" id="compte-solde" type="number" step="0.01" required value="${isEdit ? compte.solde : 0}" />
+          <input class="input" id="compte-solde" type="number" step="1" min="0" required value="${isEdit ? compte.solde : 0}" />
         </div>
         <div class="modal-actions">
           <button type="button" class="btn btn-secondary" id="compte-cancel">Annuler</button>

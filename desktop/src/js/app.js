@@ -20,6 +20,7 @@ document.getElementById("logout-btn").addEventListener("click", async () => {
 const PAGE_TITLES = {
   dashboard: "Tableau de bord",
   comptes: "Comptes",
+  transactions: "Transactions",
   soon: "À venir",
 };
 
@@ -35,6 +36,7 @@ function navigateTo(page) {
 
   if (page === "dashboard") loadDashboard();
   if (page === "comptes") loadComptes();
+  if (page === "transactions") loadTransactions();
 }
 
 document.addEventListener("DOMContentLoaded", () => navigateTo("dashboard"));

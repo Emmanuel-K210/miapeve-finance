@@ -6,10 +6,10 @@ async function loadDashboard() {
     const summary = await api.getDashboardSummary();
 
     statsGrid.innerHTML = `
-      ${statCard("Solde total", formatMontant(summary.soldeTotal), "💰", "primary")}
-      ${statCard("Total semences", formatMontant(summary.totalSemences), "🌱", "success")}
-      ${statCard("Total dépenses", formatMontant(summary.totalDepenses), "🧾", "danger")}
-      ${statCard("Comptes actifs", summary.nombreComptes, "🏦", "warning")}
+      ${statCard("Solde total", formatMontant(summary.soldeTotal), Icons.wallet(), "primary")}
+      ${statCard("Total semences", formatMontant(summary.totalSemences), Icons.sprout(), "success")}
+      ${statCard("Total dépenses", formatMontant(summary.totalDepenses), Icons.receipt(), "danger")}
+      ${statCard("Comptes actifs", summary.nombreComptes, Icons.bank(), "warning")}
     `;
 
     comptesBody.innerHTML = summary.comptes.length

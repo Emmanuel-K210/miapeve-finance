@@ -236,6 +236,49 @@ table.data-table {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Sélecteur type de transaction */
+.type-toggle {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.type-option {
+  flex: 1;
+  cursor: pointer;
+}
+
+.type-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.type-option span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.type-option input:checked + span {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+/* Tons d'icônes inline (lignes de tableau) */
+.tone-success { color: var(--color-success-500); }
+.tone-danger { color: var(--color-danger-500); }
+
+.amount-positive { color: var(--color-success-500); }
+.amount-negative { color: var(--color-danger-500); }
+
 /* Modal */
 .modal-overlay {
   position: fixed;
