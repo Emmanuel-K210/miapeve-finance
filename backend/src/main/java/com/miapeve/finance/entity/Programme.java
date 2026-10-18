@@ -34,7 +34,7 @@ public class Programme {
     @Column(name = "cree_par", nullable = false)
     private Long creePar;
 
-    @Column(name = "date_creation", insertable = false, updatable = false)
+    @Column(name = "date_creation", updatable = false)
     private LocalDateTime dateCreation;
 
     @Column(name = "modifie_par")
@@ -57,6 +57,11 @@ public class Programme {
 
     @Column(name = "enfants")
     private int enfants = 0;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dateCreation = LocalDateTime.now();
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

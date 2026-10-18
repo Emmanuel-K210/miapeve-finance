@@ -68,7 +68,7 @@ const api = {
   createProgramme: (data) => apiRequest("/programmes", { method: "POST", body: data }),
   deleteProgramme: (id) => apiRequest(`/programmes/${id}`, { method: "DELETE" }),
 
-  getSemences: () => apiRequest("/semences"),
+  getSemences: (compteId) => apiRequest(compteId ? `/semences?compteId=${compteId}` : "/semences"),
   createSemence: (data) => apiRequest("/semences", { method: "POST", body: data }),
   deleteSemence: (id) => apiRequest(`/semences/${id}`, { method: "DELETE" }),
 

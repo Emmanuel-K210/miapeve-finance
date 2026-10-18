@@ -21,8 +21,8 @@ public class SemenceController {
     }
 
     @GetMapping
-    public List<SemenceDTO> findAll() {
-        return semenceService.findAll();
+    public List<SemenceDTO> findAll(@RequestParam(required = false) Long compteId) {
+        return compteId != null ? semenceService.findByCompte(compteId) : semenceService.findAll();
     }
 
     @PostMapping

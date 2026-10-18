@@ -11,7 +11,7 @@ async function loadComptes() {
           .map(
             (c) => `
         <tr>
-          <td>${escapeHtml(c.nomCompte)}</td>
+          <td><a href="#" class="compte-link" data-open="${c.id}">${escapeHtml(c.nomCompte)}</a></td>
           <td><span class="badge badge-neutral">${escapeHtml(c.typeCompte)}</span></td>
           <td>${formatMontant(c.solde)}</td>
           <td style="text-align:right">
@@ -27,6 +27,12 @@ async function loadComptes() {
           .join("")
       : `<tr><td colspan="4" class="empty-state">Aucun compte. Créez-en un pour commencer.</td></tr>`;
 
+    body.querySelectorAll("[data-open]").forEach((link) =>
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        openCompteDetail(Number(link.dataset.open));
+      })
+    );
     body.querySelectorAll("[data-edit]").forEach((btn) =>
       btn.addEventListener("click", () => {
         const compte = comptes.find((c) => c.id === Number(btn.dataset.edit));

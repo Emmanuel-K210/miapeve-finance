@@ -31,6 +31,11 @@ public class SemenceService {
         return semenceRepository.findAll().stream().map(this::toDTO).toList();
     }
 
+    @Transactional(readOnly = true)
+    public List<SemenceDTO> findByCompte(Long compteId) {
+        return semenceRepository.findByCompteId(compteId).stream().map(this::toDTO).toList();
+    }
+
     @Transactional
     public SemenceDTO create(SemenceRequest request, Long utilisateurId) {
         Compte compte = compteRepository.findById(request.compteId())

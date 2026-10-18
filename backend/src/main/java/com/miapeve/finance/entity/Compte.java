@@ -25,7 +25,7 @@ public class Compte {
     @Column(name = "cree_par", nullable = false)
     private Long creePar;
 
-    @Column(name = "date_creation", insertable = false, updatable = false)
+    @Column(name = "date_creation", updatable = false)
     private LocalDateTime dateCreation;
 
     @Column(name = "modifie_par")
@@ -33,6 +33,11 @@ public class Compte {
 
     @Column(name = "date_modification")
     private LocalDateTime dateModification;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dateCreation = LocalDateTime.now();
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

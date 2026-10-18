@@ -503,6 +503,18 @@ table.data-table {
   border-bottom: none;
 }
 
+.compte-link {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+}
+
+.compte-link:hover {
+  color: var(--color-primary-600);
+  border-bottom-color: var(--color-primary-300, var(--color-primary-400));
+}
+
 .empty-state {
   text-align: center;
   padding: var(--space-7);

@@ -159,6 +159,25 @@
           </div>
         </section>
 
+        <section id="page-compte-detail" class="hidden">
+          <button type="button" class="link-btn" id="compte-detail-back" style="margin-bottom: var(--space-4); display:flex; align-items:center; gap:6px;">
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            Retour aux comptes
+          </button>
+
+          <div class="content-grid">
+            <div class="content-col">
+              <div class="card">
+                <div class="card-header"><h3>Historique du compte</h3></div>
+                <div id="compte-detail-timeline"></div>
+              </div>
+            </div>
+            <div class="content-col">
+              <div class="stat-card" id="compte-detail-stat"></div>
+            </div>
+          </div>
+        </section>
+
         <section id="page-transactions" class="hidden">
           <div class="page-toolbar">
             <div class="field" style="margin:0; min-width: 240px;">
@@ -268,5 +287,6 @@
   <script src="js/budgets.js"></script>
   <script src="js/utilisateurs.js"></script>
   <script src="js/roles.js"></script>
+  <script src="js/compte-detail.js"></script>
 </body>
 </html>
