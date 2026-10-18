@@ -1,5 +1,6 @@
 package com.miapeve.finance.service;
 
+import com.miapeve.finance.dto.ChangePasswordRequest;
 import com.miapeve.finance.dto.LoginRequest;
 import com.miapeve.finance.dto.UtilisateurDTO;
 import com.miapeve.finance.entity.Utilisateur;
@@ -49,6 +50,19 @@ public class AuthService {
         Utilisateur utilisateur = utilisateurRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Utilisateur introuvable"));
         return toDTO(utilisateur);
+    }
+
+    @Transactional
+    public void changeOwnPassword(Long utilisateurId, ChangePasswordRequest request) {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new IllegalArgumentException("Utilisateur introuvable"));
+
+        if (!PasswordHasher.verifyPassword(request.motDePasseActuel(), utilisateur.getMotDePasse())) {
+            throw new IllegalArgumentException("Mot de passe actuel incorrect");
+        }
+
+        utilisateur.setMotDePasse(PasswordHasher.hashPassword(request.nouveauMotDePasse()));
+        utilisateurRepository.save(utilisateur);
     }
 
     private UtilisateurDTO toDTO(Utilisateur utilisateur) {

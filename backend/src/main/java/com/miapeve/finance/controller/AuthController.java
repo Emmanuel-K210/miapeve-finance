@@ -1,5 +1,6 @@
 package com.miapeve.finance.controller;
 
+import com.miapeve.finance.dto.ChangePasswordRequest;
 import com.miapeve.finance.dto.LoginRequest;
 import com.miapeve.finance.dto.UtilisateurDTO;
 import com.miapeve.finance.security.AuthInterceptor;
@@ -36,5 +37,11 @@ public class AuthController {
     public UtilisateurDTO me(HttpServletRequest request) {
         Long utilisateurId = (Long) request.getAttribute(AuthInterceptor.UTILISATEUR_ID_ATTR);
         return authService.getUtilisateur(utilisateurId);
+    }
+
+    @PutMapping("/me/password")
+    public void changeOwnPassword(@Valid @RequestBody ChangePasswordRequest request, HttpServletRequest httpRequest) {
+        Long utilisateurId = (Long) httpRequest.getAttribute(AuthInterceptor.UTILISATEUR_ID_ATTR);
+        authService.changeOwnPassword(utilisateurId, request);
     }
 }

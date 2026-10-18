@@ -78,6 +78,13 @@ const api = {
 
   getDashboardSummary: () => apiRequest("/dashboard/summary"),
 
+  getDepenses: (compteId) => apiRequest(compteId ? `/depenses?compteId=${compteId}` : "/depenses"),
+  createDepense: (data) => apiRequest("/depenses", { method: "POST", body: data }),
+  deleteDepense: (id) => apiRequest(`/depenses/${id}`, { method: "DELETE" }),
+
+  changeOwnPassword: (motDePasseActuel, nouveauMotDePasse) =>
+    apiRequest("/auth/me/password", { method: "PUT", body: { motDePasseActuel, nouveauMotDePasse } }),
+
   getUtilisateurs: () => apiRequest("/utilisateurs"),
   createUtilisateur: (data) => apiRequest("/utilisateurs", { method: "POST", body: data }),
   updateUtilisateur: (id, data) => apiRequest(`/utilisateurs/${id}`, { method: "PUT", body: data }),

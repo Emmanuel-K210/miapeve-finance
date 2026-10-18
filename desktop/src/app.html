@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MIAPEVE Finance</title>
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("miapeve_theme");
+        if (theme) document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
@@ -41,7 +49,7 @@
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 10C12 10 7 10.5 7 5.5C7 5.5 12 5 12 10Z"/><path d="M12 10C12 10 17 10.5 17 5.5C17 5.5 12 5 12 10Z"/></svg></span>
           Semences
         </div>
-        <div class="nav-item" data-page="soon" data-module="DEPENSES">
+        <div class="nav-item" data-page="depenses" data-module="DEPENSES">
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-2.5-1.5L13 21l-2.5-1.5L8 21l-2-1.5V3Z"/><path d="M9 8h6M9 12h6"/></svg></span>
           Dépenses
         </div>
@@ -61,13 +69,17 @@
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v4.5c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6.5L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
           Rôles
         </div>
-        <div class="nav-item" data-page="soon" data-module="PARAMETRES">
+        <div class="nav-item" data-page="parametres">
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.14-1.4l1.9-1.5-2-3.3-2.2.9a7 7 0 0 0-2.4-1.4L13.8 3h-3.6l-.4 2.3a7 7 0 0 0-2.4 1.4l-2.2-.9-2 3.3 1.9 1.5a7 7 0 0 0 0 2.8l-1.9 1.5 2 3.3 2.2-.9a7 7 0 0 0 2.4 1.4l.4 2.3h3.6l.4-2.3a7 7 0 0 0 2.4-1.4l2.2.9 2-3.3-1.9-1.5c.1-.5.14-.9.14-1.4Z"/></svg></span>
           Paramètres
         </div>
       </nav>
 
       <div class="sidebar-footer">
+        <button type="button" class="theme-toggle" id="theme-toggle">
+          <span id="theme-toggle-icon"></span>
+          <span id="theme-toggle-label">Mode sombre</span>
+        </button>
         <div class="user-chip">
           <div class="user-avatar" id="user-avatar">?</div>
           <div>
@@ -197,6 +209,21 @@
           </div>
         </section>
 
+        <section id="page-depenses" class="hidden">
+          <div class="page-toolbar">
+            <div></div>
+            <button class="btn btn-primary" id="new-depense-btn">Nouvelle dépense</button>
+          </div>
+          <div class="card">
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Date</th><th>Libellé</th><th>Compte</th><th style="text-align:right">Montant</th><th></th></tr></thead>
+                <tbody id="depenses-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
         <section id="page-semences" class="hidden">
           <div class="page-toolbar">
             <div class="field" style="margin:0; min-width: 220px;">
@@ -259,6 +286,31 @@
           <div class="roles-grid" id="roles-root"></div>
         </section>
 
+        <section id="page-parametres" class="hidden">
+          <div class="content-grid">
+            <div class="content-col">
+              <div class="card" style="max-width: 440px;">
+                <div class="card-header"><h3>Changer mon mot de passe</h3></div>
+                <form id="password-form">
+                  <div class="field">
+                    <label>Mot de passe actuel</label>
+                    <input class="input" id="pw-actuel" type="password" required autocomplete="current-password" />
+                  </div>
+                  <div class="field">
+                    <label>Nouveau mot de passe</label>
+                    <input class="input" id="pw-nouveau" type="password" required minlength="4" autocomplete="new-password" />
+                  </div>
+                  <div class="field">
+                    <label>Confirmer le nouveau mot de passe</label>
+                    <input class="input" id="pw-confirmation" type="password" required minlength="4" autocomplete="new-password" />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Mettre à jour le mot de passe</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="page-soon" class="hidden">
           <div class="card">
             <div class="empty-state">
@@ -275,6 +327,7 @@
   <div id="toast-container"></div>
 
   <script src="js/icons.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/constants.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/api.js"></script>
@@ -284,9 +337,11 @@
   <script src="js/transactions.js"></script>
   <script src="js/programmes.js"></script>
   <script src="js/semences.js"></script>
+  <script src="js/depenses.js"></script>
   <script src="js/budgets.js"></script>
   <script src="js/utilisateurs.js"></script>
   <script src="js/roles.js"></script>
   <script src="js/compte-detail.js"></script>
+  <script src="js/parametres.js"></script>
 </body>
 </html>
