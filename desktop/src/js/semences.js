@@ -17,7 +17,7 @@ const PROGRAMME_TYPES = [
 let semencesComptesCache = [];
 let semencesProgrammesCache = [];
 
-document.getElementById("new-semence-btn").addEventListener("click", () => openSemenceModal());
+document.getElementById("new-semence-btn").addEventListener("click", () => openSemenceDrawer());
 document.getElementById("semence-type-filter").addEventListener("change", loadSemences);
 
 async function loadSemences() {
@@ -63,16 +63,14 @@ function renderSemenceRow(s) {
   `;
 }
 
-function openSemenceModal() {
-  const root = document.getElementById("semence-modal-root");
-
-  root.innerHTML = `
-    <div class="modal-overlay" id="semence-modal-overlay">
-      <form class="modal" id="semence-form">
-        <div class="modal-header">
-          <h3>Nouvelle semence</h3>
-        </div>
-
+function openSemenceDrawer() {
+  const form = openDrawer({
+    title: "Nouvelle semence",
+    subtitle: "Dîme, offrande ou autre contribution rattachée à un programme",
+    formId: "semence-form",
+    bodyHtml: `
+      <div class="form-section-title">Type et montant</div>
+      <div class="form-grid">
         <div class="field">
           <label>Type</label>
           <select class="input" id="sem-type" required>
@@ -81,77 +79,69 @@ function openSemenceModal() {
               .join("")}
           </select>
         </div>
-
         <div class="field">
           <label>Montant (FCFA)</label>
           <input class="input" id="sem-montant" type="number" min="1" step="1" required />
         </div>
-
-        <div class="field">
+        <div class="field field-full">
           <label>Date</label>
           <input class="input" id="sem-date" type="date" required value="${todayIso()}" />
         </div>
+      </div>
 
-        <div class="field">
-          <label>Compte à créditer</label>
-          <select class="input" id="sem-compte" required>
-            ${semencesComptesCache.map((c) => `<option value="${c.id}">${escapeHtml(c.nomCompte)}</option>`).join("")}
-          </select>
-        </div>
+      <div class="form-section-title">Compte à créditer</div>
+      ${quickCreateCompteBlock("sem-compte")}
 
-        <div class="field">
-          <label>Programme</label>
-          <div style="display:flex; gap: var(--space-2);">
-            <select class="input" id="sem-programme" required style="flex:1">
-              ${renderProgrammeOptions()}
+      <div class="form-section-title">Programme</div>
+      <div class="inline-action-row">
+        <label style="margin:0;">Associer à un programme existant ou en créer un</label>
+        <button type="button" class="link-btn" id="sem-new-programme-toggle">+ créer un programme</button>
+      </div>
+      <div class="field field-full" style="margin-top: var(--space-2);">
+        <select class="input" id="sem-programme" required>
+          ${renderProgrammeOptions()}
+        </select>
+      </div>
+
+      <div class="quick-panel hidden" id="sem-new-programme-fields">
+        <div class="form-grid">
+          <div class="field field-full">
+            <label>Type de programme</label>
+            <select class="input" id="np-type">
+              ${PROGRAMME_TYPES.map((t) => `<option value="${t}">${t}</option>`).join("")}
             </select>
-            <button type="button" class="btn btn-secondary" id="sem-new-programme-toggle">Nouveau</button>
+          </div>
+          <div class="field">
+            <label>Date du programme</label>
+            <input class="input" id="np-date" type="date" value="${todayIso()}" />
+          </div>
+          <div></div>
+          <div class="field">
+            <label>Heure début</label>
+            <input class="input" id="np-debut" type="time" value="09:00" />
+          </div>
+          <div class="field">
+            <label>Heure fin</label>
+            <input class="input" id="np-fin" type="time" value="11:00" />
           </div>
         </div>
+        <button type="button" class="btn btn-secondary btn-block" id="np-create">Créer ce programme</button>
+      </div>
 
-        <div class="field hidden" id="sem-new-programme-fields">
-          <div class="card" style="background: var(--color-surface-muted); box-shadow:none; padding: var(--space-4);">
-            <div class="field">
-              <label>Type de programme</label>
-              <select class="input" id="np-type">
-                ${PROGRAMME_TYPES.map((t) => `<option value="${t}">${t}</option>`).join("")}
-              </select>
-            </div>
-            <div class="field">
-              <label>Date du programme</label>
-              <input class="input" id="np-date" type="date" value="${todayIso()}" />
-            </div>
-            <div style="display:flex; gap: var(--space-3);">
-              <div class="field" style="flex:1">
-                <label>Heure début</label>
-                <input class="input" id="np-debut" type="time" value="09:00" />
-              </div>
-              <div class="field" style="flex:1">
-                <label>Heure fin</label>
-                <input class="input" id="np-fin" type="time" value="11:00" />
-              </div>
-            </div>
-            <button type="button" class="btn btn-primary btn-block" id="np-create">Créer ce programme</button>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Description</label>
+      <div class="form-section-title">Description</div>
+      <div class="form-grid">
+        <div class="field field-full">
           <input class="input" id="sem-description" placeholder="Optionnel" />
         </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn btn-secondary" id="sem-cancel">Annuler</button>
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
-        </div>
-      </form>
-    </div>
-  `;
-
-  document.getElementById("sem-cancel").addEventListener("click", closeSemenceModal);
-  document.getElementById("semence-modal-overlay").addEventListener("click", (e) => {
-    if (e.target.id === "semence-modal-overlay") closeSemenceModal();
+      </div>
+    `,
+    footerHtml: `
+      <button type="button" class="btn btn-secondary" id="sem-cancel">Annuler</button>
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+    `,
   });
+
+  document.getElementById("sem-cancel").addEventListener("click", closeDrawer);
 
   document.getElementById("sem-new-programme-toggle").addEventListener("click", () => {
     document.getElementById("sem-new-programme-fields").classList.toggle("hidden");
@@ -177,8 +167,20 @@ function openSemenceModal() {
     }
   });
 
-  document.getElementById("semence-form").addEventListener("submit", async (e) => {
+  wireQuickCreateCompte({
+    selectId: "sem-compte",
+    getCache: () => semencesComptesCache,
+    setCache: (next) => (semencesComptesCache = next),
+  });
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const compteId = document.getElementById("sem-compte").value;
+    if (!compteId) {
+      showToast("Sélectionnez ou créez un compte", "error");
+      return;
+    }
 
     if (!semencesProgrammesCache.length) {
       showToast("Créez d'abord un programme pour cette semence", "error");
@@ -197,7 +199,7 @@ function openSemenceModal() {
     try {
       await api.createSemence(payload);
       showToast("Semence enregistrée");
-      closeSemenceModal();
+      closeDrawer();
       loadSemences();
     } catch (err) {
       showToast(err.message, "error");
@@ -212,10 +214,6 @@ function renderProgrammeOptions() {
   return semencesProgrammesCache
     .map((p) => `<option value="${p.id}">${escapeHtml(p.typeProgramme)} — ${formatDateOnly(p.dateProgramme)}</option>`)
     .join("");
-}
-
-function closeSemenceModal() {
-  document.getElementById("semence-modal-root").innerHTML = "";
 }
 
 async function deleteSemence(id) {

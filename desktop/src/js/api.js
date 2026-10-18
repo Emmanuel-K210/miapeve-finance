@@ -71,6 +71,10 @@ const api = {
   createSemence: (data) => apiRequest("/semences", { method: "POST", body: data }),
   deleteSemence: (id) => apiRequest(`/semences/${id}`, { method: "DELETE" }),
 
+  getBudgets: () => apiRequest("/budgets"),
+  createBudget: (data) => apiRequest("/budgets", { method: "POST", body: data }),
+  deleteBudget: (id) => apiRequest(`/budgets/${id}`, { method: "DELETE" }),
+
   getDashboardSummary: () => apiRequest("/dashboard/summary"),
 };
 

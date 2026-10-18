@@ -18,10 +18,17 @@
       </div>
 
       <nav class="nav">
+        <div class="nav-section-label">Vue d'ensemble</div>
         <div class="nav-item active" data-page="dashboard">
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9"/></svg></span>
           Tableau de bord
         </div>
+        <div class="nav-item" data-page="budgets">
+          <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+          Budgets
+        </div>
+
+        <div class="nav-section-label">Finances</div>
         <div class="nav-item" data-page="comptes">
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 4l9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 19h18"/></svg></span>
           Comptes
@@ -30,10 +37,6 @@
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></span>
           Transactions
         </div>
-        <div class="nav-item" data-page="soon">
-          <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></span>
-          Programmes
-        </div>
         <div class="nav-item" data-page="semences">
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 10C12 10 7 10.5 7 5.5C7 5.5 12 5 12 10Z"/><path d="M12 10C12 10 17 10.5 17 5.5C17 5.5 12 5 12 10Z"/></svg></span>
           Semences
@@ -41,6 +44,12 @@
         <div class="nav-item" data-page="soon">
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-2.5-1.5L13 21l-2.5-1.5L8 21l-2-1.5V3Z"/><path d="M9 8h6M9 12h6"/></svg></span>
           Dépenses
+        </div>
+
+        <div class="nav-section-label">Organisation</div>
+        <div class="nav-item" data-page="soon">
+          <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></span>
+          Programmes
         </div>
         <div class="nav-item" data-page="soon">
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 14c2.4.4 4.5 2.3 4.5 6"/></svg></span>
@@ -68,31 +77,65 @@
 
     <div class="main-area">
       <header class="topbar">
-        <h2 id="page-title">Tableau de bord</h2>
+        <div>
+          <h2 id="page-title">Tableau de bord</h2>
+          <p class="topbar-subtitle" id="page-subtitle">Vue d'ensemble des finances de l'église</p>
+        </div>
       </header>
 
       <main class="page-content">
         <section id="page-dashboard">
           <div class="stats-grid" id="stats-grid"></div>
+
           <div class="content-grid">
-            <div class="card">
-              <div class="card-header"><h3>Comptes</h3></div>
-              <div class="table-wrap">
-                <table class="data-table">
-                  <thead><tr><th>Compte</th><th>Type</th><th>Solde</th></tr></thead>
-                  <tbody id="dashboard-comptes-body"></tbody>
-                </table>
+            <div class="content-col">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <h3>Évolution financière</h3>
+                    <p class="card-subtitle">Semences et dépenses, 6 derniers mois</p>
+                  </div>
+                  <div class="legend">
+                    <span class="legend-dot tone-success"></span>Semences
+                    <span class="legend-dot tone-danger"></span>Dépenses
+                  </div>
+                </div>
+                <div id="chart-root"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-header"><h3>Activité récente</h3></div>
+                <div id="activity-root"></div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-header"><h3>Résumé</h3></div>
-              <p style="color: var(--color-text-muted); font-size: var(--font-size-sm); line-height: 1.6;">
-                Ce tableau de bord regroupe le solde global de l'église, le total des semences collectées
-                et le total des dépenses enregistrées. Les prochains modules (transactions, graphiques,
-                exports) viendront enrichir cette vue.
-              </p>
+
+            <div class="content-col">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Budgets du mois</h3>
+                </div>
+                <div id="dashboard-budgets-root"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-header"><h3>Comptes</h3></div>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead><tr><th>Compte</th><th>Solde</th></tr></thead>
+                    <tbody id="dashboard-comptes-body"></tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
+
+        <section id="page-budgets" class="hidden">
+          <div class="page-toolbar">
+            <p class="page-toolbar-hint">Un budget suit les dépenses réelles d'un compte sur un mois donné.</p>
+            <button class="btn btn-primary" id="new-budget-btn">Nouveau budget</button>
+          </div>
+          <div class="budgets-grid" id="budgets-root"></div>
         </section>
 
         <section id="page-comptes" class="hidden">
@@ -165,17 +208,17 @@
     </div>
   </div>
 
-  <div id="compte-modal-root"></div>
-  <div id="transaction-modal-root"></div>
-  <div id="semence-modal-root"></div>
+  <div id="drawer-root"></div>
   <div id="toast-container"></div>
 
   <script src="js/icons.js"></script>
+  <script src="js/drawer.js"></script>
   <script src="js/api.js"></script>
   <script src="js/app.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/comptes.js"></script>
   <script src="js/transactions.js"></script>
   <script src="js/semences.js"></script>
+  <script src="js/budgets.js"></script>
 </body>
 </html>

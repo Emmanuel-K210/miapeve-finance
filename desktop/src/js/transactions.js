@@ -1,6 +1,6 @@
 let transactionsComptesCache = [];
 
-document.getElementById("new-transaction-btn").addEventListener("click", () => openTransactionModal());
+document.getElementById("new-transaction-btn").addEventListener("click", () => openTransactionDrawer());
 document.getElementById("transaction-compte-filter").addEventListener("change", loadTransactions);
 
 async function loadTransactions() {
@@ -51,72 +51,69 @@ function renderTransactionRow(t) {
   `;
 }
 
-function openTransactionModal() {
-  const root = document.getElementById("transaction-modal-root");
-  const compteOptions = transactionsComptesCache
-    .map((c) => `<option value="${c.id}">${escapeHtml(c.nomCompte)}</option>`)
-    .join("");
+function openTransactionDrawer() {
+  const form = openDrawer({
+    title: "Nouvelle transaction",
+    subtitle: "Enregistrez une entrée ou une sortie manuelle sur un compte",
+    formId: "transaction-form",
+    bodyHtml: `
+      <div class="form-section-title">Sens de l'opération</div>
+      <div class="segmented">
+        <label class="segmented-option credit">
+          <input type="radio" name="tx-type" value="CREDIT" checked />
+          <span class="segmented-card">${Icons.arrowUpCircle()} Entrée</span>
+        </label>
+        <label class="segmented-option debit">
+          <input type="radio" name="tx-type" value="DEBIT" />
+          <span class="segmented-card">${Icons.arrowDownCircle()} Sortie</span>
+        </label>
+      </div>
 
-  root.innerHTML = `
-    <div class="modal-overlay" id="transaction-modal-overlay">
-      <form class="modal" id="transaction-form">
-        <div class="modal-header">
-          <h3>Nouvelle transaction</h3>
-        </div>
+      <div class="form-section-title">Compte concerné</div>
+      ${quickCreateCompteBlock("tx-compte")}
 
-        <div class="field">
-          <label>Compte</label>
-          <select class="input" id="tx-compte" required>${compteOptions}</select>
-        </div>
-
-        <div class="field">
-          <label>Type</label>
-          <div class="type-toggle">
-            <label class="type-option">
-              <input type="radio" name="tx-type" value="CREDIT" checked />
-              <span>${Icons.arrowUpCircle()} Entrée (crédit)</span>
-            </label>
-            <label class="type-option">
-              <input type="radio" name="tx-type" value="DEBIT" />
-              <span>${Icons.arrowDownCircle()} Sortie (débit)</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
+      <div class="form-section-title">Détails</div>
+      <div class="form-grid">
+        <div class="field field-full">
           <label>Montant (FCFA)</label>
           <input class="input" id="tx-montant" type="number" min="1" step="1" required />
         </div>
-
-        <div class="field">
+        <div class="field field-full">
           <label>Description</label>
           <input class="input" id="tx-description" placeholder="Motif de la transaction" />
         </div>
-
-        <div class="field">
+        <div class="field field-full">
           <label>Référence</label>
           <input class="input" id="tx-reference" placeholder="Optionnel" />
         </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn btn-secondary" id="tx-cancel">Annuler</button>
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
-        </div>
-      </form>
-    </div>
-  `;
-
-  document.getElementById("tx-cancel").addEventListener("click", closeTransactionModal);
-  document.getElementById("transaction-modal-overlay").addEventListener("click", (e) => {
-    if (e.target.id === "transaction-modal-overlay") closeTransactionModal();
+      </div>
+    `,
+    footerHtml: `
+      <button type="button" class="btn btn-secondary" id="tx-cancel">Annuler</button>
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+    `,
   });
 
-  document.getElementById("transaction-form").addEventListener("submit", async (e) => {
+  document.getElementById("tx-cancel").addEventListener("click", closeDrawer);
+
+  wireQuickCreateCompte({
+    selectId: "tx-compte",
+    getCache: () => transactionsComptesCache,
+    setCache: (next) => (transactionsComptesCache = next),
+  });
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const compteId = document.getElementById("tx-compte").value;
+    if (!compteId) {
+      showToast("Sélectionnez ou créez un compte", "error");
+      return;
+    }
+
     const payload = {
       typeTransaction: document.querySelector("input[name='tx-type']:checked").value,
       montant: Number(document.getElementById("tx-montant").value),
-      compteId: Number(document.getElementById("tx-compte").value),
+      compteId: Number(compteId),
       description: document.getElementById("tx-description").value.trim(),
       reference: document.getElementById("tx-reference").value.trim(),
     };
@@ -124,17 +121,13 @@ function openTransactionModal() {
     try {
       await api.createTransaction(payload);
       showToast("Transaction enregistrée");
-      closeTransactionModal();
+      closeDrawer();
       transactionsComptesCache = [];
       loadTransactions();
     } catch (err) {
       showToast(err.message, "error");
     }
   });
-}
-
-function closeTransactionModal() {
-  document.getElementById("transaction-modal-root").innerHTML = "";
 }
 
 async function deleteTransaction(id) {

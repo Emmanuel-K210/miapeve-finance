@@ -50,4 +50,6 @@ public class Depense {
 
     public Long getCreePar() { return creePar; }
     public void setCreePar(Long creePar) { this.creePar = creePar; }
+
+    public LocalDateTime getDateCreation() { return dateCreation; }
 }

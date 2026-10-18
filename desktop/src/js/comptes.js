@@ -1,4 +1,4 @@
-document.getElementById("new-compte-btn").addEventListener("click", () => openCompteModal());
+document.getElementById("new-compte-btn").addEventListener("click", () => openCompteDrawer());
 
 async function loadComptes() {
   const body = document.getElementById("comptes-body");
@@ -24,7 +24,7 @@ async function loadComptes() {
     body.querySelectorAll("[data-edit]").forEach((btn) =>
       btn.addEventListener("click", () => {
         const compte = comptes.find((c) => c.id === Number(btn.dataset.edit));
-        openCompteModal(compte);
+        openCompteDrawer(compte);
       })
     );
     body.querySelectorAll("[data-delete]").forEach((btn) =>
@@ -35,45 +35,52 @@ async function loadComptes() {
   }
 }
 
-function openCompteModal(compte) {
+const COMPTE_TYPE_SUGGESTIONS = ["CAISSE", "BANQUE", "MOBILE MONEY", "EPARGNE"];
+
+function openCompteDrawer(compte) {
   const isEdit = Boolean(compte);
-  const root = document.getElementById("compte-modal-root");
-  root.innerHTML = `
-    <div class="modal-overlay" id="compte-modal-overlay">
-      <form class="modal" id="compte-form">
-        <div class="modal-header">
-          <h3>${isEdit ? "Modifier le compte" : "Nouveau compte"}</h3>
-        </div>
-        <div class="field">
+
+  const form = openDrawer({
+    title: isEdit ? "Modifier le compte" : "Nouveau compte",
+    subtitle: isEdit ? compte.nomCompte : "Créez une caisse, une banque ou un portefeuille mobile",
+    formId: "compte-form",
+    bodyHtml: `
+      <div class="form-section-title">Identification</div>
+      <div class="form-grid">
+        <div class="field field-full">
           <label>Nom du compte</label>
-          <input class="input" id="compte-nom" required value="${isEdit ? escapeHtml(compte.nomCompte) : ""}" />
+          <input class="input" id="compte-nom" required value="${isEdit ? escapeHtml(compte.nomCompte) : ""}" placeholder="ex. Caisse Principale" />
         </div>
-        <div class="field">
+        <div class="field field-full">
           <label>Type de compte</label>
-          <input class="input" id="compte-type" required value="${isEdit ? escapeHtml(compte.typeCompte) : ""}" placeholder="CAISSE, BANQUE, ..." />
+          <input class="input" id="compte-type" required list="compte-type-suggestions" value="${isEdit ? escapeHtml(compte.typeCompte) : ""}" placeholder="CAISSE, BANQUE, ..." />
+          <datalist id="compte-type-suggestions">
+            ${COMPTE_TYPE_SUGGESTIONS.map((t) => `<option value="${t}"></option>`).join("")}
+          </datalist>
         </div>
-        <div class="field">
-          <label>Solde</label>
+      </div>
+
+      <div class="form-section-title">Solde</div>
+      <div class="form-grid">
+        <div class="field field-full">
+          <label>Solde ${isEdit ? "actuel" : "initial"} (FCFA)</label>
           <input class="input" id="compte-solde" type="number" step="1" min="0" required value="${isEdit ? compte.solde : 0}" />
         </div>
-        <div class="modal-actions">
-          <button type="button" class="btn btn-secondary" id="compte-cancel">Annuler</button>
-          <button type="submit" class="btn btn-primary">${isEdit ? "Enregistrer" : "Créer"}</button>
-        </div>
-      </form>
-    </div>
-  `;
-
-  document.getElementById("compte-cancel").addEventListener("click", closeCompteModal);
-  document.getElementById("compte-modal-overlay").addEventListener("click", (e) => {
-    if (e.target.id === "compte-modal-overlay") closeCompteModal();
+      </div>
+    `,
+    footerHtml: `
+      <button type="button" class="btn btn-secondary" id="compte-cancel">Annuler</button>
+      <button type="submit" class="btn btn-primary">${isEdit ? "Enregistrer les modifications" : "Créer le compte"}</button>
+    `,
   });
 
-  document.getElementById("compte-form").addEventListener("submit", async (e) => {
+  document.getElementById("compte-cancel").addEventListener("click", closeDrawer);
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const payload = {
       nomCompte: document.getElementById("compte-nom").value.trim(),
-      typeCompte: document.getElementById("compte-type").value.trim(),
+      typeCompte: document.getElementById("compte-type").value.trim().toUpperCase(),
       solde: Number(document.getElementById("compte-solde").value),
     };
 
@@ -85,16 +92,12 @@ function openCompteModal(compte) {
         await api.createCompte(payload);
         showToast("Compte créé");
       }
-      closeCompteModal();
+      closeDrawer();
       loadComptes();
     } catch (err) {
       showToast(err.message, "error");
     }
   });
-}
-
-function closeCompteModal() {
-  document.getElementById("compte-modal-root").innerHTML = "";
 }
 
 async function deleteCompte(id) {

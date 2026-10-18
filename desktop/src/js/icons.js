@@ -19,6 +19,10 @@ const Icons = {
   trash: () => svg(`<path d="M5 7h14"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M7 7l1 13a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-13"/>`),
   arrowUpCircle: () => svg(`<circle cx="12" cy="12" r="9"/><path d="M12 16V8M8.5 11.5 12 8l3.5 3.5"/>`),
   arrowDownCircle: () => svg(`<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8.5 12.5 12 16l3.5-3.5"/>`),
+  chevronRight: () => svg(`<path d="M9 5l7 7-7 7"/>`),
+  target: () => svg(`<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>`),
+  alert: () => svg(`<path d="M12 4 3 20h18Z"/><path d="M12 10v4"/><circle cx="12" cy="17" r="0.4" fill="currentColor"/>`),
+  check: () => svg(`<path d="M5 12l5 5L19 7"/>`),
 };
 
 function svg(innerPaths) {

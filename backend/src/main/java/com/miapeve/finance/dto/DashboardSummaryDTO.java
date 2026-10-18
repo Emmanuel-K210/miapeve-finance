@@ -8,6 +8,9 @@ public record DashboardSummaryDTO(
         double totalDepenses,
         int nombreComptes,
         int nombreProgrammes,
-        List<CompteDTO> comptes
+        List<CompteDTO> comptes,
+        List<MonthlyPointDTO> evolution,
+        List<ActivityDTO> activitesRecentes,
+        List<BudgetDTO> budgetsMoisCourant
 ) {
 }
