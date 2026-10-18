@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIAPEVE Finance — Connexion</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+</head>
+<body>
+  <div class="login-page">
+    <form class="login-card" id="login-form">
+      <div class="login-logo">
+        <img src="assets/logo.png" alt="MIAPEVE" onerror="this.style.display='none'" />
+        <h1>MIAPEVE Finance</h1>
+        <p>Gestion des finances de l'église</p>
+      </div>
+
+      <div id="login-error" class="login-error hidden"></div>
+
+      <div class="field">
+        <label for="nomUtilisateur">Nom d'utilisateur</label>
+        <input class="input" id="nomUtilisateur" name="nomUtilisateur" autocomplete="username" required />
+      </div>
+
+      <div class="field">
+        <label for="motDePasse">Mot de passe</label>
+        <input class="input" id="motDePasse" type="password" name="motDePasse" autocomplete="current-password" required />
+      </div>
+
+      <button class="btn btn-primary btn-block" id="login-submit" type="submit">Se connecter</button>
+    </form>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

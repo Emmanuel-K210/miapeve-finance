@@ -1,0 +1,25 @@
+# Build Maven (ancienne app + backend)
+target/
+dependency-reduced-pom.xml
+
+# IDE
+.idea/
+.settings/
+.classpath
+.project
+*.iml
+
+# Backend : base SQLite locale de dev
+backend/data/
+*.db
+*.db-journal
+
+# Desktop (Tauri + Rust)
+desktop/src-tauri/target/
+desktop/src-tauri/gen/
+desktop/node_modules/
+desktop/src-tauri/resources/*.jar
+
+# Divers
+.DS_Store
+*.log

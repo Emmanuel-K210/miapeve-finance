@@ -1,0 +1,27 @@
+server:
+  port: ${MIAPEVE_PORT:8787}
+  address: 127.0.0.1
+
+spring:
+  application:
+    name: miapeve-finance-backend
+  datasource:
+    url: jdbc:sqlite:${MIAPEVE_DB_PATH:./data/miapeve_finance.db}
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+
+logging:
+  level:
+    root: INFO
+    com.miapeve.finance: DEBUG
+
+miapeve:
+  cors:
+    allowed-origins: ${MIAPEVE_FRONTEND_ORIGIN:tauri://localhost,http://localhost:1420,http://localhost:5173}
