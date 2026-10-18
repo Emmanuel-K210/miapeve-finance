@@ -64,6 +64,13 @@ const api = {
   createTransaction: (data) => apiRequest("/transactions", { method: "POST", body: data }),
   deleteTransaction: (id) => apiRequest(`/transactions/${id}`, { method: "DELETE" }),
 
+  getProgrammes: () => apiRequest("/programmes"),
+  createProgramme: (data) => apiRequest("/programmes", { method: "POST", body: data }),
+
+  getSemences: () => apiRequest("/semences"),
+  createSemence: (data) => apiRequest("/semences", { method: "POST", body: data }),
+  deleteSemence: (id) => apiRequest(`/semences/${id}`, { method: "DELETE" }),
+
   getDashboardSummary: () => apiRequest("/dashboard/summary"),
 };
 

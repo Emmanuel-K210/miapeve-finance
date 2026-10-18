@@ -34,8 +34,8 @@
           <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></span>
           Programmes
         </div>
-        <div class="nav-item" data-page="soon">
-          <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20c0-5 3-7 5-7s5 2 5 7"/><path d="M12 13V5"/><path d="M12 9c-3 0-5-2-5-5 3 0 5 2 5 5Z"/><path d="M12 7c2.5 0 4.5-1.5 4.5-4-2.5 0-4.5 1.5-4.5 4Z"/></svg></span>
+        <div class="nav-item" data-page="semences">
+          <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 10C12 10 7 10.5 7 5.5C7 5.5 12 5 12 10Z"/><path d="M12 10C12 10 17 10.5 17 5.5C17 5.5 12 5 12 10Z"/></svg></span>
           Semences
         </div>
         <div class="nav-item" data-page="soon">
@@ -98,7 +98,7 @@
         <section id="page-comptes" class="hidden">
           <div class="page-toolbar">
             <div></div>
-            <button class="btn btn-primary" id="new-compte-btn"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nouveau compte</button>
+            <button class="btn btn-primary" id="new-compte-btn">Nouveau compte</button>
           </div>
           <div class="card">
             <div class="table-wrap">
@@ -117,13 +117,37 @@
                 <option value="">Tous les comptes</option>
               </select>
             </div>
-            <button class="btn btn-primary" id="new-transaction-btn"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nouvelle transaction</button>
+            <button class="btn btn-primary" id="new-transaction-btn">Nouvelle transaction</button>
           </div>
           <div class="card">
             <div class="table-wrap">
               <table class="data-table">
                 <thead><tr><th></th><th>Date</th><th>Compte</th><th>Description</th><th>Référence</th><th style="text-align:right">Montant</th><th></th></tr></thead>
                 <tbody id="transactions-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="page-semences" class="hidden">
+          <div class="page-toolbar">
+            <div class="field" style="margin:0; min-width: 220px;">
+              <select class="input" id="semence-type-filter">
+                <option value="">Tous les types</option>
+                <option value="DIMES">Dîmes</option>
+                <option value="OFFRANDE">Offrande</option>
+                <option value="LIBERALE">Offrande libérale</option>
+                <option value="PREMICE">Prémices</option>
+                <option value="AUTRES">Autres</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" id="new-semence-btn">Nouvelle semence</button>
+          </div>
+          <div class="card">
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Date</th><th>Type</th><th>Programme</th><th>Compte</th><th>Description</th><th style="text-align:right">Montant</th><th></th></tr></thead>
+                <tbody id="semences-body"></tbody>
               </table>
             </div>
           </div>
@@ -143,6 +167,7 @@
 
   <div id="compte-modal-root"></div>
   <div id="transaction-modal-root"></div>
+  <div id="semence-modal-root"></div>
   <div id="toast-container"></div>
 
   <script src="js/icons.js"></script>
@@ -151,5 +176,6 @@
   <script src="js/dashboard.js"></script>
   <script src="js/comptes.js"></script>
   <script src="js/transactions.js"></script>
+  <script src="js/semences.js"></script>
 </body>
 </html>

@@ -21,6 +21,7 @@ const PAGE_TITLES = {
   dashboard: "Tableau de bord",
   comptes: "Comptes",
   transactions: "Transactions",
+  semences: "Semences",
   soon: "À venir",
 };
 
@@ -37,6 +38,7 @@ function navigateTo(page) {
   if (page === "dashboard") loadDashboard();
   if (page === "comptes") loadComptes();
   if (page === "transactions") loadTransactions();
+  if (page === "semences") loadSemences();
 }
 
 document.addEventListener("DOMContentLoaded", () => navigateTo("dashboard"));

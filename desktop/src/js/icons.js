@@ -7,7 +7,7 @@ const Icons = {
   bank: () => svg(`<path d="M3 10 12 4l9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 19h18"/>`),
   swap: () => svg(`<path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/>`),
   calendar: () => svg(`<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/>`),
-  sprout: () => svg(`<path d="M7 20c0-5 3-7 5-7s5 2 5 7"/><path d="M12 13V5"/><path d="M12 9c-3 0-5-2-5-5 3 0 5 2 5 5Z"/><path d="M12 7c2.5 0 4.5-1.5 4.5-4-2.5 0-4.5 1.5-4.5 4Z"/>`),
+  sprout: () => svg(`<path d="M12 21V10"/><path d="M12 10C12 10 7 10.5 7 5.5C7 5.5 12 5 12 10Z"/><path d="M12 10C12 10 17 10.5 17 5.5C17 5.5 12 5 12 10Z"/>`),
   receipt: () => svg(`<path d="M6 3h12v18l-2.5-1.5L13 21l-2.5-1.5L8 21l-2-1.5V3Z"/><path d="M9 8h6M9 12h6"/>`),
   users: () => svg(`<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 14c2.4.4 4.5 2.3 4.5 6"/>`),
   settings: () => svg(`<circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.14-1.4l1.9-1.5-2-3.3-2.2.9a7 7 0 0 0-2.4-1.4L13.8 3h-3.6l-.4 2.3a7 7 0 0 0-2.4 1.4l-2.2-.9-2 3.3 1.9 1.5a7 7 0 0 0 0 2.8l-1.9 1.5 2 3.3 2.2-.9a7 7 0 0 0 2.4 1.4l.4 2.3h3.6l.4-2.3a7 7 0 0 0 2.4-1.4l2.2.9 2-3.3-1.9-1.5c.1-.5.14-.9.14-1.4Z"/>`),
@@ -15,12 +15,10 @@ const Icons = {
   wallet: () => svg(`<path d="M3 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2H5a2 2 0 0 1-2-2Z"/><path d="M3 9h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/><circle cx="16" cy="14" r="1.2"/>`),
   trendUp: () => svg(`<path d="M4 16l5-5 4 4 7-8"/><path d="M14 7h6v6"/>`),
   trendDown: () => svg(`<path d="M4 8l5 5 4-4 7 8"/><path d="M14 17h6v-6"/>`),
-  plus: () => svg(`<path d="M12 5v14M5 12h14"/>`),
   pencil: () => svg(`<path d="M4 20h4L19.5 8.5a2 2 0 0 0 0-2.8l-1.2-1.2a2 2 0 0 0-2.8 0L4 16v4Z"/><path d="M14 6l3 3"/>`),
   trash: () => svg(`<path d="M5 7h14"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M7 7l1 13a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-13"/>`),
   arrowUpCircle: () => svg(`<circle cx="12" cy="12" r="9"/><path d="M12 16V8M8.5 11.5 12 8l3.5 3.5"/>`),
   arrowDownCircle: () => svg(`<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8.5 12.5 12 16l3.5-3.5"/>`),
-  close: () => svg(`<path d="M6 6l12 12M18 6 6 18"/>`),
 };
 
 function svg(innerPaths) {
