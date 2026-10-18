@@ -1,6 +1,14 @@
 let parametresWired = false;
 
 function loadParametres() {
+  const user = getCurrentUser();
+  if (user) {
+    document.getElementById("profile-avatar").textContent = (user.prenom?.[0] || "?").toUpperCase();
+    document.getElementById("profile-name").textContent = `${user.prenom} ${user.nom}`;
+    document.getElementById("profile-username").textContent = `@${user.nomUtilisateur}`;
+    document.getElementById("profile-role").textContent = user.role;
+  }
+
   if (parametresWired) return;
   parametresWired = true;
 

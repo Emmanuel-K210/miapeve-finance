@@ -1,0 +1,86 @@
+/* Feuille de style dédiée à l'impression (reçus, relevés, rapports).
+   #print-area reste cachée à l'écran et n'est révélée que lors de
+   l'impression — tout le reste de l'application est masqué. */
+#print-area {
+  display: none;
+}
+
+@media print {
+  body > *:not(#print-area) {
+    display: none !important;
+  }
+
+  #print-area {
+    display: block !important;
+    color: #000;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    padding: 20px;
+  }
+
+  #print-area .print-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  #print-area .print-header .print-brand {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  #print-area .print-header .print-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+
+  #print-area .print-meta {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  #print-area .print-meta td {
+    padding: 4px 0;
+  }
+
+  #print-area .print-meta td:first-child {
+    font-weight: 700;
+    width: 180px;
+  }
+
+  #print-area table.print-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+
+  #print-area table.print-table th,
+  #print-area table.print-table td {
+    border: 1px solid #333;
+    padding: 6px 10px;
+    text-align: left;
+  }
+
+  #print-area table.print-table th {
+    background: #eee;
+    font-weight: 700;
+  }
+
+  #print-area .print-total-row td {
+    font-weight: 800;
+  }
+
+  #print-area .print-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 10px;
+    color: #555;
+  }
+
+  @page {
+    margin: 18mm;
+  }
+}

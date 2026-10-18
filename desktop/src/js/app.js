@@ -45,6 +45,8 @@ const PAGE_SUBTITLES = {
   soon: "Ce module arrive dans une prochaine mise à jour",
 };
 
+document.getElementById("topbar-print-btn").addEventListener("click", () => printDashboardReport());
+
 document.querySelectorAll(".nav-item").forEach((item) => {
   item.addEventListener("click", () => {
     document.querySelectorAll(".nav-item").forEach((el) => el.classList.remove("active"));
@@ -58,6 +60,7 @@ function navigateTo(page) {
   document.getElementById(`page-${page}`).classList.remove("hidden");
   document.getElementById("page-title").textContent = PAGE_TITLES[page] || "";
   document.getElementById("page-subtitle").textContent = PAGE_SUBTITLES[page] || "";
+  document.getElementById("topbar-print-btn").classList.toggle("hidden", page !== "dashboard");
 
   if (page === "dashboard") loadDashboard();
   if (page === "budgets") loadBudgets();
