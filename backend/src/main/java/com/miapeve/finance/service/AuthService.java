@@ -52,12 +52,6 @@ public class AuthService {
     }
 
     private UtilisateurDTO toDTO(Utilisateur utilisateur) {
-        return new UtilisateurDTO(
-                utilisateur.getId(),
-                utilisateur.getNom(),
-                utilisateur.getPrenom(),
-                utilisateur.getNomUtilisateur(),
-                utilisateur.getRole() != null ? utilisateur.getRole().getLibelle() : null
-        );
+        return UtilisateurMapper.toDTO(utilisateur);
     }
 }

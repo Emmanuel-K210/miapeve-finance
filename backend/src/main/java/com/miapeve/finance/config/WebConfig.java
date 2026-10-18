@@ -1,5 +1,6 @@
 package com.miapeve.finance.config;
 
+import com.miapeve.finance.repository.UtilisateurRepository;
 import com.miapeve.finance.security.AuthInterceptor;
 import com.miapeve.finance.security.SessionService;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,12 +13,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     private final SessionService sessionService;
+    private final UtilisateurRepository utilisateurRepository;
 
     @Value("${miapeve.cors.allowed-origins}")
     private String allowedOrigins;
 
-    public WebConfig(SessionService sessionService) {
+    public WebConfig(SessionService sessionService, UtilisateurRepository utilisateurRepository) {
         this.sessionService = sessionService;
+        this.utilisateurRepository = utilisateurRepository;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AuthInterceptor(sessionService))
+        registry.addInterceptor(new AuthInterceptor(sessionService, utilisateurRepository))
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/auth/login", "/api/health");
     }

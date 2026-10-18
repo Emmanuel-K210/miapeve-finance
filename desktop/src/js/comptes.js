@@ -2,6 +2,8 @@ document.getElementById("new-compte-btn").addEventListener("click", () => openCo
 
 async function loadComptes() {
   const body = document.getElementById("comptes-body");
+  document.getElementById("new-compte-btn").classList.toggle("hidden", !canManage("COMPTES"));
+  const canEdit = canManage("COMPTES");
   try {
     const comptes = await api.getComptes();
     body.innerHTML = comptes.length
@@ -13,8 +15,12 @@ async function loadComptes() {
           <td><span class="badge badge-neutral">${escapeHtml(c.typeCompte)}</span></td>
           <td>${formatMontant(c.solde)}</td>
           <td style="text-align:right">
-            <button class="btn btn-ghost" data-edit="${c.id}">Modifier</button>
-            <button class="btn btn-ghost" data-delete="${c.id}">Supprimer</button>
+            ${
+              canEdit
+                ? `<button class="btn btn-ghost" data-edit="${c.id}">Modifier</button>
+                   <button class="btn btn-ghost" data-delete="${c.id}">Supprimer</button>`
+                : ""
+            }
           </td>
         </tr>`
           )

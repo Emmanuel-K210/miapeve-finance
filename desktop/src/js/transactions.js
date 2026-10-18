@@ -6,6 +6,7 @@ document.getElementById("transaction-compte-filter").addEventListener("change", 
 async function loadTransactions() {
   const body = document.getElementById("transactions-body");
   const filterSelect = document.getElementById("transaction-compte-filter");
+  document.getElementById("new-transaction-btn").classList.toggle("hidden", !canManage("TRANSACTIONS"));
 
   try {
     if (transactionsComptesCache.length === 0) {
@@ -45,7 +46,7 @@ function renderTransactionRow(t) {
         ${signe} ${formatMontant(t.montant)}
       </td>
       <td style="text-align:right">
-        <button class="btn btn-ghost" data-delete-tx="${t.id}">Supprimer</button>
+        ${canManage("TRANSACTIONS") ? `<button class="btn btn-ghost" data-delete-tx="${t.id}">Supprimer</button>` : ""}
       </td>
     </tr>
   `;

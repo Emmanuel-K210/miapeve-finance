@@ -30,4 +30,9 @@ public class ProgrammeController {
         Long utilisateurId = (Long) httpRequest.getAttribute(AuthInterceptor.UTILISATEUR_ID_ATTR);
         return programmeService.create(request, utilisateurId);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        programmeService.delete(id);
+    }
 }

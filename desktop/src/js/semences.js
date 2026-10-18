@@ -6,14 +6,6 @@ const SEMENCE_TYPE_LABELS = {
   AUTRES: "Autres",
 };
 
-const PROGRAMME_TYPES = [
-  "COMMANDER AU MOIS",
-  "COMMANDER À LA SAISON",
-  "CULTE DU JOUR DU SEIGNEUR",
-  "COMMANDER À L'ANNÉE",
-  "CULTE D'ACTION DE GRACE",
-];
-
 let semencesComptesCache = [];
 let semencesProgrammesCache = [];
 
@@ -22,6 +14,7 @@ document.getElementById("semence-type-filter").addEventListener("change", loadSe
 
 async function loadSemences() {
   const body = document.getElementById("semences-body");
+  document.getElementById("new-semence-btn").classList.toggle("hidden", !canManage("SEMENCES"));
 
   try {
     const [semences, comptes, programmes] = await Promise.all([
@@ -57,7 +50,7 @@ function renderSemenceRow(s) {
       <td>${escapeHtml(s.description || "—")}</td>
       <td style="text-align:right; font-weight:700;" class="amount-positive">+ ${formatMontant(s.montant)}</td>
       <td style="text-align:right">
-        <button class="btn btn-ghost" data-delete-semence="${s.id}">Supprimer</button>
+        ${canManage("SEMENCES") ? `<button class="btn btn-ghost" data-delete-semence="${s.id}">Supprimer</button>` : ""}
       </td>
     </tr>
   `;

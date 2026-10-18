@@ -66,6 +66,7 @@ const api = {
 
   getProgrammes: () => apiRequest("/programmes"),
   createProgramme: (data) => apiRequest("/programmes", { method: "POST", body: data }),
+  deleteProgramme: (id) => apiRequest(`/programmes/${id}`, { method: "DELETE" }),
 
   getSemences: () => apiRequest("/semences"),
   createSemence: (data) => apiRequest("/semences", { method: "POST", body: data }),
@@ -76,12 +77,38 @@ const api = {
   deleteBudget: (id) => apiRequest(`/budgets/${id}`, { method: "DELETE" }),
 
   getDashboardSummary: () => apiRequest("/dashboard/summary"),
+
+  getUtilisateurs: () => apiRequest("/utilisateurs"),
+  createUtilisateur: (data) => apiRequest("/utilisateurs", { method: "POST", body: data }),
+  updateUtilisateur: (id, data) => apiRequest(`/utilisateurs/${id}`, { method: "PUT", body: data }),
+  resetPassword: (id, nouveauMotDePasse) => apiRequest(`/utilisateurs/${id}/mot-de-passe`, { method: "PUT", body: { nouveauMotDePasse } }),
+  deleteUtilisateur: (id) => apiRequest(`/utilisateurs/${id}`, { method: "DELETE" }),
+
+  getRoles: () => apiRequest("/roles"),
+  getRolesCatalog: () => apiRequest("/roles/catalog"),
+  createRole: (data) => apiRequest("/roles", { method: "POST", body: data }),
+  updateRole: (id, data) => apiRequest(`/roles/${id}`, { method: "PUT", body: data }),
+  deleteRole: (id) => apiRequest(`/roles/${id}`, { method: "DELETE" }),
 };
 
 function requireAuth() {
   if (!getToken()) {
     window.location.href = "login.html";
   }
+}
+
+function hasPermission(module, action) {
+  const user = getCurrentUser();
+  if (!user || !user.permissions) return false;
+  return user.permissions.includes(`${module}_${action}`);
+}
+
+function canView(module) {
+  return hasPermission(module, "VIEW");
+}
+
+function canManage(module) {
+  return hasPermission(module, "MANAGE");
 }
 
 function formatMontant(value) {

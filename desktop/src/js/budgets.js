@@ -9,6 +9,7 @@ document.getElementById("new-budget-btn").addEventListener("click", () => openBu
 
 async function loadBudgets() {
   const root = document.getElementById("budgets-root");
+  document.getElementById("new-budget-btn").classList.toggle("hidden", !canManage("BUDGETS"));
   try {
     const [budgets, comptes] = await Promise.all([api.getBudgets(), api.getComptes()]);
     budgetsComptesCache = comptes;
@@ -43,10 +44,14 @@ function renderBudgetCard(b) {
         <span class="spent">${formatMontant(b.montantConsomme)}</span>
         <span class="limit">sur ${formatMontant(b.montantPrevu)}</span>
       </div>
-      <div class="page-toolbar" style="margin: var(--space-3) 0 0;">
-        <div></div>
-        <button class="btn btn-ghost" data-delete-budget="${b.id}">Supprimer</button>
-      </div>
+      ${
+        canManage("BUDGETS")
+          ? `<div class="page-toolbar" style="margin: var(--space-3) 0 0;">
+               <div></div>
+               <button class="btn btn-ghost" data-delete-budget="${b.id}">Supprimer</button>
+             </div>`
+          : ""
+      }
     </div>
   `;
 }
