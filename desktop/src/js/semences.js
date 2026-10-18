@@ -10,6 +10,25 @@ let semencesComptesCache = [];
 let semencesProgrammesCache = [];
 
 document.getElementById("new-semence-btn").addEventListener("click", () => openSemenceDrawer());
+
+/**
+ * Permet d'ajouter une semence depuis un programme (comme dans l'ancienne
+ * version) : charge les caches si besoin puis ouvre le drawer avec le
+ * programme déjà sélectionné.
+ */
+async function openSemenceDrawerForProgramme(programmeId) {
+  if (!semencesComptesCache.length || !semencesProgrammesCache.find((p) => p.id === programmeId)) {
+    try {
+      const [comptes, programmes] = await Promise.all([api.getComptes(), api.getProgrammes()]);
+      semencesComptesCache = comptes;
+      semencesProgrammesCache = programmes;
+    } catch (err) {
+      showToast(err.message, "error");
+      return;
+    }
+  }
+  openSemenceDrawer(programmeId);
+}
 document.getElementById("semence-type-filter").addEventListener("change", loadSemences);
 
 async function loadSemences() {
@@ -56,7 +75,7 @@ function renderSemenceRow(s) {
   `;
 }
 
-function openSemenceDrawer() {
+function openSemenceDrawer(preselectedProgrammeId) {
   const form = openDrawer({
     title: "Nouvelle semence",
     subtitle: "Dîme, offrande ou autre contribution rattachée à un programme",
@@ -135,6 +154,10 @@ function openSemenceDrawer() {
   });
 
   document.getElementById("sem-cancel").addEventListener("click", closeDrawer);
+
+  if (preselectedProgrammeId) {
+    document.getElementById("sem-programme").value = preselectedProgrammeId;
+  }
 
   document.getElementById("sem-new-programme-toggle").addEventListener("click", () => {
     document.getElementById("sem-new-programme-fields").classList.toggle("hidden");
