@@ -1,0 +1,59 @@
+/* ==========================================================================
+   APP.CSS — POINT D'ENTRÉE UNIQUE
+   Charge tout le design system dans l'ordre : core -> components -> layouts
+   -> views. Ne référence QUE ce fichier depuis le code Java
+   (scene.getStylesheets().add(...app.css)) — jamais les fichiers internes
+   individuellement.
+   ========================================================================== */
+
+/* --- Core : tokens --- */
+@import "core/colors.css";
+@import "core/typography.css";
+@import "core/spacing.css";
+@import "core/radius.css";
+@import "core/shadow.css";
+@import "core/animations.css";
+
+/* --- Components : briques réutilisables --- */
+@import "components/buttons.css";
+@import "components/textfields.css";
+@import "components/combobox.css";
+@import "components/datepicker.css";
+@import "components/checkbox.css";
+@import "components/spinner.css";
+@import "components/tableview.css";
+@import "components/treeview.css";
+@import "components/listview.css";
+@import "components/cards.css";
+@import "components/badges.css";
+@import "components/dialog.css";
+@import "components/menu.css";
+@import "components/toolbar.css";
+@import "components/sidebar.css";
+@import "components/scrollbar.css";
+@import "components/progress.css";
+@import "components/tooltip.css";
+
+/* --- Layouts : structures de page --- */
+@import "layouts/dashboard.css";
+@import "layouts/forms.css";
+@import "layouts/master-detail.css";
+
+/* --- Views : spécificités par écran --- */
+@import "views/login.css";
+@import "views/dashboard-home.css";
+@import "views/dashboard.css";
+@import "views/programme.css";
+@import "views/programme_form.css";
+@import "views/compte.css";
+@import "views/transaction.css";
+@import "views/utilisateur.css";
+@import "views/impression.css";
+@import "views/loading.css";
+@import "views/parametres.css";
+@import "views/profile.css";
+@import "views/main.css";
+
+.root {
+    -fx-background-color: -bg-app;
+}

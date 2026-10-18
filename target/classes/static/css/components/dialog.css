@@ -1,0 +1,545 @@
+/* ==========================================================================
+   COMPONENTS / DIALOG
+   Styles pour les boîtes de dialogue, alertes et modales
+   Aligné sur le design system Miapève Finance
+   ========================================================================== */
+
+/* ==========================================================================
+   DIALOG MODERN - Style principal
+   ========================================================================== */
+
+.dialog-modern {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-effect: -shadow-lg;
+    -fx-padding: 0;
+}
+
+.dialog-modern .dialog-pane {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-padding: 0;
+}
+
+/* ==========================================================================
+   HEADER PANEL
+   ========================================================================== */
+
+.dialog-modern .dialog-pane > .header-panel {
+    -fx-background-color: -primary;
+    -fx-background-radius: -radius-lg -radius-lg 0 0;
+    -fx-border-radius: -radius-lg -radius-lg 0 0;
+    -fx-padding: 16 20 16 20;
+    -fx-border-width: 0;
+}
+
+.dialog-modern .dialog-pane > .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.dialog-modern .dialog-pane > .header-panel .graphic-container {
+    -fx-padding: 0 8 0 0;
+}
+
+.dialog-modern .dialog-pane > .header-panel .graphic-container .glyph {
+    -fx-fill: white;
+    -fx-font-size: 20px;
+}
+
+/* ==========================================================================
+   CONTENT PANEL
+   ========================================================================== */
+
+.dialog-modern .dialog-pane > .content {
+    -fx-padding: 20 20 16 20;
+    -fx-spacing: 12;
+}
+
+.dialog-modern .dialog-pane > .content .label {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 14px;
+    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    -fx-line-spacing: 1.4;
+}
+
+.dialog-modern .dialog-pane > .content .label.content-text {
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-text-fill: -text-secondary;
+    -fx-wrap-text: true;
+}
+
+.dialog-modern .dialog-pane > .content .label.content-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+/* ==========================================================================
+   FOOTER / BUTTON BAR
+   ========================================================================== */
+
+.dialog-modern .dialog-pane > .button-bar {
+    -fx-padding: 8 20 16 20;
+    -fx-spacing: 10;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-background-color: transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: -border-color;
+}
+
+.dialog-modern .dialog-pane > .button-bar .container {
+    -fx-spacing: 10;
+}
+
+.dialog-modern .dialog-pane > .button-bar .button {
+    -fx-padding: 8 20 8 20;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-min-width: 80;
+    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.dialog-modern .dialog-pane > .button-bar .button:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ==========================================================================
+   TYPES DE DIALOGUES (couleurs de header)
+   ========================================================================== */
+
+/* === Confirmation === */
+.dialog-confirmation .dialog-pane > .header-panel {
+    -fx-background-color: -primary;
+}
+
+/* === Danger / Erreur / Suppression === */
+.dialog-danger .dialog-pane > .header-panel {
+    -fx-background-color: -danger;
+}
+
+/* === Warning / Attention === */
+.dialog-warning .dialog-pane > .header-panel {
+    -fx-background-color: -warning;
+}
+
+/* === Info / Succès === */
+.dialog-info .dialog-pane > .header-panel {
+    -fx-background-color: -success;
+}
+
+/* === Information générique === */
+.dialog-information .dialog-pane > .header-panel {
+    -fx-background-color: -primary;
+}
+
+/* ==========================================================================
+   BOUTONS PERSONNALISÉS
+   ========================================================================== */
+
+.dialog-button {
+    -fx-padding: 8 20 8 20;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    -fx-transition: none;
+}
+
+/* === Bouton Primaire === */
+.dialog-button.btn-primary {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+.dialog-button.btn-primary:hover {
+    -fx-background-color: -primary-hover;
+}
+
+.dialog-button.btn-primary:pressed {
+    -fx-background-color: -primary-dark;
+}
+
+.dialog-button.btn-primary:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+/* === Bouton Danger === */
+.dialog-button.btn-danger {
+    -fx-background-color: -danger;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+.dialog-button.btn-danger:hover {
+    -fx-background-color: -danger-dark;
+}
+
+.dialog-button.btn-danger:pressed {
+    -fx-background-color: -danger-dark;
+    -fx-opacity: 0.8;
+}
+
+.dialog-button.btn-danger:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+/* === Bouton Succès === */
+.dialog-button.btn-success {
+    -fx-background-color: -success;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+.dialog-button.btn-success:hover {
+    -fx-background-color: -success-dark;
+}
+
+.dialog-button.btn-success:pressed {
+    -fx-opacity: 0.8;
+}
+
+/* === Bouton Outline (secondaire) === */
+.dialog-button.btn-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-secondary;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+}
+
+.dialog-button.btn-outline:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+    -fx-text-fill: -text-primary;
+}
+
+.dialog-button.btn-outline:pressed {
+    -fx-background-color: -bg-subtle;
+}
+
+.dialog-button.btn-outline:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+/* === Bouton Outline Danger === */
+.dialog-button.btn-outline-danger {
+    -fx-background-color: transparent;
+    -fx-text-fill: -danger;
+    -fx-border-color: -danger;
+    -fx-border-width: 1;
+}
+
+.dialog-button.btn-outline-danger:hover {
+    -fx-background-color: -danger-muted;
+    -fx-border-color: -danger-dark;
+    -fx-text-fill: -danger-dark;
+}
+
+.dialog-button.btn-outline-danger:pressed {
+    -fx-background-color: -danger-muted;
+    -fx-opacity: 0.8;
+}
+
+/* === Bouton Annuler (alias de outline) === */
+.dialog-button.Annuler {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-secondary;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+}
+
+.dialog-button.Annuler:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+}
+
+/* === Bouton Valider (alias de primary) === */
+.dialog-button.Valider {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+.dialog-button.Valider:hover {
+    -fx-background-color: -primary-hover;
+}
+
+/* === Bouton Supprimer (alias de danger) === */
+.dialog-button.Supprimer {
+    -fx-background-color: -danger;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+.dialog-button.Supprimer:hover {
+    -fx-background-color: -danger-dark;
+}
+
+/* ==========================================================================
+   ALERTES MODERNES (inline)
+   ========================================================================== */
+
+/* === Alerte Succès === */
+.alert-modern-success {
+    -fx-background-color: -success-muted;
+    -fx-border-color: -success;
+    -fx-border-width: 2;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 16;
+}
+
+.alert-modern-success .label {
+    -fx-text-fill: -success-dark;
+    -fx-font-weight: 600;
+}
+
+.alert-modern-success .glyph {
+    -fx-fill: -success;
+}
+
+/* === Alerte Danger / Erreur === */
+.alert-modern-danger {
+    -fx-background-color: -danger-muted;
+    -fx-border-color: -danger;
+    -fx-border-width: 2;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 16;
+}
+
+.alert-modern-danger .label {
+    -fx-text-fill: -danger-dark;
+    -fx-font-weight: 600;
+}
+
+.alert-modern-danger .glyph {
+    -fx-fill: -danger;
+}
+
+/* === Alerte Warning === */
+.alert-modern-warning {
+    -fx-background-color: -warning-muted;
+    -fx-border-color: -warning;
+    -fx-border-width: 2;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 16;
+}
+
+.alert-modern-warning .label {
+    -fx-text-fill: -warning-dark;
+    -fx-font-weight: 600;
+}
+
+.alert-modern-warning .glyph {
+    -fx-fill: -warning;
+}
+
+/* === Alerte Info === */
+.alert-modern-info {
+    -fx-background-color: -info-muted;
+    -fx-border-color: -info;
+    -fx-border-width: 2;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 16;
+}
+
+.alert-modern-info .label {
+    -fx-text-fill: -primary;
+    -fx-font-weight: 600;
+}
+
+.alert-modern-info .glyph {
+    -fx-fill: -primary;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATIONS
+   ========================================================================== */
+
+.toast-notification {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-effect: -shadow-lg;
+    -fx-padding: 12 20 12 20;
+    -fx-spacing: 12;
+    -fx-alignment: CENTER_LEFT;
+    -fx-max-width: 400;
+}
+
+.toast-notification-success {
+    -fx-border-color: -success;
+    -fx-border-width: 0 0 0 4;
+}
+
+.toast-notification-danger {
+    -fx-border-color: -danger;
+    -fx-border-width: 0 0 0 4;
+}
+
+.toast-notification-warning {
+    -fx-border-color: -warning;
+    -fx-border-width: 0 0 0 4;
+}
+
+.toast-notification-info {
+    -fx-border-color: -primary;
+    -fx-border-width: 0 0 0 4;
+}
+
+.toast-icon {
+    -fx-font-size: 20px;
+}
+
+.toast-icon-success {
+    -fx-text-fill: -success;
+}
+
+.toast-icon-danger {
+    -fx-text-fill: -danger;
+}
+
+.toast-icon-warning {
+    -fx-text-fill: -warning;
+}
+
+.toast-icon-info {
+    -fx-text-fill: -primary;
+}
+
+.toast-message {
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-primary;
+    -fx-font-weight: 500;
+    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.toast-close-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-tertiary;
+    -fx-cursor: hand;
+    -fx-padding: 4;
+    -fx-font-size: 14px;
+}
+
+.toast-close-btn:hover {
+    -fx-text-fill: -text-primary;
+}
+
+/* ==========================================================================
+   PROGRESS DIALOG (pour les chargements)
+   ========================================================================== */
+
+.progress-dialog {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-effect: -shadow-lg;
+    -fx-padding: 24;
+    -fx-spacing: 16;
+    -fx-alignment: CENTER;
+    -fx-min-width: 300;
+}
+
+.progress-dialog .label {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.progress-dialog .progress-indicator {
+    -fx-progress-color: -primary;
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+}
+
+.progress-dialog .progress-bar {
+    -fx-pref-width: 200;
+}
+
+/* ==========================================================================
+   TOOLTIP STYLES (déjà dans components/tooltip.css mais renforcé ici)
+   ========================================================================== */
+
+.dialog-modern .tooltip {
+    -fx-background-color: -text-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 400;
+    -fx-background-radius: -radius-xs;
+    -fx-border-radius: -radius-xs;
+    -fx-padding: 4 8 4 8;
+    -fx-effect: -shadow-sm;
+    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ==========================================================================
+   OVERLAY (fond sombre derrière les modales)
+   ========================================================================== */
+
+.dialog-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVE / ADAPTATIF
+   ========================================================================== */
+
+@media screen and (max-width: 600px) {
+    .dialog-modern .dialog-pane > .header-panel {
+        -fx-padding: 12 16 12 16;
+    }
+    
+    .dialog-modern .dialog-pane > .header-panel .label {
+        -fx-font-size: 14px;
+    }
+    
+    .dialog-modern .dialog-pane > .content {
+        -fx-padding: 16 16 12 16;
+    }
+    
+    .dialog-modern .dialog-pane > .content .label {
+        -fx-font-size: 13px;
+    }
+    
+    .dialog-modern .dialog-pane > .button-bar {
+        -fx-padding: 6 16 12 16;
+    }
+    
+    .dialog-modern .dialog-pane > .button-bar .button {
+        -fx-padding: 6 14 6 14;
+        -fx-font-size: 12px;
+        -fx-min-width: 60;
+    }
+    
+    .toast-notification {
+        -fx-max-width: 300;
+        -fx-padding: 10 16 10 16;
+    }
+    
+    .toast-message {
+        -fx-font-size: 13px;
+    }
+}

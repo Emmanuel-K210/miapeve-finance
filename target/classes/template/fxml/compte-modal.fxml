@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.miapeve.finance.ui.CompteModalController"
+      spacing="20" styleClass="compte-modal-root">
+   
+   <padding>
+      <Insets top="25" right="25" bottom="25" left="25"/>
+   </padding>
+
+   <!-- En-tête -->
+   <HBox spacing="15" alignment="CENTER_LEFT">
+      <StackPane styleClass="modal-icon-wrapper">
+         <FontAwesomeIconView glyphName="PLUS_CIRCLE" styleClass="modal-icon" glyphSize="20"/>
+      </StackPane>
+      <Label fx:id="titreLabel" text="Nouveau Compte" styleClass="modal-title"/>
+   </HBox>
+   
+   <Separator styleClass="modal-separator"/>
+   
+   <!-- Formulaire -->
+   <GridPane hgap="15" vgap="15" styleClass="modal-form">
+      <columnConstraints>
+         <ColumnConstraints prefWidth="120" halignment="RIGHT"/>
+         <ColumnConstraints prefWidth="250"/>
+      </columnConstraints>
+      
+      <Label text="Type de Compte:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="modal-label"/>
+      <ComboBox fx:id="typeCompteCombo" GridPane.rowIndex="0" GridPane.columnIndex="1" 
+                promptText="Sélectionner le type" styleClass="modal-combo"/>
+      
+      <Label text="Solde Initial (FCFA):" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="modal-label"/>
+      <TextField fx:id="soldeField" GridPane.rowIndex="1" GridPane.columnIndex="1" 
+                 promptText="0.00" styleClass="modal-field"/>
+   </GridPane>
+   
+   <!-- Message -->
+   <Label fx:id="messageLabel" styleClass="modal-message"/>
+   
+   <!-- Boutons -->
+   <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="modal-actions">
+      <Button fx:id="annulerButton" text="Annuler" styleClass="btn-outline" onAction="#handleAnnuler">
+         <graphic>
+            <FontAwesomeIconView glyphName="TIMES" styleClass="icon-secondary" glyphSize="12"/>
+         </graphic>
+      </Button>
+      <Button fx:id="validerButton" text="Créer le Compte" styleClass="btn-primary" onAction="#handleValider">
+         <graphic>
+            <FontAwesomeIconView glyphName="CHECK" styleClass="icon-white" glyphSize="12"/>
+         </graphic>
+      </Button>
+   </HBox>
+</VBox>

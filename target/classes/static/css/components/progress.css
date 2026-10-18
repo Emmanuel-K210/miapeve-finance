@@ -1,0 +1,18 @@
+/* ==========================================================================
+   COMPONENTS / PROGRESS BAR
+   ========================================================================== */
+.progress-bar {
+    -fx-accent: -primary;
+}
+.progress-bar > .track {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-pill;
+}
+.progress-bar > .bar {
+    -fx-background-color: -primary;
+    -fx-background-radius: -radius-pill;
+    -fx-padding: 4;
+}
+.progress-bar.success > .bar { -fx-background-color: -success; }
+.progress-bar.danger  > .bar { -fx-background-color: -danger; }
+.progress-bar.warning > .bar { -fx-background-color: -warning; }

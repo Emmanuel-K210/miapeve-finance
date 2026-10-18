@@ -1,0 +1,298 @@
+/* ==========================================================================
+   VIEWS / MAIN
+   Styles pour l'application principale : sidebar, menu, toolbar, contenu.
+   ========================================================================== */
+
+/* ---- Conteneur principal ---- */
+.main-root {
+    -fx-background-color: -bg-app;
+}
+
+/* ==========================================================================
+   TOP BAR : MENU + TOOLBAR
+   ========================================================================== */
+
+.top-bar-container {
+    -fx-background-color: -bg-surface;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);
+}
+
+/* ---- Menu Bar modernisé ---- */
+.menu-bar-modern {
+    -fx-background-color: -bg-surface;
+    -fx-padding: 0 16 0 16;
+    -fx-border-width: 0;
+    -fx-min-height: 32;
+}
+
+.menu-bar-modern .menu {
+    -fx-padding: 6 12 6 12;
+}
+
+.menu-bar-modern .menu .label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+.menu-bar-modern .menu:hover .label {
+    -fx-text-fill: -primary;
+}
+
+.menu-bar-modern .menu:showing .label {
+    -fx-text-fill: -primary;
+}
+
+.menu-header {
+    -fx-padding: 6 12 6 12;
+}
+
+.menu-item {
+    -fx-padding: 6 32 6 16;
+    -fx-font-size: 13px;
+}
+
+.menu-item .label {
+    -fx-text-fill: -text-primary;
+}
+
+.menu-item:hover {
+    -fx-background-color: -primary-muted;
+}
+
+.menu-item:hover .label {
+    -fx-text-fill: -primary;
+}
+
+.menu-item-danger .label {
+    -fx-text-fill: -danger;
+}
+
+.menu-item-danger:hover {
+    -fx-background-color: -danger-muted;
+}
+
+.menu-item-danger:hover .label {
+    -fx-text-fill: -danger-dark;
+}
+
+/* ---- Toolbar modernisée ---- */
+.toolbar-modern {
+    -fx-background-color: -bg-surface;
+    -fx-padding: 8 20 8 20;
+    -fx-min-height: 48;
+}
+
+.breadcrumb-icon {
+    -fx-fill: -text-tertiary;
+}
+
+.breadcrumb-current {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+    -fx-padding: 0 0 0 6;
+}
+
+.toolbar-separator {
+    -fx-background-color: -border-color;
+    -fx-pref-width: 1;
+    -fx-max-height: 24;
+}
+
+.btn-ghost-sm {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-padding: 6 8 6 8;
+    -fx-cursor: hand;
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+}
+
+.btn-ghost-sm:hover {
+    -fx-background-color: -bg-hover;
+}
+
+.btn-ghost-sm:pressed {
+    -fx-background-color: -bg-subtle;
+}
+
+.nav-icon-sm {
+    -fx-fill: -text-secondary;
+    -fx-font-size: 16px;
+}
+
+.btn-ghost-sm:hover .nav-icon-sm {
+    -fx-fill: -primary;
+}
+
+.toolbar-divider {
+    -fx-background-color: -border-color;
+    -fx-pref-height: 1;
+}
+
+/* ==========================================================================
+   SIDEBAR MODERNISÉE
+   ========================================================================== */
+
+.sidebar-modern {
+    -fx-background-color: -bg-surface;
+    -fx-pref-width: 240;
+    -fx-min-width: 240;
+    -fx-max-width: 240;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 2, 0);
+}
+
+/* ---- Brand / Logo ---- */
+.sidebar-brand {
+    -fx-padding: 20 20 16 20;
+}
+
+.sidebar-logo-icon {
+    -fx-background-color: -primary;
+    -fx-background-radius: -radius-sm;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-max-width: 36;
+    -fx-max-height: 36;
+    -fx-alignment: center;
+}
+
+.sidebar-logo-initials {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-font-family: "Inter", sans-serif;
+}
+
+.sidebar-logo-title {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+}
+
+.sidebar-logo-subtitle {
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 10px;
+    -fx-font-weight: 400;
+    -fx-underline: false;
+}
+
+/* ---- Séparateurs ---- */
+.sidebar-divider {
+    -fx-background-color: -border-color;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+    -fx-margin: 0 16 0 16;
+}
+
+/* ---- Sections ---- */
+.sidebar-section-label {
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+    -fx-letter-spacing: 0.8px;
+    -fx-uppercase: true;
+    -fx-padding: 16 20 6 20;
+}
+
+/* ---- Navigation buttons ---- */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-width: 0;
+    -fx-padding: 8 16 8 16;
+    -fx-margin: 0 8 0 8;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 12;
+    -fx-cursor: hand;
+    -fx-min-height: 36;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.nav-button .nav-icon {
+    -fx-fill: -text-tertiary;
+    -fx-font-size: 16px;
+}
+
+/* Hover */
+.nav-button:hover {
+    -fx-background-color: -bg-hover;
+    -fx-text-fill: -text-primary;
+}
+
+.nav-button:hover .nav-icon {
+    -fx-fill: -text-secondary;
+}
+
+/* État actif/sélectionné */
+.nav-button:selected,
+.nav-button.active {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-weight: 600;
+}
+
+.nav-button:selected .nav-icon,
+.nav-button.active .nav-icon {
+    -fx-fill: -primary;
+}
+
+/* Pressed */
+.nav-button:pressed {
+    -fx-background-color: -primary-muted;
+    -fx-opacity: 0.8;
+}
+
+/* ---- Sidebar Footer ---- */
+.sidebar-footer {
+    -fx-border-color: -border-color;
+    -fx-border-width: 1 0 0 0;
+}
+
+.sidebar-version {
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 10px;
+}
+
+.sidebar-copyright {
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 9px;
+}
+
+/* ==========================================================================
+   ZONE DE CONTENU PRINCIPAL
+   ========================================================================== */
+
+.content-area-modern {
+    -fx-background-color: -bg-app;
+    -fx-padding: 20;
+}
+
+/* ==========================================================================
+   SCROLLBAR (pour la sidebar si nécessaire)
+   ========================================================================== */
+
+.sidebar-modern .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-pref-width: 4;
+}
+
+.sidebar-modern .scroll-bar .thumb {
+    -fx-background-color: -border-color;
+    -fx-background-radius: -radius-pill;
+}
+
+.sidebar-modern .scroll-bar .thumb:hover {
+    -fx-background-color: -border-strong;
+}
+
+.sidebar-modern .scroll-bar .increment-button,
+.sidebar-modern .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}

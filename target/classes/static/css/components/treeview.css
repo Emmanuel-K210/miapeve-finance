@@ -1,0 +1,22 @@
+/* ==========================================================================
+   COMPONENTS / TREE VIEW
+   Hérite du même vocabulaire visuel que tableview pour rester cohérent.
+   ========================================================================== */
+.tree-view {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+}
+.tree-cell {
+    -fx-padding: -space-2 -space-3;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-background-color: transparent;
+}
+.tree-cell:hover     { -fx-background-color: -bg-hover; }
+.tree-cell:selected  { -fx-background-color: -primary-muted; -fx-text-fill: -primary; }
+.tree-cell .tree-disclosure-node .arrow {
+    -fx-background-color: -text-secondary;
+}

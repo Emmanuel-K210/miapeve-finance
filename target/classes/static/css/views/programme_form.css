@@ -1,0 +1,372 @@
+/* ==========================================================================
+   VIEWS / PROGRAMME_FORM
+   Styles pour le formulaire de création/édition de programme
+   ========================================================================== */
+
+/* ===== PAGE ===== */
+.programme-form-page {
+    -fx-background-color: -bg-app;
+    -fx-padding: 0;
+}
+
+/* ===== EN-TÊTE ===== */
+.form-header {
+    -fx-background-color: -bg-surface;
+    -fx-padding: 16 24 12 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 4, 0, 0, 1);
+}
+
+.btn-back {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-padding: 8 12 8 12;
+    -fx-cursor: hand;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+}
+
+.btn-back:hover {
+    -fx-background-color: -bg-hover;
+}
+
+.user-badge {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: -radius-pill;
+}
+
+.form-separator {
+    -fx-background-color: -border-color;
+    -fx-pref-height: 1;
+}
+
+/* ===== SCROLL ===== */
+.form-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
+.form-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.form-body {
+    -fx-padding: 20 24 20 24;
+    -fx-spacing: 20;
+}
+
+/* ===== SECTIONS ===== */
+.form-section {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 16 20 16 20;
+    -fx-spacing: 8;
+}
+
+.section-icon {
+    -fx-fill: -primary;
+    -fx-font-size: 16px;
+}
+
+.section-title-form {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+/* ===== LABELS ===== */
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.form-label-required {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.form-label-required::after {
+    -fx-content: " *";
+    -fx-text-fill: -danger;
+}
+
+/* ===== CHAMPS PARTICIPANTS ===== */
+.participant-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.participant-field {
+    -fx-background-color: -bg-subtle;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 6 8 6 8;
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+    -fx-alignment: CENTER;
+}
+
+.participant-field:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+/* ===== BADGES ===== */
+.total-badge {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 2 12 2 12;
+    -fx-background-radius: -radius-pill;
+}
+
+.duration-badge {
+    -fx-background-color: -bg-subtle;
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: -radius-sm;
+}
+
+.total-pill {
+    -fx-background-color: -success-muted;
+    -fx-text-fill: -success-dark;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 2 12 2 12;
+    -fx-background-radius: -radius-pill;
+}
+
+/* ===== TABLE DES SEMENCES ===== */
+.semences-table {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+}
+
+.semences-table .column-header-background {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-sm -radius-sm 0 0;
+}
+
+.semences-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 6 10 6 10;
+}
+
+.semences-table .column-header .label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-secondary;
+}
+
+.semences-table .table-cell {
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-border-color: transparent;
+}
+
+.semences-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+}
+
+.semences-table .table-row-cell:hover {
+    -fx-background-color: -bg-hover;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-md;
+    -fx-padding: 20;
+    -fx-alignment: center;
+}
+
+.empty-state .body-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.empty-state .icon-muted {
+    -fx-fill: -text-tertiary;
+}
+
+/* ===== FOOTER ===== */
+.form-footer {
+    -fx-background-color: -bg-surface;
+    -fx-padding: 12 24 16 24;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ===== BOUTONS ===== */
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 8 16 8 16;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+    -fx-cursor: hand;
+    -fx-min-height: 36;
+}
+
+.btn-outline:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+    -fx-text-fill: -text-primary;
+}
+
+.btn-outline:pressed {
+    -fx-background-color: -bg-subtle;
+}
+
+.btn-success {
+    -fx-background-color: -success;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 36;
+}
+
+.btn-success:hover {
+    -fx-background-color: -success-dark;
+    -fx-effect: -shadow-md;
+}
+
+.btn-success .glyph-icon {
+    -fx-fill: white;
+}
+
+.btn-outline-sm {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 4 12 4 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+    -fx-cursor: hand;
+}
+
+.btn-outline-sm:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+    -fx-text-fill: -text-primary;
+}
+
+/* ===== ALERTE ERREUR ===== */
+.alert-danger {
+    -fx-background-color: -danger-muted;
+    -fx-text-fill: -danger-dark;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -danger;
+    -fx-border-width: 1;
+}
+
+/* ===== COMBOBOX & DATEPICKER ===== */
+.combo-box {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+}
+
+.combo-box:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.date-picker {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 13px;
+}
+
+.date-picker:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.text-field {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+}
+
+.text-field:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 800px) {
+    .form-section {
+        -fx-padding: 12 16 12 16;
+    }
+    .participant-field {
+        -fx-pref-width: 50;
+    }
+    .form-body {
+        -fx-padding: 12 16 12 16;
+    }
+}

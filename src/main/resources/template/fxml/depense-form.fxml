@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="20" styleClass="form-page" xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1">
+   
+   <padding>
+      <Insets top="0" right="0" bottom="0" left="0"/>
+   </padding>
+
+   <!-- ==================== EN-TÊTE ==================== -->
+   <HBox styleClass="form-header" alignment="CENTER_LEFT" spacing="16">
+      <StackPane styleClass="form-icon-wrapper, danger">
+         <FontAwesomeIconView glyphName="ARROW_DOWN" styleClass="form-icon" glyphSize="20"/>
+      </StackPane>
+      <VBox spacing="2">
+         <Label text="Nouvelle Dépense" styleClass="page-title"/>
+         <Label text="Enregistrez une nouvelle dépense" styleClass="page-subtitle"/>
+      </VBox>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label fx:id="utilisateurConnecteLabel" styleClass="user-badge" visible="false" managed="false"/>
+   </HBox>
+
+   <Separator styleClass="form-separator"/>
+
+   <!-- ==================== CORPS ==================== -->
+   <VBox spacing="20" styleClass="form-body">
+      
+      <!-- Montant -->
+      <VBox spacing="6" styleClass="form-group">
+         <Label text="Montant (FCFA) *" styleClass="form-label-required"/>
+         <TextField fx:id="montantField" styleClass="form-field" promptText="Saisir le montant de la dépense"/>
+      </VBox>
+      
+      <!-- Libellé -->
+      <VBox spacing="6" styleClass="form-group">
+         <Label text="Libellé *" styleClass="form-label-required"/>
+         <TextField fx:id="libelleField" styleClass="form-field" promptText="Description de la dépense"/>
+      </VBox>
+      
+      <!-- Compte -->
+      <VBox spacing="6" styleClass="form-group">
+         <Label text="Compte *" styleClass="form-label-required"/>
+         <ComboBox fx:id="compteCombo" styleClass="form-combo" promptText="Sélectionner un compte"/>
+      </VBox>
+      
+      <!-- Message -->
+      <Label fx:id="messageLabel" styleClass="form-message" visible="false" managed="false"/>
+      
+   </VBox>
+
+   <!-- ==================== FOOTER ==================== -->
+   <HBox styleClass="form-footer" alignment="CENTER_RIGHT" spacing="12">
+      <Button fx:id="annulerButton" text="Annuler" styleClass="btn-outline" onAction="#annuler">
+         <graphic>
+            <FontAwesomeIconView glyphName="TIMES" styleClass="icon-secondary" glyphSize="12"/>
+         </graphic>
+      </Button>
+      <Button fx:id="validerButton" text="Valider la Dépense" styleClass="btn-danger" onAction="#validerDepense">
+         <graphic>
+            <FontAwesomeIconView glyphName="CHECK" styleClass="icon-white" glyphSize="12"/>
+         </graphic>
+      </Button>
+   </HBox>
+
+</VBox>

@@ -1,0 +1,10 @@
+/* ==========================================================================
+   CORE / SHADOW
+   3 niveaux d'élévation. Toujours issus de ce fichier — ne jamais écrire
+   un dropshadow() en dur dans un composant.
+   ========================================================================== */
+.root {
+    -shadow-sm: dropshadow(gaussian, rgba(17,24,39,0.06), 8, 0, 0, 2);
+    -shadow-md: dropshadow(gaussian, rgba(17,24,39,0.08), 16, 0, 0, 4);
+    -shadow-lg: dropshadow(gaussian, rgba(17,24,39,0.16), 28, 0, 0, 8);
+}

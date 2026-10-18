@@ -1,0 +1,13 @@
+/* ==========================================================================
+   VIEWS / UTILISATEUR
+   Aucune maquette fournie — styles génériques (liste + rôle en badge).
+   À affiner dès que tu as une maquette dédiée.
+   ========================================================================== */
+.user-role-badge {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-background-radius: -radius-pill;
+    -fx-padding: -space-1 -space-3;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}

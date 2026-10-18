@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <echo message="Création du runtime personnalisé..." />
+    <exec failonerror="true" executable="jlink">
+      <arg value="--output" />
+      <arg value="C:\Users\yaobi\eclipse-workspace\miapeve-finance\target/runtime" />
+      <arg value="--module-path" />
+      <arg value="C:/Program Files/Java/jdk-21/jmods;C:/javafx-jmods-21.0.9" />
+      <arg value="--add-modules" />
+      <arg value="java.base,java.desktop,java.sql,java.logging,java.xml,javafx.controls,javafx.fxml,javafx.web,javafx.media" />
+      <arg value="--strip-debug" />
+      <arg value="--no-header-files" />
+      <arg value="--no-man-pages" />
+      <arg value="--vm" />
+      <arg value="server" />
+    </exec>
+    <echo message="Création de l'installateur..." />
+    <exec failonerror="true" executable="jpackage">
+      <arg value="--input" />
+      <arg value="C:\Users\yaobi\eclipse-workspace\miapeve-finance\target" />
+      <arg value="--main-jar" />
+      <arg value="miapeve-finance-0.0.1-SNAPSHOT.jar" />
+      <arg value="--main-class" />
+      <arg value="com.miapeve.finance.FinanceApp" />
+      <arg value="--name" />
+      <arg value="financeMIAPEVE" />
+      <arg value="--app-version" />
+      <arg value="1.0.0" />
+      <arg value="--vendor" />
+      <arg value="MIAPEVE" />
+      <arg value="--copyright" />
+      <arg value="Copyright 2026 MIAPEVE" />
+      <arg value="--description" />
+      <arg value="Application MIAPEVE de gestion de programmes" />
+      <arg value="--type" />
+      <arg value="msi" />
+      <arg value="--dest" />
+      <arg value="C:\Users\yaobi\eclipse-workspace\miapeve-finance\target/installer" />
+      <arg value="--runtime-image" />
+      <arg value="C:\Users\yaobi\eclipse-workspace\miapeve-finance\target/runtime" />
+      <arg value="--java-options" />
+      <arg value="--add-opens=java.base/java.lang=ALL-UNNAMED" />
+      <arg value="--java-options" />
+      <arg value="-Dprism.order=d3d" />
+      <arg value="--java-options" />
+      <arg value="-Dfile.encoding=UTF-8" />
+      <arg value="--java-options" />
+      <arg value="-Xmx512m" />
+      <arg value="--win-shortcut" />
+      <arg value="--win-menu" />
+      <arg value="--win-dir-chooser" />
+      <arg value="--win-per-user-install" />
+      <arg value="--icon" />
+      <arg value="src/main/resources/static/images/icon.ico" />
+      <arg value="--arguments" />
+      <arg value="--launched-from-installer" />
+    </exec>
+    <echo message="✅ INSTALLATEUR NATIF CRÉÉ AVEC SUCCÈS !" />
+    <echo message="📁 Emplacement: C:\Users\yaobi\eclipse-workspace\miapeve-finance\target/installer/miapeve-finance-1.0.0.msi" />
+    <echo message="💾 Taille du runtime: ${fileSize}" />
+  </target>
+</project>

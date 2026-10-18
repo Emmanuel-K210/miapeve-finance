@@ -1,0 +1,63 @@
+/* ==========================================================================
+   COMPONENTS / SIDEBAR
+   Deux variantes rencontrées dans les maquettes :
+     - .sidebar            → liste plate (écrans "Programmes", desktop simple)
+     - .sidebar.grouped     → sections avec libellés "GESTION / RAPPORTS /
+                              PARAMÈTRES" (tableau de bord)
+   ========================================================================== */
+.sidebar {
+    -fx-background-color: -bg-surface;
+    -fx-padding: -space-4 0;
+    -fx-pref-width: 260;
+    -fx-border-color: transparent -border-color transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-logo-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -text-primary;
+}
+.sidebar-logo-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: -text-tertiary;
+}
+
+.sidebar-section-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-tertiary;
+    -fx-padding: -space-4 -space-4 -space-1 -space-4;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-pref-width: 236;
+    -fx-padding: -space-2 -space-4;
+    -fx-alignment: center-left;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-background-radius: -radius-sm;
+    -fx-graphic-text-gap: 10;
+}
+.nav-button:hover {
+    -fx-background-color: -bg-hover;
+    -fx-text-fill: -text-primary;
+}
+.nav-button:selected {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-weight: 700;
+}
+
+.sidebar-footer-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-padding: -space-2 -space-4;
+}
+.sidebar-footer-link:hover { -fx-text-fill: -text-secondary; }

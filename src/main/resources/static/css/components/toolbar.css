@@ -1,0 +1,81 @@
+/* ==========================================================================
+   COMPONENTS / TOOLBAR (barre de haut de page : fil d'Ariane, recherche,
+   notifications, profil)
+   ========================================================================== */
+.toolbar {
+    -fx-background-color: -bg-surface;
+    -fx-padding: -space-3 -space-5;
+    -fx-border-color: transparent transparent -border-color transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: center-left;
+}
+
+/* Fil d'Ariane : icône + libellé + chevron + libellé actif en gras */
+.breadcrumb-icon { -fx-fill: -primary; }
+.breadcrumb-item {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-secondary;
+    -fx-cursor: hand;
+}
+.breadcrumb-item:hover { -fx-text-fill: -primary; }
+.breadcrumb-current {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+.breadcrumb-separator {
+    -fx-fill: -text-tertiary;
+}
+
+/* Barre de recherche "Rechercher... Ctrl+K" */
+.search-bar {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: -space-2 -space-3;
+}
+.search-bar:focused-within { -fx-border-color: -primary; }
+.search-bar .text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-font-size: 13px;
+}
+.search-shortcut-hint {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-xs;
+    -fx-border-radius: -radius-xs;
+    -fx-padding: 1 6;
+    -fx-font-size: 11px;
+    -fx-text-fill: -text-tertiary;
+}
+
+/* Bloc profil : avatar + nom + rôle + chevron */
+.avatar-circle {
+    -fx-background-radius: -radius-pill;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-max-width: 36;
+    -fx-max-height: 36;
+}
+.profile-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+.profile-role {
+    -fx-font-size: 11px;
+    -fx-text-fill: -text-tertiary;
+}
+.profile-menu-trigger {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: -space-1 -space-2;
+    -fx-background-radius: -radius-sm;
+}
+.profile-menu-trigger:hover { -fx-background-color: -bg-hover; }

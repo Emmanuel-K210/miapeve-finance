@@ -1,0 +1,44 @@
+/* ==========================================================================
+   COMPONENTS / DATE PICKER
+   ========================================================================== */
+.date-picker {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+}
+.date-picker:hover   { -fx-border-color: -border-strong; }
+.date-picker:focused { -fx-border-color: -primary; }
+
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: -space-2 -space-3;
+    -fx-font-size: 13px;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 -space-3 0 0;
+}
+.date-picker .arrow-button .arrow {
+    -fx-background-color: -primary;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: -primary;
+    -fx-background-radius: -radius-sm -radius-sm 0 0;
+}
+.date-picker-popup .spinner .label {
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+.date-picker-popup .day-cell:selected {
+    -fx-background-color: -primary;
+    -fx-background-radius: -radius-pill;
+}
+.date-picker-popup .today {
+    -fx-border-color: -primary;
+    -fx-border-radius: -radius-pill;
+}

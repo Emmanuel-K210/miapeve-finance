@@ -1,0 +1,19 @@
+/* ==========================================================================
+   COMPONENTS / SCROLLBAR
+   ========================================================================== */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+.scroll-bar .thumb {
+    -fx-background-color: -border-strong;
+    -fx-background-radius: -radius-pill;
+    -fx-background-insets: 2;
+}
+.scroll-bar .thumb:hover   { -fx-background-color: -text-tertiary; }
+.scroll-bar .thumb:pressed { -fx-background-color: -primary; }
+.scroll-bar .track { -fx-background-color: transparent; }
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}

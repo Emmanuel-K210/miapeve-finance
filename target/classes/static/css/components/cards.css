@@ -1,0 +1,95 @@
+/* ==========================================================================
+   COMPONENTS / CARDS
+   Carte générique + variante "stat" avec pastille d'icône colorée, comme
+   sur le tableau de bord (Revenus / Dépenses / Solde net / Transactions).
+   ========================================================================== */
+.card {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: -space-4;
+    -fx-effect: -shadow-sm;
+}
+
+.card-flat {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: -space-4;
+}
+
+/* --- Carte KPI --- */
+.stat-card {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: -space-4;
+    -fx-effect: -shadow-sm;
+}
+
+.stat-value {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.stat-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.stat-trend-up {
+    -fx-text-fill: -success;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+.stat-trend-down {
+    -fx-text-fill: -danger;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* Pastille d'icône carrée derrière chaque KPI — une classe de couleur par
+   sémantique, jamais un hex en dur dans la vue. */
+.icon-tile {
+    -fx-background-radius: -radius-md;
+    -fx-min-width: 44;
+    -fx-min-height: 44;
+    -fx-max-width: 44;
+    -fx-max-height: 44;
+    -fx-alignment: center;
+}
+.icon-tile.blue   { -fx-background-color: -primary-muted; }
+.icon-tile.green  { -fx-background-color: -success-muted; }
+.icon-tile.purple { -fx-background-color: -purple-muted; }
+.icon-tile.orange { -fx-background-color: -orange-muted; }
+.icon-tile.pink   { -fx-background-color: -pink-muted; }
+.icon-tile.teal   { -fx-background-color: -teal-muted; }
+
+.icon-tile .glyph.blue   { -fx-fill: -primary; }
+.icon-tile .glyph.green  { -fx-fill: -success; }
+.icon-tile .glyph.purple { -fx-fill: -purple; }
+.icon-tile .glyph.orange { -fx-fill: -orange; }
+.icon-tile .glyph.pink   { -fx-fill: -pink; }
+.icon-tile .glyph.teal   { -fx-fill: -teal; }
+
+/* Petite pastille ronde utilisée pour les icônes "Hommes/Femmes/Enfants/Jeunes" */
+.icon-round {
+    -fx-background-radius: -radius-pill;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-max-width: 36;
+    -fx-max-height: 36;
+    -fx-alignment: center;
+}
+.icon-round.blue   { -fx-background-color: -primary-muted; }
+.icon-round.pink   { -fx-background-color: -pink-muted; }
+.icon-round.green  { -fx-background-color: -success-muted; }
+.icon-round.orange { -fx-background-color: -orange-muted; }

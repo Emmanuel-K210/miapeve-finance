@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>miapeve</groupId>
+  <artifactId>miapeve-finance</artifactId>
+  <name>miapeve finance</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>gestion des finances de l'eglise</description>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.fxml</include>
+          <include>**/*.css</include>
+          <include>**/*.png</include>
+          <include>**/*.jpg</include>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.8</version>
+        <configuration>
+          <mainClass>${main.class}</mainClass>
+          <options>
+            <option>--add-exports</option>
+            <option>javafx.controls/com.sun.javafx.scene.control=org.controlsfx.controls</option>
+            <option>--add-exports</option>
+            <option>javafx.graphics/com.sun.javafx.css=com.jfoenix</option>
+          </options>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven.shade.plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer>
+                  <mainClass>${main.class}</mainClass>
+                </transformer>
+              </transformers>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>create-installer</id>
+            <phase>package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <echo />
+                <exec>
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                </exec>
+                <echo />
+                <exec>
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                  <arg />
+                </exec>
+                <echo />
+                <echo />
+                <echo />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>itext7-core</artifactId>
+      <version>7.2.5</version>
+      <type>pom</type>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <javafx.jmods.path>C:/javafx-jmods-21.0.9</javafx.jmods.path>
+    <main.class>com.miapeve.finance.FinanceApp</main.class>
+    <java.version>21</java.version>
+    <maven.shade.plugin.version>3.5.1</maven.shade.plugin.version>
+    <itext.version>7.2.5</itext.version>
+    <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javafx.version>21.0.9</javafx.version>
+    <maven.dependency.plugin.version>3.6.1</maven.dependency.plugin.version>
+    <jdk.path>C:/Program Files/Java/jdk-21</jdk.path>
+  </properties>
+</project>

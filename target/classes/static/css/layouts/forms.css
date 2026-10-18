@@ -1,0 +1,572 @@
+/* ==========================================================================
+   LAYOUTS / FORMS
+   Styles pour les formulaires (Dépense, Semence, etc.)
+   ========================================================================== */
+
+/* ===== PAGE ===== */
+.form-page {
+    -fx-background-color: -bg-app;
+    -fx-padding: 20 24 24 24;
+}
+
+/* ===== EN-TÊTE ===== */
+.form-header {
+    -fx-padding: 0 0 4 0;
+}
+
+.form-icon-wrapper {
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+    -fx-max-width: 48;
+    -fx-max-height: 48;
+    -fx-background-radius: -radius-md;
+    -fx-alignment: center;
+}
+
+.form-icon-wrapper.danger {
+    -fx-background-color: -danger-muted;
+}
+
+.form-icon-wrapper.danger .form-icon {
+    -fx-fill: -danger;
+}
+
+.form-icon-wrapper.success {
+    -fx-background-color: -success-muted;
+}
+
+.form-icon-wrapper.success .form-icon {
+    -fx-fill: -success;
+}
+
+.form-icon-wrapper.primary {
+    -fx-background-color: -primary-muted;
+}
+
+.form-icon-wrapper.primary .form-icon {
+    -fx-fill: -primary;
+}
+
+.form-icon-wrapper.warning {
+    -fx-background-color: -warning-muted;
+}
+
+.form-icon-wrapper.warning .form-icon {
+    -fx-fill: -warning;
+}
+
+.form-icon-wrapper.purple {
+    -fx-background-color: -purple-muted;
+}
+
+.form-icon-wrapper.purple .form-icon {
+    -fx-fill: -purple;
+}
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+    -fx-letter-spacing: -0.3px;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.user-badge {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: -radius-pill;
+}
+
+.form-separator {
+    -fx-background-color: -border-color;
+    -fx-pref-height: 1;
+}
+
+/* ===== CORPS ===== */
+.form-body {
+    -fx-padding: 8 0 0 0;
+    -fx-spacing: 18;
+}
+
+.form-group {
+    -fx-spacing: 4;
+}
+
+.form-label-required {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.form-label-required:after {
+    -fx-content: " *";
+    -fx-text-fill: -danger;
+}
+
+.form-field {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: -text-tertiary;
+    -fx-pref-height: 40;
+}
+
+.form-field:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+.form-field:disabled {
+    -fx-opacity: 0.6;
+    -fx-background-color: -bg-subtle;
+}
+
+.form-field.error {
+    -fx-border-color: -danger;
+    -fx-border-width: 1.5;
+}
+
+.form-field.success {
+    -fx-border-color: -success;
+    -fx-border-width: 1.5;
+}
+
+.form-combo {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-primary;
+    -fx-pref-height: 40;
+}
+
+.form-combo:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+.form-combo .list-cell {
+    -fx-padding: 6 8 6 8;
+    -fx-font-size: 14px;
+}
+
+.form-combo .combo-box-popup .list-view {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-effect: -shadow-md;
+}
+
+.form-combo .combo-box-popup .list-cell:hover {
+    -fx-background-color: -bg-hover;
+}
+
+.form-combo .combo-box-popup .list-cell:selected {
+    -fx-background-color: -primary-muted;
+}
+
+.form-combo .combo-box-popup .list-cell:focused {
+    -fx-background-color: -bg-hover;
+}
+
+.form-message {
+    -fx-font-weight: 600;
+    -fx-padding: 8 0;
+    -fx-wrap-text: true;
+}
+
+.form-message.success {
+    -fx-text-fill: -success;
+}
+
+.form-message.error {
+    -fx-text-fill: -danger;
+}
+
+.form-message.warning {
+    -fx-text-fill: -warning;
+}
+
+.form-message.info {
+    -fx-text-fill: -info;
+}
+
+/* ===== FOOTER ===== */
+.form-footer {
+    -fx-padding: 8 0 0 0;
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: -border-color;
+}
+
+/* ==========================================================================
+   PASSWORD FORM
+   ========================================================================== */
+
+/* ===== PAGE ===== */
+.password-page {
+    -fx-background-color: transparent;
+}
+
+.password-container {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 0;
+    -fx-effect: -shadow-lg;
+    -fx-pref-width: 550;
+    -fx-pref-height: 520;
+    -fx-max-width: 600;
+}
+
+/* ===== INSTRUCTIONS ===== */
+.password-instructions {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 12 16 12 16;
+    -fx-spacing: 2;
+}
+
+.instructions-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.password-rule {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+    -fx-padding: 0 0 0 16;
+}
+
+.password-rule:before {
+    -fx-content: "• ";
+    -fx-text-fill: -primary;
+}
+
+/* ==========================================================================
+   BOUTONS
+   ========================================================================== */
+
+.btn-primary {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 24 10 24;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 40;
+}
+
+.btn-primary:hover {
+    -fx-background-color: -primary-hover;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: -primary-dark;
+    -fx-effect: -shadow-sm;
+    -fx-translate-y: 0px;
+}
+
+.btn-primary:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+    -fx-effect: none;
+}
+
+.btn-success {
+    -fx-background-color: -success;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 24 10 24;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 40;
+}
+
+.btn-success:hover {
+    -fx-background-color: -success-dark;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.btn-success:pressed {
+    -fx-background-color: -success-dark;
+    -fx-opacity: 0.8;
+}
+
+.btn-success:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+    -fx-effect: none;
+}
+
+.btn-danger {
+    -fx-background-color: -danger;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 24 10 24;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 40;
+}
+
+.btn-danger:hover {
+    -fx-background-color: -danger-dark;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.btn-danger:pressed {
+    -fx-background-color: -danger-dark;
+    -fx-opacity: 0.8;
+}
+
+.btn-danger:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+    -fx-effect: none;
+}
+
+.btn-warning {
+    -fx-background-color: -warning;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 24 10 24;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 40;
+}
+
+.btn-warning:hover {
+    -fx-background-color: -warning-dark;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.btn-warning:pressed {
+    -fx-background-color: -warning-dark;
+    -fx-opacity: 0.8;
+}
+
+.btn-warning:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+    -fx-effect: none;
+}
+
+.btn-purple {
+    -fx-background-color: -purple;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 24 10 24;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 40;
+}
+
+.btn-purple:hover {
+    -fx-background-color: #4A1F9E;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.btn-purple:pressed {
+    -fx-background-color: #3A1780;
+    -fx-opacity: 0.8;
+}
+
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 24 10 24;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-min-height: 40;
+}
+
+.btn-outline:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+    -fx-text-fill: -text-primary;
+}
+
+.btn-outline:pressed {
+    -fx-background-color: -bg-subtle;
+}
+
+.btn-outline:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+.btn-outline-sm {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 4 12 4 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+    -fx-cursor: hand;
+    -fx-min-height: 32;
+}
+
+.btn-outline-sm:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+    -fx-text-fill: -text-primary;
+}
+
+.btn-outline-sm:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+/* ==========================================================================
+   ICONS
+   ========================================================================== */
+
+.icon-white {
+    -fx-fill: white;
+}
+
+.icon-secondary {
+    -fx-fill: -text-secondary;
+}
+
+.icon-primary {
+    -fx-fill: -primary;
+}
+
+.icon-success {
+    -fx-fill: -success;
+}
+
+.icon-danger {
+    -fx-fill: -danger;
+}
+
+.icon-warning {
+    -fx-fill: -warning;
+}
+
+.icon-info {
+    -fx-fill: -info;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media screen and (max-width: 800px) {
+    .form-page {
+        -fx-padding: 12 16 16 16;
+    }
+    .form-field, .form-combo {
+        -fx-pref-height: 36;
+        -fx-font-size: 13px;
+    }
+    .btn-primary, .btn-success, .btn-danger, .btn-warning, .btn-purple, .btn-outline {
+        -fx-padding: 8 16 8 16;
+        -fx-font-size: 13px;
+        -fx-min-height: 36;
+    }
+    .page-title {
+        -fx-font-size: 20px;
+    }
+    .form-icon-wrapper {
+        -fx-min-width: 40;
+        -fx-min-height: 40;
+        -fx-max-width: 40;
+        -fx-max-height: 40;
+    }
+    .password-container {
+        -fx-pref-width: 400;
+        -fx-pref-height: 480;
+        -fx-max-width: 450;
+    }
+    .form-body {
+        -fx-padding: 4 16 0 16;
+    }
+    .form-footer {
+        -fx-padding: 8 16 12 16;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .password-container {
+        -fx-pref-width: 320;
+        -fx-pref-height: 520;
+        -fx-max-width: 350;
+    }
+    .form-header {
+        -fx-padding: 12 16 8 16;
+    }
+    .page-title {
+        -fx-font-size: 16px;
+    }
+    .page-subtitle {
+        -fx-font-size: 12px;
+    }
+    .form-field, .form-combo {
+        -fx-pref-height: 32;
+        -fx-font-size: 12px;
+    }
+    .btn-primary, .btn-success, .btn-danger, .btn-warning, .btn-purple, .btn-outline {
+        -fx-padding: 6 12 6 12;
+        -fx-font-size: 12px;
+        -fx-min-height: 32;
+    }
+    .form-icon-wrapper {
+        -fx-min-width: 32;
+        -fx-min-height: 32;
+        -fx-max-width: 32;
+        -fx-max-height: 32;
+    }
+}

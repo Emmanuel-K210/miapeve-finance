@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.miapeve.finance.ui.UtilisateurFormController" 
+            styleClass="user-form-container">
+   
+   <center>
+      <VBox spacing="20" style="-fx-padding: 20;">
+         <!-- En-tête -->
+         <HBox spacing="15" alignment="CENTER_LEFT">
+            <FontAwesomeIconView glyphName="USER" size="25" style="-fx-fill: #3498db;"/>
+            <Label fx:id="titreLabel" text="Nouvel Utilisateur" styleClass="dialog-header"/>
+         </HBox>
+         
+         <Separator/>
+         
+         <!-- Formulaire -->
+         <GridPane styleClass="user-form-grid" hgap="10" vgap="10">
+         
+            <columnConstraints>
+               <ColumnConstraints prefWidth="150" halignment="RIGHT"/>
+               <ColumnConstraints prefWidth="300"/>
+            </columnConstraints>
+            
+            <!-- Nom -->
+            <Label text="Nom:" GridPane.rowIndex="0" GridPane.columnIndex="0" 
+                   styleClass="user-form-label"/>
+            <TextField fx:id="nomField" GridPane.rowIndex="0" GridPane.columnIndex="1" 
+                       promptText="Saisir le nom" styleClass="user-form-field"/>
+            
+            <!-- Prénom -->
+            <Label text="Prénom:" GridPane.rowIndex="1" GridPane.columnIndex="0" 
+                   styleClass="user-form-label"/>
+            <TextField fx:id="prenomField" GridPane.rowIndex="1" GridPane.columnIndex="1" 
+                       promptText="Saisir le prénom" styleClass="user-form-field"/>
+            
+            <!-- Nom d'utilisateur -->
+            <Label text="Nom d'utilisateur:" GridPane.rowIndex="2" GridPane.columnIndex="0" 
+                   styleClass="user-form-label"/>
+            <TextField fx:id="nomUtilisateurField" GridPane.rowIndex="2" GridPane.columnIndex="1" 
+                       promptText="Saisir le nom d'utilisateur" styleClass="user-form-field"/>
+            
+            <!-- Mot de passe (visible seulement en création) -->
+            <Label text="Mot de passe:" GridPane.rowIndex="3" GridPane.columnIndex="0" 
+                   styleClass="user-form-label"/>
+            <PasswordField fx:id="motDePasseField" GridPane.rowIndex="3" GridPane.columnIndex="1" 
+                          promptText="Saisir le mot de passe" styleClass="user-form-field"/>
+            
+            <!-- Rôle -->
+            <Label text="Rôle:" GridPane.rowIndex="4" GridPane.columnIndex="0" 
+                   styleClass="user-form-label"/>
+            <ComboBox fx:id="roleCombo" GridPane.rowIndex="4" GridPane.columnIndex="1" 
+                      promptText="Sélectionner un rôle" styleClass="user-form-field"/>
+            
+            <!-- Statut actif -->
+            <Label text="Statut:" GridPane.rowIndex="5" GridPane.columnIndex="0" 
+                   styleClass="user-form-label"/>
+            <CheckBox fx:id="actifCheckBox" GridPane.rowIndex="5" GridPane.columnIndex="1" 
+                      text="Utilisateur actif" selected="true" 
+                      styleClass="form-label"/>
+         </GridPane>
+         
+         <!-- Message d'erreur/succès -->
+         <Label fx:id="messageLabel" styleClass="validation-message"/>
+         
+         <!-- Boutons -->
+         <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="validerButton" text="Créer" 
+                    styleClass="btn-primary"
+                    onAction="#handleValider">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CHECK" styleClass="icon-white"/>
+               </graphic>
+            </Button>
+            <Button fx:id="annulerButton" text="Annuler" 
+                    styleClass="btn-outline"
+                    onAction="#handleAnnuler">
+               <graphic>
+                  <FontAwesomeIconView glyphName="TIMES" styleClass="nav-icon"/>
+               </graphic>
+            </Button>
+         </HBox>
+      </VBox>
+   </center>
+   
+</BorderPane>

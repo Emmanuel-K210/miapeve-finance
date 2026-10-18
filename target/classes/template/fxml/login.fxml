@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.miapeve.finance.ui.LoginController"
+            styleClass="login-screen">
+
+   <children>
+      <StackPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+
+            <!-- Coquille unique : panneau de marque + panneau formulaire -->
+            <HBox styleClass="login-shell" alignment="CENTER" maxWidth="1180" maxHeight="720">
+               <children>
+
+                  <!-- ===================== PANNEAU GAUCHE (marque) ===================== -->
+                  <VBox styleClass="login-brand-panel, shell-left" alignment="CENTER_LEFT" prefWidth="420">
+                     <padding>
+                        <Insets top="40.0" right="40.0" bottom="40.0" left="48.0" />
+                     </padding>
+                     <children>
+
+                        <Region VBox.vgrow="ALWAYS" />
+
+                        <VBox spacing="16.0" alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView fitWidth="64.0" fitHeight="64.0" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/static/images/logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Miapeve Finance" styleClass="login-brand-logo-title" />
+                              <Label text="Gestion financière intelligente" styleClass="login-brand-tagline" />
+                           </children>
+                        </VBox>
+
+                        <Region VBox.vgrow="ALWAYS" />
+
+                        <VBox spacing="2.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="© 2026 Miapeve Finance" styleClass="login-brand-footer" />
+                              <Label text="Tous droits réservés" styleClass="login-brand-footer" />
+                           </children>
+                        </VBox>
+
+                     </children>
+                  </VBox>
+
+                  <!-- ===================== PANNEAU DROIT (formulaire) ===================== -->
+                  <VBox styleClass="login-form-panel" alignment="CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox styleClass="login-form-content" alignment="CENTER">
+                           <children>
+
+                              <!-- Icône cadenas -->
+                              <StackPane styleClass="login-icon-circle">
+                                 <children>
+                                    <Label text="&#128274;" style="-fx-font-size: 26px; -fx-text-fill: -primary;" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" />
+                                 </VBox.margin>
+                              </StackPane>
+
+                              <!-- Titre + sous-titre + soulignement -->
+                              <VBox alignment="CENTER" spacing="4.0">
+                                 <children>
+                                    <Label text="Connexion" styleClass="login-title" />
+                                    <Label text="Accédez à votre espace sécurisé" styleClass="login-subtitle" />
+                                    <Region styleClass="login-title-underline">
+                                       <VBox.margin>
+                                          <Insets top="8.0" bottom="16.0" />
+                                       </VBox.margin>
+                                    </Region>
+                                 </children>
+                              </VBox>
+
+                              <!-- Champ nom d'utilisateur -->
+                              <VBox spacing="8.0">
+                                 <children>
+                                    <Label text="Nom d'utilisateur" styleClass="form-label" />
+                                    <HBox styleClass="login-field-group" alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label text="&#128100;" styleClass="login-field-icon" />
+                                          <TextField fx:id="nomUtilisateurField"
+                                                     promptText="Entrez votre nom d'utilisateur"
+                                                     styleClass="login-field-input" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+
+                              <!-- Champ mot de passe (avec bascule afficher/masquer) -->
+                              <VBox spacing="8.0">
+                                 <children>
+                                    <Label text="Mot de passe" styleClass="form-label" />
+                                    <HBox styleClass="login-field-group" alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label text="&#128274;" styleClass="login-field-icon" />
+                                          <StackPane HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <PasswordField fx:id="motDePasseField"
+                                                               promptText="Entrez votre mot de passe"
+                                                               styleClass="login-field-input" />
+                                                <TextField fx:id="motDePasseVisibleField"
+                                                           promptText="Entrez votre mot de passe"
+                                                           styleClass="login-field-input"
+                                                           visible="false" managed="false" />
+                                             </children>
+                                          </StackPane>
+                                          <Button fx:id="togglePasswordButton" text="&#128065;"
+                                                  onAction="#handleTogglePassword"
+                                                  styleClass="login-eye-toggle" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+
+                              <!-- Boutons d'action -->
+                              <HBox spacing="12.0">
+                                 <children>
+                                    <Button text="&#8594; Se connecter" onAction="#handleLogin"
+                                            styleClass="login-btn" maxWidth="Infinity"
+                                            HBox.hgrow="ALWAYS" prefWidth="190.0" />
+                                    <Button text="&#8635; Quitter l'application" onAction="#handleQuitter"
+                                            styleClass="quit-login-btn" maxWidth="Infinity"
+                                            HBox.hgrow="ALWAYS" prefWidth="150.0" />
+                                 </children>
+                              </HBox>
+
+                              <!-- Séparateur -->
+                              <Region styleClass="login-divider">
+                                 <VBox.margin>
+                                    <Insets top="8.0" bottom="4.0" />
+                                 </VBox.margin>
+                              </Region>
+
+                              <!-- Footer d'aide -->
+                              <HBox alignment="CENTER" spacing="6.0">
+                                 <children>
+                                    <Label text="&#127911;" style="-fx-font-size: 13px;" />
+                                    <Label text="Besoin d'aide ? Contactez votre administrateur système"
+                                           styleClass="login-help-footer" />
+                                 </children>
+                              </HBox>
+
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+
+               </children>
+            </HBox>
+
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

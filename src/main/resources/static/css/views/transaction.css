@@ -1,0 +1,491 @@
+/* ==========================================================================
+   VIEWS / TRANSACTION
+   Styles pour la page des transactions
+
+   RÉVISION — migration des couleurs hex en dur vers les tokens du design
+   system (core/colors.css) pour rester synchronisé si la palette change.
+   Suppression de .page-title/.page-subtitle en double (déjà définies dans
+   core/typography.css, redéfinir ici ne fait que dupliquer/risquer une
+   dérive). Layout des cartes de stats corrigé côté FXML (GridPane -> HBox).
+   ========================================================================== */
+
+/* ===== PAGE ===== */
+.transaction-page {
+    -fx-background-color: -bg-app;
+    -fx-padding: 20 24 24 24;
+}
+
+/* ===== STATISTIQUES ===== */
+.stats-grid {
+    -fx-spacing: 16;
+}
+
+/* Carte de stats - Style unifié */
+.stat-card {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-effect: -shadow-sm;
+    -fx-padding: 14 18 14 18;
+    -fx-min-width: 160;
+    -fx-min-height: 85;
+}
+
+.stat-card:hover {
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -2px;
+}
+
+/* Couleurs des bordures gauche (accent sémantique en haut de carte) */
+.stat-card-danger {
+    -fx-border-color: -danger -border-color -border-color -border-color;
+    -fx-border-width: 3 1 1 1;
+}
+
+.stat-card-success {
+    -fx-border-color: -success -border-color -border-color -border-color;
+    -fx-border-width: 3 1 1 1;
+}
+
+.stat-card-primary {
+    -fx-border-color: -primary -border-color -border-color -border-color;
+    -fx-border-width: 3 1 1 1;
+}
+
+.stat-card-purple {
+    -fx-border-color: -purple -border-color -border-color -border-color;
+    -fx-border-width: 3 1 1 1;
+}
+
+/* Texte des stats */
+.stat-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.stat-value-danger {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -danger;
+}
+
+.stat-value-success {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -success;
+}
+
+.stat-value-primary {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -primary;
+}
+
+.stat-value-purple {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -purple;
+}
+
+.stat-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: -text-tertiary;
+}
+
+/* ===== BOUTONS ===== */
+.btn-danger {
+    -fx-background-color: -danger;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 40;
+}
+
+.btn-danger:hover {
+    -fx-background-color: -danger-dark;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.btn-danger:pressed {
+    -fx-background-color: -danger-dark;
+    -fx-effect: -shadow-sm;
+    -fx-translate-y: 0px;
+}
+
+.btn-success {
+    -fx-background-color: -success;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 40;
+}
+
+.btn-success:hover {
+    -fx-background-color: -success-dark;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.btn-success:pressed {
+    -fx-background-color: -success-dark;
+    -fx-effect: -shadow-sm;
+    -fx-translate-y: 0px;
+}
+
+.glyph-icon-white {
+    -fx-fill: white;
+}
+
+/* ===== FILTRES ===== */
+.filters-container {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-padding: 14 18 14 18;
+    -fx-spacing: 12;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.search-wrapper {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-padding: 0 8 0 12;
+    -fx-pref-width: 240;
+    -fx-min-height: 36;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.search-wrapper:focused-within {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+.search-icon {
+    -fx-fill: -text-tertiary;
+}
+
+.search-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 6 4 6 4;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: -text-tertiary;
+}
+
+.search-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+/* ===== COMBOBOX ===== */
+.combo-box {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-min-height: 36;
+    -fx-pref-height: 36;
+}
+
+.combo-box:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 4 0 4;
+}
+
+.combo-box .arrow-button .arrow {
+    -fx-background-color: -text-secondary;
+    -fx-shape: "M0 0 L4 4 L8 0 Z";
+    -fx-padding: 4;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: -text-primary;
+    -fx-padding: 6 10 6 10;
+}
+
+.combo-box .list-view {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-effect: -shadow-md;
+}
+
+.combo-box .list-view .list-cell:hover {
+    -fx-background-color: -bg-subtle;
+}
+
+.combo-box .list-view .list-cell:selected {
+    -fx-background-color: -primary-muted;
+}
+
+/* ===== DATEPICKER ===== */
+.date-picker {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-padding: 4 8 4 8;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-min-height: 36;
+    -fx-pref-height: 36;
+}
+
+.date-picker:focused {
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 4 0 4;
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-background-color: -text-secondary;
+    -fx-shape: "M0 0 L4 4 L8 0 Z";
+    -fx-padding: 4;
+}
+
+/* ===== BOUTONS OUTLINE ===== */
+.btn-outline-sm {
+    -fx-background-color: transparent;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-padding: 6 14 6 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+    -fx-cursor: hand;
+    -fx-min-height: 36;
+}
+
+.btn-outline-sm:hover {
+    -fx-background-color: -bg-subtle;
+    -fx-border-color: -border-strong;
+    -fx-text-fill: -text-primary;
+}
+
+.btn-outline-sm:pressed {
+    -fx-background-color: -border-color;
+}
+
+.glyph-icon-gray {
+    -fx-fill: -text-secondary;
+}
+
+/* ===== TAB PANE ===== */
+.tab-pane-modern {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-effect: -shadow-sm;
+}
+
+.tab-pane-modern .tab-header-area {
+    -fx-padding: 0 16 0 16;
+}
+
+.tab-pane-modern .tab-header-background {
+    -fx-background-color: -bg-app;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+}
+
+.tab-pane-modern .tab {
+    -fx-background-color: transparent;
+    -fx-padding: 12 20 12 20;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.tab-pane-modern .tab:selected {
+    -fx-border-color: -primary;
+    -fx-border-width: 0 0 2 0;
+}
+
+.tab-pane-modern .tab .tab-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.tab-pane-modern .tab:selected .tab-label {
+    -fx-text-fill: -primary;
+    -fx-font-weight: 600;
+}
+
+.tab-pane-modern .tab:hover {
+    -fx-background-color: -bg-subtle;
+}
+
+.tab-content {
+    -fx-padding: 16 20 20 20;
+}
+
+/* ===== TABLEAU ===== */
+.table-view-modern {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.table-view-modern .column-header-background {
+    -fx-background-color: -bg-app;
+}
+
+.table-view-modern .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8 12 8 12;
+}
+
+.table-view-modern .column-header .label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-secondary;
+}
+
+.table-view-modern .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0;
+}
+
+.table-view-modern .table-row-cell:hover {
+    -fx-background-color: -bg-app;
+}
+
+.table-view-modern .table-row-cell:selected {
+    -fx-background-color: -primary-muted;
+    -fx-border-color: -primary;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view-modern .table-cell {
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-border-color: transparent;
+}
+
+/* ===== BADGES ===== */
+.badge-neutral {
+    -fx-background-color: -bg-subtle;
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-background-radius: -radius-pill;
+    -fx-padding: 2 12 2 12;
+}
+
+.hint-text {
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 900px) {
+    .transaction-page {
+        -fx-padding: 12 16 16 16;
+    }
+    .stat-card {
+        -fx-padding: 10 12 10 12;
+        -fx-min-width: 120;
+        -fx-min-height: 75;
+    }
+    .stat-value-danger,
+    .stat-value-success,
+    .stat-value-primary,
+    .stat-value-purple {
+        -fx-font-size: 18px;
+    }
+    .filters-container {
+        -fx-padding: 10 14 10 14;
+    }
+    .search-wrapper {
+        -fx-pref-width: 160;
+    }
+    .tab-content {
+        -fx-padding: 12 14 14 14;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .transaction-page {
+        -fx-padding: 8 10 10 10;
+    }
+    .stat-card {
+        -fx-padding: 8 10 8 10;
+        -fx-min-width: 80;
+        -fx-min-height: 55;
+    }
+    .stat-value-danger,
+    .stat-value-success,
+    .stat-value-primary,
+    .stat-value-purple {
+        -fx-font-size: 14px;
+    }
+    .stat-label {
+        -fx-font-size: 10px;
+    }
+    .stat-subtitle {
+        -fx-font-size: 8px;
+    }
+    .search-wrapper {
+        -fx-pref-width: 100;
+    }
+    .btn-danger,
+    .btn-success {
+        -fx-padding: 6 12 6 12;
+        -fx-font-size: 12px;
+        -fx-min-height: 32;
+    }
+    .filters-container {
+        -fx-padding: 8 10 8 10;
+        -fx-spacing: 6;
+    }
+    .tab-content {
+        -fx-padding: 8 10 10 10;
+    }
+    .tab-pane-modern .tab {
+        -fx-padding: 8 12 8 12;
+    }
+}

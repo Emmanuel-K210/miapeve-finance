@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="0" styleClass="programme-form-page" xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.miapeve.finance.ui.ProgrammeFormController">
+
+    <!-- ==================== EN-TÊTE ==================== -->
+    <HBox styleClass="form-header" alignment="CENTER_LEFT" spacing="16">
+        <Button styleClass="btn-back" onAction="#handleRetour">
+            <graphic>
+                <FontAwesomeIconView glyphName="ARROW_LEFT" glyphSize="16" fill="#4F46E5"/>
+            </graphic>
+        </Button>
+        <VBox spacing="2">
+            <Label fx:id="formTitle" text="Nouveau Programme" styleClass="page-title"/>
+            <Label fx:id="formSubtitle" text="Renseignez les informations du programme" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="utilisateurConnecteLabel" styleClass="user-badge" visible="false" managed="false"/>
+    </HBox>
+
+    <Separator styleClass="form-separator"/>
+
+    <!-- ==================== CORPS ==================== -->
+    <ScrollPane styleClass="form-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+        <VBox spacing="20" styleClass="form-body">
+            <padding>
+                <Insets top="20" right="24" bottom="20" left="24"/>
+            </padding>
+
+            <!-- ===== TYPE DE PROGRAMME ===== -->
+            <VBox spacing="8" styleClass="form-section">
+                <Label text="Type de programme *" styleClass="form-label-required"/>
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <ComboBox fx:id="typeComboBox" styleClass="combo-box" prefWidth="300" promptText="Choisir un type de programme"/>
+                    <TextField fx:id="customTypeField" styleClass="text-field" prefWidth="280" promptText="Saisir un type personnalisé" visible="false" managed="false"/>
+                    <Button fx:id="toggleCustomBtn" text="Personnalisé" styleClass="btn-outline"/>
+                </HBox>
+            </VBox>
+
+            <!-- ===== DATE ET HEURES ===== -->
+            <HBox spacing="20" alignment="TOP_LEFT">
+                <VBox spacing="8" styleClass="form-section" HBox.hgrow="ALWAYS">
+                    <Label text="Date *" styleClass="form-label-required"/>
+                    <DatePicker fx:id="dateField" styleClass="date-picker" prefWidth="200"/>
+                </VBox>
+                <VBox spacing="8" styleClass="form-section" HBox.hgrow="ALWAYS">
+                    <Label text="Heure début *" styleClass="form-label-required"/>
+                    <TextField fx:id="heureDebutField" styleClass="text-field" prefWidth="120" promptText="09:00"/>
+                </VBox>
+                <VBox spacing="8" styleClass="form-section" HBox.hgrow="ALWAYS">
+                    <Label text="Heure fin *" styleClass="form-label-required"/>
+                    <TextField fx:id="heureFinField" styleClass="text-field" prefWidth="120" promptText="12:00"/>
+                </VBox>
+                <VBox spacing="8" styleClass="form-section" alignment="BOTTOM_LEFT">
+                    <Label text="Durée" styleClass="form-label"/>
+                    <Label fx:id="dureeLabel" text="--" styleClass="duration-badge"/>
+                </VBox>
+            </HBox>
+
+            <!-- ===== PARTICIPANTS ===== -->
+            <VBox spacing="12" styleClass="form-section">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <FontAwesomeIconView glyphName="USERS" styleClass="section-icon" glyphSize="16" fill="#4F46E5"/>
+                    <Label text="Participants" styleClass="section-title-form"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="totalParticipantsLabel" text="0 personnes" styleClass="total-badge"/>
+                </HBox>
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <VBox spacing="4" alignment="CENTER">
+                        <Label text="Hommes" styleClass="participant-label"/>
+                        <TextField fx:id="hommesField" styleClass="participant-field" prefWidth="60" promptText="0"/>
+                    </VBox>
+                    <VBox spacing="4" alignment="CENTER">
+                        <Label text="Femmes" styleClass="participant-label"/>
+                        <TextField fx:id="femmesField" styleClass="participant-field" prefWidth="60" promptText="0"/>
+                    </VBox>
+                    <VBox spacing="4" alignment="CENTER">
+                        <Label text="Enfants" styleClass="participant-label"/>
+                        <TextField fx:id="enfantsField" styleClass="participant-field" prefWidth="60" promptText="0"/>
+                    </VBox>
+                    <VBox spacing="4" alignment="CENTER">
+                        <Label text="Jeunes" styleClass="participant-label"/>
+                        <TextField fx:id="jeunesField" styleClass="participant-field" prefWidth="60" promptText="0"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- ===== SEMENCES ===== -->
+            <VBox spacing="12" styleClass="form-section">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <FontAwesomeIconView glyphName="LEAF" styleClass="section-icon" glyphSize="16" fill="#10B981"/>
+                    <Label text="Semences associées" styleClass="section-title-form"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="nombreSemencesLabel" text="0 semence" styleClass="badge-neutral"/>
+                    <Label fx:id="totalSemencesLabel" text="0 F CFA" styleClass="total-pill"/>
+                </HBox>
+
+                <!-- Ligne de saisie rapide : plus de modales, on remplit et on valide -->
+                <HBox styleClass="semence-add-row" spacing="8" alignment="CENTER_LEFT">
+                    <ComboBox fx:id="typeSemenceCombo" styleClass="combo-box" promptText="Type" prefWidth="150"/>
+                    <TextField fx:id="montantSemenceField" styleClass="text-field" promptText="Montant F CFA" prefWidth="140"/>
+                    <ComboBox fx:id="compteSemenceCombo" styleClass="combo-box" promptText="Compte" prefWidth="170" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnAjouterLigneSemence" styleClass="btn-success" onAction="#handleAjouterSemenceLigne" text="Ajouter">
+                        <graphic>
+                            <FontAwesomeIconView glyphName="PLUS" glyphSize="12" fill="WHITE"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+
+                <!-- Table des semences -->
+                <TableView fx:id="semencesTable" styleClass="semences-table" prefHeight="120">
+                    <columns>
+                        <TableColumn text="Type" prefWidth="180"/>
+                        <TableColumn text="Montant (F CFA)" prefWidth="150"/>
+                        <TableColumn text="Compte" prefWidth="180"/>
+                        <TableColumn text="" prefWidth="60"/>
+                    </columns>
+                </TableView>
+
+                <!-- Message vide -->
+                <VBox fx:id="noSemencesContainer" styleClass="empty-state" spacing="8" 
+                      alignment="CENTER" prefHeight="60" visible="true" managed="true">
+                    <FontAwesomeIconView glyphName="LEAF" glyphSize="20" fill="#9CA3AF"/>
+                    <Label text="Aucune semence ajoutée — utilisez le formulaire ci-dessus" styleClass="body-text"/>
+                </VBox>
+            </VBox>
+
+            <!-- ===== ERREUR ===== -->
+            <Label fx:id="errorLabel" styleClass="alert-danger" visible="false" managed="false" wrapText="true"/>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- ==================== FOOTER ==================== -->
+    <HBox styleClass="form-footer" alignment="CENTER_RIGHT" spacing="12">
+        <Button text="Annuler" styleClass="btn-outline" onAction="#handleRetour"/>
+        <Button text="Sauvegarder" styleClass="btn-primary" onAction="#handleSauvegarder">
+            <graphic>
+                <FontAwesomeIconView glyphName="SAVE" glyphSize="14" fill="WHITE"/>
+            </graphic>
+        </Button>
+    </HBox>
+
+</VBox>

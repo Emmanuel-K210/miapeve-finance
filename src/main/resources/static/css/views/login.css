@@ -1,0 +1,207 @@
+/* ==========================================================================
+   VIEWS / LOGIN
+   Écran scindé en deux : panneau de marque (gauche) + carte de connexion
+   (droite), conforme à la maquette.
+   ========================================================================== */
+.login-screen {
+    -fx-background-color: -bg-app;
+}
+
+/* Panneau gauche : dégradé de marque + silhouette + copyright en pied */
+.login-brand-panel {
+    -fx-background-color: linear-gradient(to bottom right, -primary, -primary-dark);
+    -fx-padding: -space-7;
+}
+.login-brand-logo-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -text-on-accent;
+}
+.login-brand-tagline {
+    -fx-font-size: 13px;
+    -fx-text-fill: -primary-light;
+}
+.login-brand-footer {
+    -fx-font-size: 11px;
+    -fx-text-fill: -primary-light;
+}
+
+/* Carte de connexion */
+.login-card {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-xl;
+    -fx-border-radius: -radius-xl;
+    -fx-effect: -shadow-lg;
+    -fx-padding: -space-7;
+    -fx-min-width: 400;
+    -fx-max-width: 400;
+    -fx-spacing: -space-4;
+}
+
+.login-field-group:focused-within .login-field-icon {
+    -fx-text-fill: -primary;
+}
+
+.login-icon-circle {
+    -fx-background-color: -primary-muted;
+    -fx-background-radius: -radius-pill;
+    -fx-min-width: 64;
+    -fx-min-height: 64;
+    -fx-max-width: 64;
+    -fx-max-height: 64;
+    -fx-alignment: center;
+}
+.login-icon-circle .glyph {
+    -fx-fill: -primary;
+}
+
+.login-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+.login-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+.login-title-underline {
+    -fx-background-color: -primary;
+    -fx-pref-width: 40;
+    -fx-pref-height: 3;
+    -fx-background-radius: -radius-pill;
+}
+
+.login-input {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: -space-3 -space-4;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-primary;
+    -fx-pref-height: 48;
+}
+.login-input:focused { -fx-border-color: -primary; -fx-border-width: 1.5; }
+.login-input:hover   { -fx-border-color: -border-strong; }
+
+.login-btn {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-pref-height: 48;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 2, 0, 0, 1);
+}
+.login-btn:pressed {
+    -fx-background-color: -primary-dark;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 1, 0, 0, 1);
+}
+.login-btn:hover { 
+    -fx-background-color: -primary-hover;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 4, 0, 0, 2);
+}
+.quit-login-btn {
+    -fx-background-color: -bg-surface;
+    -fx-text-fill: -primary;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-border-color: -primary;
+    -fx-border-width: 1.5;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+    -fx-pref-height: 48;
+}
+.quit-login-btn:hover { -fx-background-color: -primary-muted; }
+
+.login-help-footer {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-tertiary;
+}
+
+/* ==========================================================================
+   NOUVEAU — Maquette v2 : les deux panneaux (marque + formulaire) forment
+   une seule coquille arrondie avec ombre portée, au lieu d'une carte flottant
+   sur un panneau plein écran. .login-brand-panel et .login-card d'origine
+   restent inchangés (réutilisables tels quels ailleurs) ; ces classes ne
+   font qu'ajuster les coins et l'agencement pour ce contexte précis.
+   ========================================================================== */
+.login-shell {
+    -fx-background-color: transparent;
+    -fx-effect: -shadow-lg;
+}
+
+/* Modificateur : coins arrondis uniquement à gauche pour le panneau de marque */
+.login-brand-panel.shell-left {
+    -fx-background-radius: -radius-xl 0 0 -radius-xl;
+    -fx-border-radius: -radius-xl 0 0 -radius-xl;
+}
+
+/* Panneau droit du shell : remplace .login-card pour ce layout (largeur
+   flexible au lieu de fixe, coins arrondis uniquement à droite) */
+.login-form-panel {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: 0 -radius-xl -radius-xl 0;
+    -fx-border-radius: 0 -radius-xl -radius-xl 0;
+    -fx-alignment: center;
+}
+
+/* Contenu interne du panneau droit : largeur fixe centrée, quel que soit
+   l'espace disponible dans .login-form-panel */
+.login-form-content {
+    -fx-spacing: -space-4;
+    -fx-pref-width: 380;
+    -fx-max-width: 380;
+    -fx-alignment: center;
+}
+
+/* Groupe icône + champ (nom d'utilisateur / mot de passe) */
+.login-field-group {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-border-radius: -radius-sm;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 0 -space-3;
+    -fx-spacing: -space-2;
+    -fx-alignment: center-left;
+    -fx-pref-height: 48;
+}
+.login-field-group:hover          { -fx-border-color: -border-strong; }
+.login-field-group:focused-within { -fx-border-color: -primary; -fx-border-width: 1.5; }
+
+.login-field-icon {
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 15px;
+}
+
+/* Champ SANS bordure propre : la bordure est portée par .login-field-group */
+.login-field-input {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: -text-tertiary;
+}
+
+/* Bouton oeil pour afficher/masquer le mot de passe */
+.login-eye-toggle {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: -space-1;
+}
+.login-eye-toggle:hover { -fx-text-fill: -text-secondary; }
+
+/* Séparateur fin avant le footer d'aide */
+.login-divider {
+    -fx-background-color: -border-color;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+}

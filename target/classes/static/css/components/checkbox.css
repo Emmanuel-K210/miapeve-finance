@@ -1,0 +1,31 @@
+/* ==========================================================================
+   COMPONENTS / CHECKBOX & RADIO
+   ========================================================================== */
+.check-box .box {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-strong;
+    -fx-border-width: 1.5;
+    -fx-border-radius: -radius-xs;
+    -fx-background-radius: -radius-xs;
+    -fx-padding: 3;
+}
+.check-box:selected .box {
+    -fx-background-color: -primary;
+    -fx-border-color: -primary;
+}
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+.check-box .text {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.radio-button .radio {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-strong;
+    -fx-border-width: 1.5;
+}
+.radio-button:selected .radio .dot {
+    -fx-background-color: -primary;
+}

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="20" styleClass="parametres-page" xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.miapeve.finance.ui.ParametresController">
+
+    <padding>
+        <Insets top="0" right="0" bottom="0" left="0"/>
+    </padding>
+
+    <!-- ==================== EN-TÊTE ==================== -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="2">
+            <Label text="Paramètres" styleClass="page-title"/>
+            <Label text="Gérez vos préférences et la configuration du système" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- ==================== TAB PANE ==================== -->
+    <TabPane fx:id="parametresTabs" styleClass="tab-pane-modern" VBox.vgrow="ALWAYS">
+        <tabs>
+            <!-- ===== ONGLET PROFIL ===== -->
+            <Tab fx:id="tabProfil" text="Mon Profil" styleClass="tab-modern">
+                <VBox spacing="20" styleClass="tab-content">
+                    <!-- Carte Profil -->
+                    <VBox styleClass="profile-card">
+                        <HBox alignment="CENTER_LEFT" spacing="16">
+                            <StackPane styleClass="avatar-large">
+                                <FontAwesomeIconView glyphName="USER" glyphSize="28" fill="#4F46E5"/>
+                            </StackPane>
+                            <VBox spacing="4">
+                                <Label fx:id="labelNomUtilisateur" text="Utilisateur" styleClass="profile-name"/>
+                                <Label fx:id="labelRole" text="Rôle" styleClass="profile-role"/>
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="labelDateCreation" text="Membre depuis: -" styleClass="profile-date"/>
+                        </HBox>
+
+                        <Region styleClass="separator-line"/>
+
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <Button text="Modifier le Profil" styleClass="btn-primary" onAction="#handleModifierProfil">
+                                <graphic>
+                                    <FontAwesomeIconView glyphName="EDIT" glyphSize="12" fill="WHITE"/>
+                                </graphic>
+                            </Button>
+                            <Button text="Changer le Mot de Passe" styleClass="btn-outline" onAction="#handleChangerMotDePasse">
+                                <graphic>
+                                    <FontAwesomeIconView glyphName="KEY" glyphSize="12" fill="#4F46E5"/>
+                                </graphic>
+                            </Button>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </Tab>
+
+            <!-- ===== ONGLET UTILISATEURS ===== -->
+            <Tab fx:id="tabUtilisateurs" text="Utilisateurs" styleClass="tab-modern">
+                <VBox spacing="16" styleClass="tab-content">
+                    <!-- Barre d'outils -->
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <Button fx:id="btnNouvelUtilisateur" text="Nouvel Utilisateur" styleClass="btn-primary" onAction="#handleNouvelUtilisateur">
+                            <graphic>
+                                <FontAwesomeIconView glyphName="PLUS" glyphSize="12" fill="WHITE"/>
+                            </graphic>
+                        </Button>
+                        
+                        <Region HBox.hgrow="ALWAYS"/>
+                        
+                        <HBox styleClass="search-wrapper" spacing="8" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="SEARCH" glyphSize="14" fill="#9CA3AF"/>
+                            <TextField fx:id="searchField" promptText="Rechercher..." styleClass="search-field"/>
+                        </HBox>
+                        
+                        <ComboBox fx:id="roleFilter" promptText="Rôle" styleClass="combo-box"/>
+                        <ComboBox fx:id="statutFilter" promptText="Statut" styleClass="combo-box"/>
+                    </HBox>
+
+                    <!-- Table des utilisateurs -->
+                    <TableView fx:id="utilisateursTable" styleClass="table-view-modern" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colNom" text="Nom" prefWidth="120"/>
+                            <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="120"/>
+                            <TableColumn fx:id="colNomUtilisateur" text="Nom d'utilisateur" prefWidth="150"/>
+                            <TableColumn fx:id="colRole" text="Rôle" prefWidth="120"/>
+                            <TableColumn fx:id="colActif" text="Statut" prefWidth="100"/>
+                            <TableColumn fx:id="colActions" text="Actions" prefWidth="160"/>
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
+                    </TableView>
+
+                    <HBox alignment="CENTER_LEFT" spacing="8" styleClass="stats-footer">
+                        <Label text="Total utilisateurs:" styleClass="stats-label"/>
+                        <Label fx:id="totalUtilisateursLabel" text="0" styleClass="stats-value"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- ===== ONGLET SYSTÈME ===== -->
+            <Tab fx:id="tabSysteme" text="Système" styleClass="tab-modern">
+                <VBox spacing="20" styleClass="tab-content">
+                    <!-- Section Paramètres Généraux -->
+                    <VBox spacing="12">
+                        <Label text="Paramètres Généraux" styleClass="section-title"/>
+                        
+                        <VBox styleClass="info-card" spacing="8">
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="MONEY" glyphSize="14" fill="#6B7280"/>
+                                <Label text="Devise par défaut:" styleClass="info-label"/>
+                                <Label text="F CFA" styleClass="info-value"/>
+                            </HBox>
+                            <Region styleClass="separator-line"/>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="CALENDAR" glyphSize="14" fill="#6B7280"/>
+                                <Label text="Format de date:" styleClass="info-label"/>
+                                <Label text="dd/MM/yyyy" styleClass="info-value"/>
+                            </HBox>
+                            <Region styleClass="separator-line"/>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="CLOCK" glyphSize="14" fill="#6B7280"/>
+                                <Label text="Fuseau horaire:" styleClass="info-label"/>
+                                <Label text="UTC+0" styleClass="info-value"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Section Maintenance -->
+                    <VBox spacing="12">
+                        <Label text="Maintenance" styleClass="section-title"/>
+                        
+                        <VBox styleClass="maintenance-card" spacing="12">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="WRENCH" glyphSize="16" fill="#92400E"/>
+                                <Label text="Actions de maintenance système" styleClass="maintenance-title"/>
+                            </HBox>
+                            
+                            <HBox spacing="12">
+                                <Button text="Sauvegarder la base" styleClass="btn-info" onAction="#handleSauvegarderBase">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="DOWNLOAD" glyphSize="12" fill="WHITE"/>
+                                    </graphic>
+                                </Button>
+                                <Button text="Vider les logs" styleClass="btn-secondary" onAction="#handleViderLogs">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="TRASH" glyphSize="12" fill="WHITE"/>
+                                    </graphic>
+                                </Button>
+                                <Button text="Recalculer les soldes" styleClass="btn-success" onAction="#handleRecalculerSoldes">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="CALCULATOR" glyphSize="12" fill="WHITE"/>
+                                    </graphic>
+                                </Button>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Section Informations Système -->
+                    <VBox spacing="12">
+                        <Label text="Informations Système" styleClass="section-title"/>
+                        
+                        <VBox styleClass="info-card" spacing="8">
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="TAG" glyphSize="14" fill="#6B7280"/>
+                                <Label text="Version:" styleClass="info-label"/>
+                                <Label text="1.0.0" styleClass="info-value"/>
+                            </HBox>
+                            <Region styleClass="separator-line"/>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="DATABASE" glyphSize="14" fill="#6B7280"/>
+                                <Label text="Base de données:" styleClass="info-label"/>
+                                <Label text="SQLite" styleClass="info-value"/>
+                            </HBox>
+                            <Region styleClass="separator-line"/>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="FILE" glyphSize="14" fill="#6B7280"/>
+                                <Label text="Taille BDD:" styleClass="info-label"/>
+                                <Label text="0 MB" styleClass="info-value"/>
+                            </HBox>
+                            <Region styleClass="separator-line"/>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <FontAwesomeIconView glyphName="CLOUD" glyphSize="14" fill="#6B7280"/>
+                                <Label text="Dernière sauvegarde:" styleClass="info-label"/>
+                                <Label text="Non effectuée" styleClass="info-value-warning"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </Tab>
+        </tabs>
+    </TabPane>
+
+</VBox>

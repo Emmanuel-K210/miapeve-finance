@@ -1,0 +1,35 @@
+/* ==========================================================================
+   COMPONENTS / MENU (barre "Fichier / Compte" en haut de fenêtre)
+   ========================================================================== */
+.menu-bar {
+    -fx-background-color: -bg-surface;
+    -fx-padding: -space-1 -space-4;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+}
+.menu-bar .label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+}
+.menu-bar .menu:hover, .menu-bar .menu:showing {
+    -fx-background-color: -bg-hover;
+    -fx-background-radius: -radius-xs;
+}
+.context-menu, .menu-item {
+    -fx-background-color: -bg-surface;
+}
+.context-menu {
+    -fx-background-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-radius: -radius-sm;
+    -fx-effect: -shadow-md;
+    -fx-padding: -space-1;
+}
+.menu-item:hover, .menu-item:focused {
+    -fx-background-color: -bg-hover;
+    -fx-background-radius: -radius-xs;
+}
+.menu-item .label {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 13px;
+}

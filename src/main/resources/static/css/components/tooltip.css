@@ -1,0 +1,10 @@
+/* ==========================================================================
+   COMPONENTS / TOOLTIP
+   ========================================================================== */
+.tooltip {
+    -fx-background-color: -text-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: -radius-xs;
+    -fx-padding: -space-1 -space-2;
+}

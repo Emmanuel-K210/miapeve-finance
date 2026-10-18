@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="20" styleClass="compte-page" xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.miapeve.finance.ui.CompteController">
+
+    <padding>
+        <Insets top="0" right="0" bottom="0" left="0"/>
+    </padding>
+
+    <!-- ==================== EN-TÊTE ==================== -->
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="2">
+            <Label text="Gestion des Comptes" styleClass="page-title"/>
+            <Label text="Gérez vos comptes bancaires et suivez leurs soldes" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnNouveauCompte" text="Nouveau Compte" styleClass="btn-primary" onAction="#handleNouveauCompte">
+            <graphic>
+                <FontAwesomeIconView glyphName="PLUS" styleClass="icon-white" glyphSize="12"/>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <!-- ==================== STATISTIQUES ==================== -->
+    <GridPane fx:id="statsContainer" styleClass="stats-grid" hgap="16" vgap="16">
+        <!-- Les cartes de stats seront ajoutées dynamiquement -->
+    </GridPane>
+
+    <!-- ==================== TABLEAU ==================== -->
+    <VBox styleClass="table-container" spacing="8" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Liste des Comptes" styleClass="table-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="nombreComptesLabel" text="0 compte(s)" styleClass="badge-neutral"/>
+        </HBox>
+
+        <TableView fx:id="comptesTable" styleClass="table-view-modern" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colNom" text="Nom du Compte" prefWidth="250"/>
+                <TableColumn fx:id="colType" text="Type" prefWidth="180"/>
+                <TableColumn fx:id="colSolde" text="Solde" prefWidth="200"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+
+    <!-- ==================== ACTIONS RAPIDES ==================== -->
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="compte-actions">
+        <Button fx:id="btnCrediter" text="Créditer" styleClass="btn-success" onAction="#handleCrediter">
+            <graphic>
+                <FontAwesomeIconView glyphName="ARROW_UP" styleClass="icon-white" glyphSize="12"/>
+            </graphic>
+        </Button>
+        <Button fx:id="btnDebiter" text="Débiter" styleClass="btn-danger" onAction="#handleDebiter">
+            <graphic>
+                <FontAwesomeIconView glyphName="ARROW_DOWN" styleClass="icon-white" glyphSize="12"/>
+            </graphic>
+        </Button>
+        <Button fx:id="btnTransferer" text="Transférer" styleClass="btn-warning" onAction="#handleTransferer">
+            <graphic>
+                <FontAwesomeIconView glyphName="EXCHANGE" styleClass="icon-white" glyphSize="12"/>
+            </graphic>
+        </Button>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="💡 Double-clic sur un compte pour le modifier" styleClass="compte-hint"/>
+    </HBox>
+
+</VBox>

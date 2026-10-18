@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-scroll" xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.miapeve.finance.ui.DashboardController">
+
+    <content>
+        <VBox styleClass="dashboard-root" spacing="28">
+            <padding>
+                <Insets top="0" right="0" bottom="0" left="0"/>
+            </padding>
+
+            <!-- ============================================================ -->
+            <!-- EN-TÊTE DE PAGE                                              -->
+            <!-- ============================================================ -->
+            <HBox alignment="CENTER_LEFT" spacing="16">
+                <VBox spacing="4">
+                    <Label text="Tableau de bord" styleClass="dash-page-title"/>
+                    <Label fx:id="welcomeSubtitleLabel" text="Bienvenue ! Voici un aperçu de votre situation financière."
+                           styleClass="dash-page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Actualiser" styleClass="dash-btn-refresh" onAction="#loadData">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="REFRESH" styleClass="dash-btn-icon" glyphSize="13"/>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <Separator styleClass="dash-separator"/>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1 : KPI CARDS (4 cartes)                            -->
+            <!-- ============================================================ -->
+            <HBox styleClass="dash-kpi-row" spacing="16" alignment="CENTER">
+                
+                <!-- Carte 1 : Solde Total -->
+                <VBox styleClass="dash-kpi-card, dash-kpi-blue" spacing="8" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <StackPane styleClass="dash-kpi-icon">
+                            <FontAwesomeIconView glyphName="COINS" styleClass="dash-kpi-icon-svg" glyphSize="18"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Solde Total" styleClass="dash-kpi-label"/>
+                            <Label fx:id="totalSoldeLabel" text="0 F CFA" styleClass="dash-kpi-value"/>
+                        </VBox>
+                    </HBox>
+                    <Region styleClass="dash-kpi-progress, dash-kpi-progress-blue"/>
+                </VBox>
+
+                <!-- Carte 2 : Dépenses Total -->
+                <VBox styleClass="dash-kpi-card, dash-kpi-orange" spacing="8" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <StackPane styleClass="dash-kpi-icon">
+                            <FontAwesomeIconView glyphName="ARROW_DOWN" styleClass="dash-kpi-icon-svg" glyphSize="18"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Dépenses Total" styleClass="dash-kpi-label"/>
+                            <Label fx:id="totalDepensesLabel" text="0 F CFA" styleClass="dash-kpi-value, dash-kpi-value-danger"/>
+                        </VBox>
+                    </HBox>
+                    <Region styleClass="dash-kpi-progress, dash-kpi-progress-orange"/>
+                </VBox>
+
+                <!-- Carte 3 : Semences Total -->
+                <VBox styleClass="dash-kpi-card, dash-kpi-green" spacing="8" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <StackPane styleClass="dash-kpi-icon">
+                            <FontAwesomeIconView glyphName="ARROW_UP" styleClass="dash-kpi-icon-svg" glyphSize="18"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Semences Total" styleClass="dash-kpi-label"/>
+                            <Label fx:id="totalSemencesLabel" text="0 F CFA" styleClass="dash-kpi-value, dash-kpi-value-success"/>
+                        </VBox>
+                    </HBox>
+                    <Region styleClass="dash-kpi-progress, dash-kpi-progress-green"/>
+                </VBox>
+
+                <!-- Carte 4 : Programmes -->
+                <VBox styleClass="dash-kpi-card, dash-kpi-purple" spacing="8" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <StackPane styleClass="dash-kpi-icon">
+                            <FontAwesomeIconView glyphName="CALENDAR" styleClass="dash-kpi-icon-svg" glyphSize="18"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Programmes du Mois" styleClass="dash-kpi-label"/>
+                            <Label fx:id="programmesCountLabel" text="0" styleClass="dash-kpi-value"/>
+                        </VBox>
+                    </HBox>
+                    <Region styleClass="dash-kpi-progress, dash-kpi-progress-purple"/>
+                </VBox>
+
+            </HBox>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2 : GRAPHIQUES + PROGRAMMES RÉCENTS                 -->
+            <!-- ============================================================ -->
+            <HBox styleClass="dash-chart-row" spacing="20" alignment="TOP_LEFT">
+
+                <!-- Colonne gauche : Graphiques -->
+                <VBox spacing="16" HBox.hgrow="ALWAYS" prefWidth="700">
+                    
+                    <!-- Carte : Évolution des flux (BarChart) -->
+                    <VBox styleClass="dash-card" spacing="12">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <FontAwesomeIconView glyphName="LINE_CHART" styleClass="dash-card-icon"/>
+                            <Label text="Évolution des flux" styleClass="dash-card-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="Revenus" styleClass="dash-badge-success"/>
+                            <Label text="Dépenses" styleClass="dash-badge-danger"/>
+                        </HBox>
+                        <HBox fx:id="chartContainer" styleClass="dash-chart-wrapper" prefHeight="220"/>
+                    </VBox>
+
+                    <!-- Carte : Répartition des dépenses (PieChart) -->
+                    <VBox styleClass="dash-card" spacing="12">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <FontAwesomeIconView glyphName="PIE_CHART" styleClass="dash-card-icon"/>
+                            <Label text="Répartition des dépenses" styleClass="dash-card-title"/>
+                        </HBox>
+                        <HBox fx:id="pieChartContainer" styleClass="dash-chart-wrapper" prefHeight="200"/>
+                    </VBox>
+
+                </VBox>
+
+                <!-- Colonne droite : Programmes récents -->
+                <VBox spacing="12" prefWidth="380">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <FontAwesomeIconView glyphName="CALENDAR" styleClass="dash-card-icon"/>
+                        <Label text="Programmes Récents" styleClass="dash-card-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Voir Tout" styleClass="dash-btn-outline-sm" onAction="#loadProgrammes"/>
+                    </HBox>
+
+                    <VBox fx:id="recentProgrammes" spacing="10" styleClass="dash-programmes-list"/>
+                </VBox>
+
+            </HBox>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3 : COMPTES MOUVEMENTÉS                              -->
+            <!-- ============================================================ -->
+            <VBox spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <FontAwesomeIconView glyphName="EXCHANGE" styleClass="dash-card-icon"/>
+                    <Label text="Comptes mouvementés" styleClass="dash-card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="comptesMouvementesCountLabel" text="" styleClass="dash-badge-soft"/>
+                </HBox>
+
+                <HBox fx:id="comptesMouvementesContainer" spacing="16" alignment="TOP_LEFT" styleClass="dash-comptes-grid"/>
+
+                <!-- Message vide -->
+                <VBox fx:id="comptesMouvementesVide" styleClass="dash-empty-state" spacing="8" 
+                      alignment="CENTER" prefHeight="80" managed="false" visible="false">
+                    <FontAwesomeIconView glyphName="INFO_CIRCLE" styleClass="dash-icon-muted" glyphSize="24"/>
+                    <Label text="Aucun mouvement de compte ce mois-ci" styleClass="dash-body-text"/>
+                </VBox>
+            </VBox>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4 : ACTIONS RAPIDES                                  -->
+            <!-- ============================================================ -->
+            <VBox spacing="14">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <FontAwesomeIconView glyphName="BOLT" styleClass="dash-card-icon"/>
+                    <Label text="Actions rapides" styleClass="dash-section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Accédez aux fonctionnalités principales" styleClass="dash-small-text"/>
+                </HBox>
+                
+                <HBox spacing="12" alignment="CENTER_LEFT" styleClass="dash-actions-container">
+                    
+                    <!-- Bouton : Nouveau Programme -->
+                    <Button styleClass="dash-action-btn, dash-action-btn-primary" onAction="#handleNouveauProgramme">
+                        <graphic>
+                            <VBox alignment="CENTER" spacing="6">
+                                <StackPane styleClass="dash-action-icon-wrapper">
+                                    <FontAwesomeIconView glyphName="CALENDAR_PLUS" styleClass="dash-action-icon" glyphSize="18"/>
+                                </StackPane>
+                                <Label text="Programme" styleClass="dash-action-label"/>
+                            </VBox>
+                        </graphic>
+                    </Button>
+                    
+                    <!-- Bouton : Nouvelle Dépense -->
+                    <Button styleClass="dash-action-btn, dash-action-btn-danger" onAction="#handleNouvelleDepense">
+                        <graphic>
+                            <VBox alignment="CENTER" spacing="6">
+                                <StackPane styleClass="dash-action-icon-wrapper">
+                                    <FontAwesomeIconView glyphName="ARROW_DOWN" styleClass="dash-action-icon" glyphSize="18"/>
+                                </StackPane>
+                                <Label text="Dépense" styleClass="dash-action-label"/>
+                            </VBox>
+                        </graphic>
+                    </Button>
+                    
+                    <!-- Bouton : Nouvelle Semence -->
+                    <Button styleClass="dash-action-btn, dash-action-btn-success" onAction="#handleNouvelleSemence">
+                        <graphic>
+                            <VBox alignment="CENTER" spacing="6">
+                                <StackPane styleClass="dash-action-icon-wrapper">
+                                    <FontAwesomeIconView glyphName="SEEDLING" styleClass="dash-action-icon" glyphSize="18"/>
+                                </StackPane>
+                                <Label text="Semence" styleClass="dash-action-label"/>
+                            </VBox>
+                        </graphic>
+                    </Button>
+                    
+                    <!-- Bouton : Rapport Mensuel -->
+                    <Button styleClass="dash-action-btn, dash-action-btn-outline" onAction="#handleRapportMensuel">
+                        <graphic>
+                            <VBox alignment="CENTER" spacing="6">
+                                <StackPane styleClass="dash-action-icon-wrapper">
+                                    <FontAwesomeIconView glyphName="FILE_PDF" styleClass="dash-action-icon" glyphSize="18"/>
+                                </StackPane>
+                                <Label text="Rapport" styleClass="dash-action-label"/>
+                            </VBox>
+                        </graphic>
+                    </Button>
+                    
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </content>
+
+</ScrollPane>

@@ -1,0 +1,50 @@
+/* ==========================================================================
+   COMPONENTS / BADGES
+   Pilules de statut (Planifié / Terminé / Validée...) + badges colorés
+   génériques.
+   ========================================================================== */
+.badge {
+    -fx-background-radius: -radius-pill;
+    -fx-padding: -space-1 -space-3;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.badge-primary { -fx-background-color: -primary-muted; -fx-text-fill: -primary; }
+.badge-success { -fx-background-color: -success-muted; -fx-text-fill: -success-dark; }
+.badge-danger  { -fx-background-color: -danger-muted;  -fx-text-fill: -danger-dark; }
+.badge-warning { -fx-background-color: -warning-muted; -fx-text-fill: -warning-dark; }
+.badge-info    { -fx-background-color: -info-muted;    -fx-text-fill: -info; }
+.badge-neutral { -fx-background-color: -bg-subtle;     -fx-text-fill: -text-secondary; }
+
+/* Alias sémantiques métier — même rendu que badge-success/badge-info,
+   mais nommés selon le vocabulaire des vues (statuts de programme/transaction) */
+.badge-planifie  { -fx-background-color: -success-muted; -fx-text-fill: -success-dark; -fx-background-radius: -radius-pill; -fx-padding: -space-1 -space-3; -fx-font-size: 12px; -fx-font-weight: 700; }
+.badge-termine   { -fx-background-color: -info-muted;    -fx-text-fill: -info;          -fx-background-radius: -radius-pill; -fx-padding: -space-1 -space-3; -fx-font-size: 12px; -fx-font-weight: 700; }
+.badge-validee   { -fx-background-color: -success-muted; -fx-text-fill: -success-dark; -fx-background-radius: -radius-pill; -fx-padding: -space-1 -space-3; -fx-font-size: 12px; -fx-font-weight: 700; }
+.badge-en-attente{ -fx-background-color: -warning-muted; -fx-text-fill: -warning-dark;  -fx-background-radius: -radius-pill; -fx-padding: -space-1 -space-3; -fx-font-size: 12px; -fx-font-weight: 700; }
+.badge-annulee   { -fx-background-color: -danger-muted;  -fx-text-fill: -danger-dark;   -fx-background-radius: -radius-pill; -fx-padding: -space-1 -space-3; -fx-font-size: 12px; -fx-font-weight: 700; }
+
+/* Badge numérique sur icône (cloche de notification) */
+.badge-count {
+    -fx-background-color: -danger;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-background-radius: -radius-pill;
+    -fx-min-width: 18;
+    -fx-min-height: 18;
+    -fx-max-width: 18;
+    -fx-max-height: 18;
+    -fx-alignment: center;
+}
+
+/* Badge "compteur" doux (ex : "Liste des Programmes  2") */
+.badge-soft-count {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-background-radius: -radius-pill;
+    -fx-padding: 2 -space-2;
+}

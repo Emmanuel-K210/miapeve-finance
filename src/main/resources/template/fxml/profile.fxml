@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="0" styleClass="profil-dialog" xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.miapeve.finance.ui.ProfilController">
+
+    <!-- ==================== EN-TÊTE ==================== -->
+    <HBox styleClass="dialog-header" alignment="CENTER_LEFT" spacing="16">
+        <StackPane styleClass="avatar-large">
+            <FontAwesomeIconView glyphName="USER" glyphSize="28" fill="#4F46E5"/>
+        </StackPane>
+        <VBox spacing="2">
+            <Label fx:id="labelTitre" text="Mon Profil" styleClass="dialog-title"/>
+            <Label text="Modifiez vos informations personnelles" styleClass="dialog-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button styleClass="btn-close" onAction="#handleAnnuler">
+            <graphic>
+                <FontAwesomeIconView glyphName="TIMES" glyphSize="16" fill="#6B7280"/>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <Region styleClass="separator-line"/>
+
+    <!-- ==================== CORPS ==================== -->
+    <VBox spacing="20" styleClass="dialog-body">
+
+        <!-- Formulaire -->
+        <GridPane styleClass="form-grid" hgap="16" vgap="14">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="140" halignment="RIGHT"/>
+                <ColumnConstraints prefWidth="280"/>
+            </columnConstraints>
+
+            <padding>
+                <Insets top="10" bottom="10"/>
+            </padding>
+
+            <!-- Nom -->
+            <Label text="Nom" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="fieldNom" promptText="Entrez votre nom" styleClass="text-field" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <!-- Prénom -->
+            <Label text="Prénom" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="fieldPrenom" promptText="Entrez votre prénom" styleClass="text-field" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <!-- Nom d'utilisateur -->
+            <Label text="Nom d'utilisateur" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="fieldNomUtilisateur" promptText="Entrez votre nom d'utilisateur" styleClass="text-field" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <!-- Rôle (lecture seule) -->
+            <Label text="Rôle" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <HBox spacing="8" alignment="CENTER_LEFT" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                <FontAwesomeIconView glyphName="SHIELD" glyphSize="12" fill="#6B7280"/>
+                <Label fx:id="labelRole" text="-" styleClass="form-readonly"/>
+            </HBox>
+
+            <!-- Date de création (lecture seule) -->
+            <Label text="Membre depuis" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <HBox spacing="8" alignment="CENTER_LEFT" GridPane.rowIndex="4" GridPane.columnIndex="1">
+                <FontAwesomeIconView glyphName="CALENDAR" glyphSize="12" fill="#6B7280"/>
+                <Label fx:id="labelDateCreation" text="-" styleClass="form-readonly"/>
+            </HBox>
+        </GridPane>
+
+        <!-- Message d'information -->
+        <HBox styleClass="info-banner" spacing="10" alignment="CENTER_LEFT">
+            <FontAwesomeIconView glyphName="INFO_CIRCLE" glyphSize="14" fill="#4F46E5"/>
+            <Label text="Les champs avec * sont obligatoires" styleClass="info-text"/>
+        </HBox>
+
+    </VBox>
+
+    <Region styleClass="separator-line"/>
+
+    <!-- ==================== FOOTER ==================== -->
+    <HBox styleClass="dialog-footer" alignment="CENTER_RIGHT" spacing="12">
+        <Button text="Annuler" styleClass="btn-outline" onAction="#handleAnnuler"/>
+        <Button text="Sauvegarder" styleClass="btn-primary" onAction="#handleSauvegarder">
+            <graphic>
+                <FontAwesomeIconView glyphName="SAVE" glyphSize="12" fill="WHITE"/>
+            </graphic>
+        </Button>
+    </HBox>
+
+</VBox>

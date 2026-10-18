@@ -1,0 +1,64 @@
+/* ==========================================================================
+   CORE / COLORS
+   Palette dérivée des maquettes (login, dashboard, programmes).
+   Toute couleur utilisée ailleurs dans l'app DOIT passer par une variable
+   d'ici. Aucun hex en dur dans components/layouts/views.
+
+   RÉVISION — recalibrée par échantillonnage direct des captures d'écran
+   (bouton "Se connecter", tuiles KPI, badges, actions de table). Le bleu
+   principal passe d'un indigo-violet très saturé à un bleu roi plus sobre,
+   conforme aux maquettes. Léger ajustement du vert/rouge/violet/orange
+   pour la même raison. Neutres et warning/info inchangés (pas d'écart
+   notable observé).
+   ========================================================================== */
+.root {
+    /* ---- Neutres (inchangés) ---- */
+    -bg-app:        #F9FAFB;   /* fond de fenêtre */
+    -bg-surface:    #FFFFFF;   /* cartes, panneaux, tables */
+    -bg-subtle:     #F3F4F6;   /* zones secondaires, lignes alternées, inputs désactivés */
+    -bg-hover:      #F5F5FA;   /* hover neutre sur listes/menus */
+
+    -border-color:  #E5E7EB;
+    -border-strong: #D1D5DB;
+
+    -text-primary:   #111827;
+    -text-secondary: #6B7280;
+    -text-tertiary:  #9CA3AF;
+    -text-on-accent: #FFFFFF;
+
+    /* ---- Accent principal — bleu roi (avant : indigo-violet #4F46E5) ---- */
+    -primary:        #4457D9;
+    -primary-hover:  #3A4BC4;
+    -primary-dark:   #2F3FA0;
+    -primary-light:  #8B9AEE;
+    -primary-muted:  #EEF1FC;
+
+    /* ---- Sémantique ---- */
+    -success:        #16A34A;   /* avant : #10B981 (plus turquoise) */
+    -success-dark:   #15803D;
+    -success-muted:  #E1F5E9;
+
+    -danger:         #DC2626;   /* avant : #EF4444 (plus vif) */
+    -danger-dark:    #B91C1C;
+    -danger-muted:   #FCE8E8;
+
+    -warning:        #F59E0B;
+    -warning-dark:   #D97706;
+    -warning-muted:  #FEF3C7;
+
+    -info:           #3B82F6;
+    -info-muted:     #DBEAFE;
+
+    /* ---- Accents secondaires utilisés sur les tuiles KPI / icônes participants ---- */
+    -purple:         #5B32CE;   /* avant : #8B5CF6 (trop clair/lavande) */
+    -purple-muted:   #EAE6FB;
+
+    -pink:           #EC4899;
+    -pink-muted:     #FCE7F3;
+
+    -orange:         #F0A94E;   /* avant : #F97316 (trop vif) */
+    -orange-muted:   #FDF0DD;
+
+    -teal:           #06B6D4;
+    -teal-muted:     #CFFAFE;
+}

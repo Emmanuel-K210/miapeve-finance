@@ -1,0 +1,78 @@
+/* ==========================================================================
+   COMPONENTS / TABLE VIEW
+   ========================================================================== */
+.table-view {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-effect: -shadow-sm;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-lg -radius-lg 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -border-color transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: -space-3 -space-3;
+    -fx-size: 44;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent transparent -border-color transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: -space-3 -space-3;
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-table-cell-border-color: transparent;
+}
+.table-view .table-row-cell:odd { -fx-background-color: transparent; }
+.table-view .table-row-cell:hover {
+    -fx-background-color: -bg-hover;
+    -fx-cursor: hand;
+}
+.table-view .table-row-cell:selected {
+    -fx-background-color: -primary-muted;
+}
+.table-view .table-row-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -text-tertiary;
+    -fx-font-size: 13px;
+}
+
+/* Avatar-initiales (colonne "Responsable" : rond "SA") */
+.avatar-initials {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-background-radius: -radius-pill;
+    -fx-min-width: 28;
+    -fx-min-height: 28;
+    -fx-max-width: 28;
+    -fx-max-height: 28;
+    -fx-alignment: center;
+}

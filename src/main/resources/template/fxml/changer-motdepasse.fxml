@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+            styleClass="password-page">
+   
+   <center>
+      <VBox spacing="20" styleClass="password-container">
+         <padding>
+            <Insets top="0" right="0" bottom="0" left="0"/>
+         </padding>
+
+         <!-- ==================== EN-TÊTE ==================== -->
+         <HBox styleClass="form-header" alignment="CENTER_LEFT" spacing="16">
+            <StackPane styleClass="form-icon-wrapper, primary">
+               <FontAwesomeIconView glyphName="KEY" styleClass="form-icon" glyphSize="20"/>
+            </StackPane>
+            <VBox spacing="2">
+               <Label fx:id="labelUtilisateur" text="Changer le mot de passe" styleClass="page-title"/>
+               <Label text="Modifiez votre mot de passe en toute sécurité" styleClass="page-subtitle"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label styleClass="user-badge">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER" styleClass="icon-primary" glyphSize="12"/>
+               </graphic>
+            </Label>
+         </HBox>
+
+         <Separator styleClass="form-separator"/>
+
+         <!-- ==================== CORPS ==================== -->
+         <VBox spacing="18" styleClass="form-body">
+            
+            <!-- Mot de passe actuel -->
+            <VBox spacing="4" styleClass="form-group">
+               <Label text="Mot de passe actuel *" styleClass="form-label-required"/>
+               <PasswordField fx:id="currentPasswordField" styleClass="form-field" promptText="Saisir le mot de passe actuel"/>
+            </VBox>
+            
+            <!-- Nouveau mot de passe -->
+            <VBox spacing="4" styleClass="form-group">
+               <Label text="Nouveau mot de passe *" styleClass="form-label-required"/>
+               <PasswordField fx:id="newPasswordField" styleClass="form-field" promptText="Saisir le nouveau mot de passe"/>
+            </VBox>
+            
+            <!-- Confirmation -->
+            <VBox spacing="4" styleClass="form-group">
+               <Label text="Confirmer le mot de passe *" styleClass="form-label-required"/>
+               <PasswordField fx:id="confirmPasswordField" styleClass="form-field" promptText="Confirmer le nouveau mot de passe"/>
+            </VBox>
+            
+            <!-- Instructions -->
+            <VBox styleClass="password-instructions" spacing="4">
+               <HBox alignment="CENTER_LEFT" spacing="8">
+                  <FontAwesomeIconView glyphName="INFO_CIRCLE" styleClass="icon-info" glyphSize="14"/>
+                  <Label text="Instructions" styleClass="instructions-title"/>
+               </HBox>
+               <Label text="• Le mot de passe doit contenir au moins 6 caractères" styleClass="password-rule"/>
+               <Label text="• Utilisez des lettres, chiffres et caractères spéciaux" styleClass="password-rule"/>
+               <Label text="• Évitez les mots courants ou facilement devinables" styleClass="password-rule"/>
+            </VBox>
+            
+            <!-- Message -->
+            <Label fx:id="messageLabel" styleClass="form-message" visible="false" managed="false"/>
+            
+         </VBox>
+
+         <!-- ==================== FOOTER ==================== -->
+         <HBox styleClass="form-footer" alignment="CENTER_RIGHT" spacing="12">
+            <Button fx:id="btnAnnuler" text="Annuler" styleClass="btn-outline" onAction="#handleAnnuler">
+               <graphic>
+                  <FontAwesomeIconView glyphName="TIMES" styleClass="icon-secondary" glyphSize="12"/>
+               </graphic>
+            </Button>
+            <Button fx:id="btnValider" text="Changer le mot de passe" styleClass="btn-primary" onAction="#handleValider">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CHECK" styleClass="icon-white" glyphSize="12"/>
+               </graphic>
+            </Button>
+         </HBox>
+         
+      </VBox>
+   </center>
+   
+</BorderPane>

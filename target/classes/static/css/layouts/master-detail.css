@@ -1,0 +1,69 @@
+/* ==========================================================================
+   LAYOUTS / MASTER-DETAIL
+   Structure "liste + barre d'outils" (Programmes) et "page de détail avec
+   actions" (Détails du programme).
+   ========================================================================== */
+.list-page {
+    -fx-background-color: -bg-app;
+    -fx-padding: -space-5;
+    -fx-spacing: -space-4;
+}
+
+/* Barre : recherche + filtres + réinitialiser */
+.list-toolbar {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: -space-3;
+    -fx-spacing: -space-3;
+    -fx-alignment: center-left;
+}
+
+.list-header-row {
+    -fx-alignment: center-left;
+    -fx-spacing: -space-2;
+}
+
+.list-pagination-bar {
+    -fx-padding: -space-3 -space-1;
+    -fx-alignment: center-left;
+    -fx-spacing: -space-3;
+}
+
+/* Page de détail : titre + badge de statut + actions à droite */
+.detail-header-row {
+    -fx-alignment: center-left;
+    -fx-spacing: -space-3;
+}
+
+.detail-meta-row {
+    -fx-spacing: -space-4;
+    -fx-alignment: center-left;
+}
+
+.detail-info-card {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: -space-4;
+    -fx-spacing: -space-4;
+}
+
+.detail-stat-tile {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-md;
+    -fx-padding: -space-3;
+    -fx-spacing: -space-1;
+}
+
+.detail-footer-bar {
+    -fx-background-color: -bg-surface;
+    -fx-padding: -space-3 -space-5;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1 0 0 0;
+    -fx-alignment: center-right;
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" 
+           xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="com.miapeve.finance.ui.LoadingController"
+           styleClass="loading-screen">
+
+    <!-- Fond avec dégradé -->
+    <VBox alignment="CENTER" spacing="24" styleClass="loading-container">
+        
+        <!-- Logo / Icône -->
+        <StackPane styleClass="loading-logo-wrapper">
+            <FontAwesomeIconView glyphName="COG" glyphSize="40" styleClass="loading-logo-icon"/>
+        </StackPane>
+        
+        <!-- Titre -->
+        <Label fx:id="loadingTitle" text="Miapeve Finance" styleClass="loading-title"/>
+        
+        <!-- Spinner de chargement -->
+        <ProgressIndicator fx:id="loadingSpinner" progress="-1.0" styleClass="loading-spinner"/>
+        
+        <!-- Message principal -->
+        <Label fx:id="loadingText" text="Chargement en cours..." styleClass="loading-message"/>
+        
+        <!-- Message secondaire -->
+        <Label fx:id="loadingSubtext" text="Veuillez patienter..." styleClass="loading-submessage"/>
+        
+        <!-- Barre de progression (optionnelle) -->
+        <ProgressBar fx:id="loadingProgress" progress="0.0" styleClass="loading-progress-bar" 
+                     prefWidth="300" maxWidth="400" visible="false" managed="false"/>
+        
+        <!-- Pourcentage -->
+        <Label fx:id="loadingPercent" text="0%" styleClass="loading-percent" 
+               visible="false" managed="false"/>
+        
+        <!-- Version -->
+        <Label text="v2.0.0" styleClass="loading-version"/>
+        
+    </VBox>
+
+</StackPane>

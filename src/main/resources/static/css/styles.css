@@ -1,0 +1,1206 @@
+/* ==========================================================================
+   FINANCE MANAGEMENT SYSTEM - DESIGN MODERNE BLEU & BLANC
+   Version: 3.1 | Compact Padding Design
+   
+   Palette principale:
+     - Bleu Primary: #4F46E5 (Indigo-600)
+     - Bleu Light: #818CF8 (Indigo-400)
+     - Bleu Dark: #3730A3 (Indigo-800)
+     - Blanc: #FFFFFF
+     - Gris Clair: #F9FAFB
+     - Gris Moyen: #E5E7EB
+   ========================================================================== */
+
+/* ==================== VARIABLES GLOBALES ==================== */
+.root {
+    -fx-font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    -fx-font-smoothing-type: gray;
+    -fx-background-color: #F9FAFB;
+    
+    /* Couleurs primaires */
+    -primary-color: #4F46E5;
+    -primary-light: #818CF8;
+    -primary-dark: #3730A3;
+    -primary-glow: rgba(79, 70, 229, 0.3);
+    
+    /* Couleurs secondaires */
+    -success-color: #10B981;
+    -success-glow: rgba(16, 185, 129, 0.3);
+    -danger-color: #EF4444;
+    -danger-glow: rgba(239, 68, 68, 0.3);
+    -warning-color: #F59E0B;
+    -warning-glow: rgba(245, 158, 11, 0.3);
+    
+    /* Nuances de gris */
+    -bg-primary: #FFFFFF;
+    -bg-secondary: #F9FAFB;
+    -bg-tertiary: #F3F4F6;
+    -border-color: #E5E7EB;
+    -text-primary: #111827;
+    -text-secondary: #6B7280;
+    -text-tertiary: #9CA3AF;
+}
+
+/* ==================== STYLES COMPLÉMENTAIRES POUR MAIN.FXML ==================== */
+
+/* Header styles - PADDING RÉDUIT */
+.header {
+    -fx-background-color: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 8, 0, 0, 2);
+}
+
+.header-content {
+    -fx-padding: 12 16; /* Réduit: 16 24 -> 12 16 */
+    -fx-alignment: center;
+}
+
+.app-logo {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: white;
+    -fx-letter-spacing: -0.5px;
+}
+
+.app-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: white;
+}
+
+/* Icon styles */
+.icon-white {
+    -fx-fill: white;
+    -fx-font-size: 16px;
+}
+
+.help-icon{
+	-fx-fill: #333333;
+	-fx-font-size: 16px;
+}
+
+.home-icon {
+    -fx-fill: -primary-color;
+   -glyph-size: 18px;
+    -fx-padding: 0 6 0 0;
+}
+
+.icon-danger{
+	-fx-fill: -danger-color;
+	  -glyph-size: 14px;
+	  -fx-padding: 0 6 0 0; 
+}
+
+.icon-success{
+	-fx-fill: -success-color;
+	  -glyph-size: 14px;
+	  -fx-padding: 0 6 0 0; 
+}
+
+.nav-icon {
+    -fx-fill: -primary-color;
+    -glyph-size: 14px;
+    -fx-padding: 0 6 0 0; 
+}
+
+.icon-warning{
+    -fx-fill: #95a5a6;
+    -glyph-size: 14px;
+    -fx-padding: 0 6 0 0; 
+}
+
+/* Menu bar styles - PADDING RÉDUIT */
+.menu-bar {
+    -fx-background-color: white;
+    -fx-padding: 6 16; /* Réduit: 8 24 -> 6 16 */
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Content area - PADDING RÉDUIT */
+.content-area {
+    /*-fx-background-color: -bg-secondary;*/
+    -fx-padding: 16; 
+}
+
+/* Bouton icon */
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 6; /* Réduit: 8 -> 6 */
+    -fx-cursor: hand;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+}
+
+/* Navigation & Sidebar */
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+	-fx-pref-width:200;
+    -fx-padding: 10 16; 
+    -fx-alignment: center-left;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+}
+
+/* ==================== TYPOGRAPHIE MODERNE ==================== */
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+    -fx-letter-spacing: -0.5px;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+    -fx-letter-spacing: -0.3px;
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.body-text {
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-text-fill: -text-secondary;
+    -fx-line-spacing: 1.5;
+}
+
+.dashbord-text {
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-line-spacing: 1.5;
+	-fx-text-fill: #FFFFFF;
+}
+
+.dashboard-container{
+	-fx-background-color: -bg-secondary;
+	-fx-border-radius: 16;
+	-fx-border-width: 0;
+}
+.small-text {
+    -fx-font-size: 12px;
+    -fx-font-weight: 400;
+    -fx-text-fill: -text-tertiary;
+}
+
+/* ==================== CARTES AVEC SOFT GLOW - PADDING RÉDUIT ==================== */
+.card-modern {
+    -fx-background-color: -bg-primary;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 12, 0, 0, 2);
+}
+
+.card-modern5 {
+    -fx-background-color: #f7ff61;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, #f7ff6140, 12, 0, 0, 2);
+}
+
+.card-modern4 {
+    -fx-background-color: #10B981;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-effect: dropshadow(gaussian, #10B98140, 12, 0, 0, 2);
+}
+
+.card-modern2 {
+    -fx-background-color: -danger-color;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.3), 12, 0, 0, 2);
+}
+
+.card-modern3 {
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 12, 0, 0, 2);
+}
+
+/* ==================== BOUTONS MODERNES - PADDING RÉDUIT ==================== */
+.btn-primary {
+    -fx-background-color: #4F46E5;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 14; /* Réduit: 12 20 -> 10 16 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.btn-success {
+    -fx-background-color: #10B981;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 14; /* Réduit: 12 24 -> 10 16 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.btn-danger {
+    -fx-background-color: #EF4444;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 14; /* Réduit: 12 24 -> 10 16 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4F46E5;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 14; /* Réduit: 12 24 -> 10 16 */
+    -fx-border-color: #4F46E5;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+}
+
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-padding: 8 14; /* Réduit: 10 20 -> 8 14 */
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+/* ==================== TABLEAUX MODERNES - PADDING RÉDUIT ==================== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 12, 0, 0, 2);
+}
+
+.table-view .column-header {
+    -fx-padding: 12 10; /* Réduit: 16 12 -> 12 10 */
+}
+
+.table-view .table-cell {
+    -fx-padding: 10 10; /* Réduit: 14 12 -> 10 10 */
+    -fx-font-size: 14px;
+}
+
+/* ==================== CHAMPS DE FORMULAIRE - PADDING RÉDUIT ==================== */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12; /* Réduit: 10 14 -> 8 12 */
+    -fx-font-size: 14px;
+    -fx-text-fill: #111827;
+}
+
+/* Label de formulaire */
+.form-label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 0 0 4 0; /* Réduit: 0 0 6 0 -> 0 0 4 0 */
+}
+
+/* ==================== ONGLETS MODERNES - PADDING RÉDUIT ==================== */
+.tab {
+    -fx-padding: 10 16; /* Réduit: 12 24 -> 10 16 */
+}
+
+/* ==================== DIALOGUES & MODALES - PADDING RÉDUIT ==================== */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 30, 0, 0, 8);
+    -fx-padding: 10;
+}
+
+.profil-dialog-pane{
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 30, 0, 0, 8);
+    -fx-padding: 15;
+	-fx-border-width:2;
+	-fx-border-color: -primary-color;
+	
+}
+
+.user-form-container{
+	-fx-background-color: white;
+	    -fx-background-radius: 16;
+	    -fx-border-radius: 16;
+	    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 30, 0, 0, 8);
+	    -fx-padding: 15;
+}
+
+.dialog-header{
+	-fx-font-size: 18px;
+	   -fx-font-weight: 900;
+	   -fx-text-fill: #6B7280;
+}
+
+.dialog-pane-program-form {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian,rgba(79, 70, 229, 0.3), 30, 0, 0, 8);
+    -fx-padding: 0;
+	-fx-border-color: -bg-secondary;
+	-fx-border-width: 2;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #4F46E5;
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius: 10 10 0 0;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+}
+
+.dialog-pane .content {
+    -fx-background-color: transparent;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-text-fill: #111827;
+    -fx-font-size: 14px;
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: #F9FAFB;
+    -fx-padding: 12 16; /* Réduit: 16 24 -> 12 16 */
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1 0 0 0;
+    -fx-background-radius: 0 0 16 16;
+    -fx-border-radius: 0 0 16 16;
+}
+
+.dialog-pane .button:default{
+	-fx-background-color: #4F46E5;
+	   -fx-text-fill: white;
+	   -fx-font-size: 12px;
+	   -fx-font-weight: 600;
+	   -fx-padding: 6 10; /* Réduit: 12 20 -> 10 16 */
+	   -fx-background-radius: 10;
+	   -fx-border-radius: 10;
+	   -fx-cursor: hand;
+	   -fx-border-color: transparent;
+	   -fx-border-width: 0;
+}
+
+
+.dialog-pane .header-panel .label{
+	
+}
+.dialog-pane .button:cancel{
+	-fx-background-color: transparent;
+	  -fx-text-fill: #4F46E5;
+	  -fx-font-size: 12px;
+	  -fx-font-weight: 600;
+	  -fx-padding: 6 10; /* Réduit: 12 24 -> 10 16 */
+	  -fx-border-color: #4F46E5;
+	  -fx-border-width: 2;
+	  -fx-background-radius: 10;
+	  -fx-border-radius: 10;
+	  -fx-cursor: hand;
+}
+/* ==================== STATISTIQUES & BADGES - PADDING RÉDUIT ==================== */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 12, 0, 0, 2);
+}
+
+.badge {
+    -fx-background-radius: 12;
+    -fx-padding: 3 10; /* Réduit: 4 12 -> 3 10 */
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* ==================== ALERTS & NOTIFICATIONS - PADDING RÉDUIT ==================== */
+.alert-success,
+.alert-danger,
+.alert-warning,
+.alert-info {
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12; /* Réduit: 16 -> 12 */
+}
+
+/* ==================== LOGIN MODERNE - PADDING RÉDUIT ==================== */
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 24;
+    -fx-border-radius: 24;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 24, 0, 0, 8);
+    -fx-padding: 32; /* Réduit: 40 -> 32 */
+    -fx-min-width: 400;
+    -fx-max-width: 400;
+}
+
+.login-form-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #111827;
+    -fx-padding: 0 0 16 0; /* Réduit: 0 0 20 0 -> 0 0 16 0 */
+}
+
+.login-input {
+    -fx-background-color: white;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 14; /* Réduit: 12 16 -> 10 14 */
+    -fx-font-size: 14px;
+    -fx-text-fill: #111827;
+    -fx-pref-height: 44;
+}
+
+.login-btn {
+    -fx-background-color: #4F46E5;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 14; /* Réduit: 14 24 -> 12 20 */
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-height: 44;
+}
+
+.quit-login-btn {
+	-fx-background-color: transparent;
+	    -fx-text-fill: #4F46E5;
+	    -fx-font-size: 14px;
+	    -fx-font-weight: 600;
+	    -fx-padding: 10 14; /* Réduit: 12 24 -> 10 16 */
+	    -fx-border-color: #4F46E5;
+	    -fx-border-width: 2;
+	    -fx-background-radius: 10;
+	    -fx-border-radius: 10;
+	    -fx-cursor: hand;
+}
+
+
+/* ==================== BOUTONS DE DIALOGUE MODERNES - PADDING RÉDUIT ==================== */
+.dialog-button {
+    -fx-background-color: #4F46E5;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 8 12; /* Réduit: 12 24 -> 10 16 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-min-width: 100;
+    -fx-min-height: 40;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 8, 0, 0, 2);
+}
+
+.dialog-cancel-button {
+	-fx-background-color: transparent;
+	 -fx-text-fill: #4F46E5;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 8 12; /* Réduit: 12 24 -> 10 16 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-border-color: #4F46E5;
+    -fx-border-width: 2;
+    -fx-min-width: 100;
+    -fx-min-height: 40;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 8, 0, 0, 2);
+}
+/* ==================== ALERTES MODERNES - PADDING RÉDUIT ==================== */
+.alert .content {
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-font-size: 15px;
+    -fx-text-fill: #374151;
+    -fx-line-spacing: 1.5;
+}
+
+/* ==================== CONTAINER HORIZONTAL MODERNE ==================== */
+.programme-form-container-horizontal {
+    -fx-background-color: #F9FAFB;
+    -fx-spacing: 0;
+}
+
+/* ==================== PANELS GAUCHE & DROIT - PADDING RÉDUIT ==================== */
+.form-panel-left {
+    -fx-background-color: white;
+    -fx-padding: 24; /* Réduit: 32 -> 24 */
+    -fx-border-color: transparent #E5E7EB transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.form-panel-right {
+    -fx-background-color: #FAFBFC;
+    -fx-padding: 24; /* Réduit: 32 -> 24 */
+}
+
+/* ==================== HEADERS MODERNES - PADDING RÉDUIT ==================== */
+.panel-header-modern {
+    -fx-padding: 0 0 16 0; /* Réduit: 0 0 20 0 -> 0 0 16 0 */
+}
+
+.panel-header-semences {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 12, 0, 0, 2);
+}
+
+/* ==================== BADGES D'ICÔNES ==================== */
+.icon-badge-primary {
+    -fx-background-color: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+    -fx-background-radius: 12;
+    -fx-min-width: 56;
+    -fx-min-height: 56;
+    -fx-max-width: 56;
+    -fx-max-height: 56;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 12, 0, 0, 3);
+}
+
+/* ==================== CARTES D'INPUT MODERNES - PADDING RÉDUIT ==================== */
+.input-card-modern {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-padding: 14; /* Réduit: 20 -> 16 */
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+}
+
+/* ==================== CHAMPS DE FORMULAIRE ULTRA-MODERNES - PADDING RÉDUIT ==================== */
+.text-field-modern,
+.combo-box-modern,
+.date-picker-modern {
+    -fx-background-color: white;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 9 12; /* Réduit: 12 16 -> 10 14 */
+    -fx-font-size: 14px;
+    -fx-text-fill: #111827;
+    -fx-font-weight: 500;
+}
+
+/* ==================== BOUTON TOGGLE MODERNE - PADDING RÉDUIT ==================== */
+.btn-toggle-modern {
+    -fx-background-color: white;
+    -fx-text-fill: #4F46E5;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 8 14; /* Réduit: 10 20 -> 8 16 */
+    -fx-border-color: #4F46E5;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+}
+
+/* ==================== CARTE DÉNOMBREMENT ULTRA-MODERNE - PADDING RÉDUIT ==================== */
+.denombrement-card-modern {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 16, 0, 0, 4);
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+}
+
+.denombrement-input {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-alignment: center;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #4F46E5;
+    -fx-pref-height: 48;
+}
+
+/* Total Badge - PADDING RÉDUIT */
+.total-badge-modern {
+    -fx-background-color: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+    -fx-background-radius: 12;
+    -fx-padding: 12 20; /* Réduit: 16 24 -> 12 20 */
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.4), 16, 0, 0, 4);
+}
+
+/* ==================== STATISTIQUES SEMENCES - PADDING RÉDUIT ==================== */
+.semences-stats {
+    -fx-background-color: linear-gradient(to bottom, #F9FAFB 0%, white 100%);
+    -fx-padding: 16; /* Réduit: 20 -> 16 */
+    -fx-border-color: transparent #E5E7EB transparent #E5E7EB;
+    -fx-border-width: 1 0 1 0;
+}
+
+/* ==================== BOUTON AJOUTER MODERNE - PADDING RÉDUIT ==================== */
+.btn-add-modern {
+    -fx-background-color: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20; /* Réduit: 12 24 -> 10 20 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.3), 12, 0, 0, 3);
+}
+
+/* ==================== TABLE SEMENCES MODERNE - PADDING RÉDUIT ==================== */
+.semences-table-modern .column-header {
+    -fx-padding: 12 10; /* Réduit: 14 12 -> 12 10 */
+}
+
+.semences-table-modern .table-cell {
+    -fx-padding: 10; /* Réduit: 12 -> 10 */
+    -fx-text-fill: #111827;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+/* Bouton supprimer dans la table */
+.btn-delete-semence {
+    -fx-background-color: #FEE2E2;
+    -fx-text-fill: #EF4444;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-max-width: 36;
+    -fx-max-height: 36;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+
+/* ==================== ÉTAT VIDE MODERNE - PADDING RÉDUIT ==================== */
+.empty-state-modern {
+    -fx-background-color: white;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 2;
+    -fx-border-style: dashed;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 32 24; /* Réduit: 48 32 -> 32 24 */
+}
+
+/* ==================== ALERTE MODERNE FLOTTANTE - PADDING RÉDUIT ==================== */
+.alert-modern-error {
+    -fx-background-color: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+    -fx-text-fill: #991B1B;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 12 20; /* Réduit: 16 24 -> 12 20 */
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #EF4444;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.3), 16, 0, 0, 4);
+}
+
+/* ==================== DIALOGUES MODERNES - PADDING RÉDUIT ==================== */
+.dialog-pane .header-panel {
+    -fx-padding: 12; /* Réduit: 24 -> 16 */
+}
+
+.dialog-pane .button-bar {
+    -fx-padding: 10 16; 
+}
+
+/* ==================== BOUTONS DE DIALOGUE - PADDING RÉDUIT ==================== */
+.dialog-button {
+    -fx-background-color: #4F46E5;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20; /* Réduit: 12 28 -> 10 20 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-min-width: 120;
+    -fx-min-height: 44;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 10, 0, 0, 3);
+}
+
+/* ==================== STYLES SPÉCIFIQUES POUR LE FORMULAIRE ==================== */
+
+/* Section Titres */
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #111827;
+    -fx-letter-spacing: -0.3px;
+}
+
+.section-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7280;
+    -fx-font-weight: 400;
+}
+
+/* Form label */
+.user-form-label, .form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #6B7280;
+}
+
+/* Boutons spécifiques - PADDING RÉDUIT */
+.btn-add-semence {
+    -fx-background-color: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 18; /* Réduit: 12 24 -> 10 20 */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.3), 12, 0, 0, 3);
+}
+
+/* Dénombrement */
+.denombrement-field {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #4F46E5;
+    -fx-pref-height: 40;
+}
+
+/* Badge Total - PADDING RÉDUIT */
+.total-badge {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 10;
+    -fx-padding: 10 16; /* Réduit: 12 20 -> 10 16 */
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+}
+
+/* En-tête Semences - PADDING RÉDUIT */
+.semences-header {
+    -fx-padding: 16; /* Réduit: 20 -> 16 */
+    -fx-background-color: white;
+    -fx-background-radius: 16 16 0 0;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Table Semences */
+.semences-table {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 8, 0, 0, 2);
+}
+
+/* Message vide - PADDING RÉDUIT */
+.empty-message {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 12;
+    -fx-padding: 24; /* Réduit: 32 -> 24 */
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 2;
+    -fx-border-style: dashed;
+}
+
+/* Conteneur formulaire - PADDING RÉDUIT */
+.programme-form-container {
+    -fx-background-color: #F9FAFB;
+    -fx-spacing: 16; /* Réduit: 20 -> 16 */
+}
+
+.form-section {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 16; /* Réduit: 24 -> 16 */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 12, 0, 0, 2);
+}
+
+.section-header {
+    -fx-padding: 0 0 16 0; /* Réduit: 0 0 20 0 -> 0 0 16 0 */
+}
+
+/* ==================== CLASSES UTILITAIRES AVEC PADDING RÉDUIT ==================== */
+.p-4 { -fx-padding: 10; } /* Réduit: 16 -> 12 */
+.p-6 { -fx-padding: 14; } /* Réduit: 24 -> 16 */
+.p-8 { -fx-padding: 18; } /* Réduit: 32 -> 24 */
+.m-4 { -fx-margin: 12; } /* Réduit: 16 -> 12 */
+.m-6 { -fx-margin: 12; } /* Réduit: 24 -> 16 */
+.m-8 { -fx-margin: 18; } /* Réduit: 32 -> 24 */
+
+
+/* ==================== TABLEAUX MODERNES ==================== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 12, 0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -bg-secondary;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -border-color transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 14 10;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-alignment: center-left;
+    -fx-text-transform: uppercase;
+    -fx-letter-spacing: 0.5px;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent transparent -border-color transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 12 10;
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: rgba(249, 250, 251, 0.5);
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: rgba(79, 70, 229, 0.08);
+    -fx-border-color: transparent transparent rgba(79, 70, 229, 0.2) transparent;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: rgba(79, 70, 229, 0.04);
+    -fx-cursor: hand;
+}
+
+.text-light{
+	-fx-text-fill : #FFFFFF;
+}
+
+/* ==================== CHAMPS DE FORMULAIRE ==================== */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 6 10;
+    -fx-font-size: 12px;
+    -fx-text-fill: #111827;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #4F46E5;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.1), 8, 0, 0, 0);
+}
+
+.text-field:hover, .text-area:hover, .combo-box:hover, .date-picker:hover {
+    -fx-border-color: #818CF8;
+}
+
+/* Label de formulaire */
+.form-label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 0 0 4 0;
+}
+
+/* ==================== ONGLETS MODERNES ==================== */
+.tab-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 8 0;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #E5E7EB transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 8 16;
+    -fx-border-color: transparent;
+}
+
+.tab:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #4F46E5 transparent;
+    -fx-border-width: 0 0 3 0;
+}
+
+.tab:hover {
+    -fx-background-color: rgba(79, 70, 229, 0.04);
+}
+
+.tab .tab-label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #4F46E5;
+    -fx-font-weight: 600;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 12 0 0 0;
+}
+
+/* ==================== DIALOGUES & MODALES ==================== */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 30, 0, 0, 8);
+    -fx-padding: 0;
+}
+
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+}
+
+.dialog-pane .content {
+    -fx-background-color: transparent;
+    -fx-padding: 18;
+    -fx-text-fill: #111827;
+    -fx-font-size: 14px;
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: #F9FAFB;
+    -fx-padding: 8 12;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1 0 0 0;
+    -fx-background-radius: 0 0 10 10;
+    -fx-border-radius: 0 0 10 10;
+}
+
+/* ==================== STATISTIQUES & BADGES ==================== */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 12, 0, 0, 2);
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 4);
+    -fx-translate-y: -2;
+}
+
+.stat-value {
+    -fx-font-size: 26px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #111827;
+    -fx-letter-spacing: -1px;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #6B7280;
+}
+
+.badge {
+    -fx-background-radius: 12;
+    -fx-padding: 4 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.badge-primary {
+    -fx-background-color: rgba(79, 70, 229, 0.1);
+    -fx-text-fill: #4F46E5;
+}
+
+.badge-success {
+    -fx-background-color: rgba(16, 185, 129, 0.1);
+    -fx-text-fill: #10B981;
+}
+
+.badge-danger {
+    -fx-background-color: rgba(239, 68, 68, 0.1);
+    -fx-text-fill: #EF4444;
+}
+
+.badge-warning {
+    -fx-background-color: rgba(245, 158, 11, 0.1);
+    -fx-text-fill: #F59E0B;
+}
+
+/* ==================== NAVIGATION & SIDEBAR ==================== */
+.sidebar {
+    -fx-background-color: white;
+    -fx-padding: 18 0;
+    -fx-pref-width: 260;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 12, 0, 2, 0);
+	-fx-border-radius : 0 30 0 0;
+	-fx-background-radius :0 30 0 0;
+}
+
+
+.nav-button:hover {
+    -fx-background-color: rgba(79, 70, 229, 0.04);
+    -fx-text-fill: #4F46E5;
+}
+
+.nav-button:selected {
+    -fx-background-color: rgba(79, 70, 229, 0.08);
+    -fx-text-fill: #4F46E5;
+    -fx-font-weight: 600;
+    -fx-border-color: transparent transparent transparent #4F46E5;
+    -fx-border-width: 0 0 0 3;
+}
+
+/* ==================== SCROLLBAR MODERNE ==================== */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #9CA3AF;
+    -fx-background-radius: 6;
+    -fx-background-insets: 2;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #6B7280;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #4F46E5;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}
+
+/* ==================== ALERTS & NOTIFICATIONS ==================== */
+.alert-success {
+    -fx-background-color: rgba(16, 185, 129, 0.1);
+    -fx-border-color: rgba(16, 185, 129, 0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+
+.alert-danger {
+    -fx-background-color: rgba(239, 68, 68, 0.1);
+    -fx-border-color: rgba(239, 68, 68, 0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+
+.alert-warning {
+    -fx-background-color: rgba(245, 158, 11, 0.1);
+    -fx-border-color: rgba(245, 158, 11, 0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+
+.alert-info {
+    -fx-background-color: rgba(79, 70, 229, 0.1);
+    -fx-border-color: rgba(79, 70, 229, 0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+/* ==================== FIN DU STYLESHEET ==================== */

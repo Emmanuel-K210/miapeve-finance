@@ -1,0 +1,27 @@
+/* ==========================================================================
+   CORE / ANIMATIONS
+   IMPORTANT — LIMITE TECHNIQUE JAVAFX :
+   JavaFX CSS n'a PAS d'équivalent des "transition" / "@keyframes" du CSS
+   web. Les changements d'état (:hover, :selected, :focused) sont donc
+   instantanés — c'est une contrainte de la plateforme, pas un oubli.
+
+   Ce fichier ne définit que :
+     - les curseurs (pour signaler l'interactivité sans mouvement)
+     - des repères de durée en commentaire, à utiliser côté Java si tu veux
+       une vraie animation (FadeTransition, TranslateTransition, Timeline)
+
+   Exemple d'animation réelle (à faire en Java, pas en CSS) :
+
+       FadeTransition fade = new FadeTransition(Duration.millis(150), node);
+       fade.setFromValue(0);
+       fade.setToValue(1);
+       fade.play();
+
+   Repères de durée à réutiliser côté Java pour rester cohérent :
+     - FAST   = 100-150ms  (hover, feedback bouton)
+     - NORMAL = 200-250ms  (apparition de panneau, dialog)
+     - SLOW   = 300-400ms  (transition de vue complète)
+   ========================================================================== */
+.cursor-hand {
+    -fx-cursor: hand;
+}

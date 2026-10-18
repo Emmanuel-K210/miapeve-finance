@@ -1,0 +1,217 @@
+/* ==========================================================================
+   VIEWS / PROFIL
+   Styles pour le dialogue de modification du profil
+   ========================================================================== */
+
+/* ===== DIALOGUE ===== */
+.profil-dialog {
+    -fx-background-color: #FFFFFF;
+    -fx-min-width: 520;
+    -fx-min-height: 480;
+    -fx-pref-width: 540;
+    -fx-pref-height: 500;
+}
+
+/* ===== EN-TÊTE ===== */
+.dialog-header {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 16 20 16 20;
+}
+
+.avatar-large {
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+    -fx-max-width: 48;
+    -fx-max-height: 48;
+    -fx-background-color: #EEF2FF;
+    -fx-alignment: center;
+}
+
+.dialog-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #111827;
+}
+
+.dialog-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7280;
+}
+
+.btn-close {
+    -fx-background-color: transparent;
+    -fx-padding: 6;
+    -fx-cursor: hand;
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+}
+
+.btn-close:hover {
+    -fx-background-color: #F3F4F6;
+}
+
+/* ===== CORPS ===== */
+.dialog-body {
+    -fx-padding: 20 24 20 24;
+    -fx-spacing: 20;
+}
+
+/* ===== FORMULAIRE ===== */
+.form-grid {
+    -fx-padding: 0;
+}
+
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #6B7280;
+}
+
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-padding: 6 12 6 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: #111827;
+    -fx-min-height: 36;
+}
+
+.text-field:focused {
+    -fx-border-color: #4F46E5;
+    -fx-border-width: 1.5;
+}
+
+.text-field .prompt-text {
+    -fx-fill: #9CA3AF;
+}
+
+.form-readonly {
+    -fx-font-size: 13px;
+    -fx-text-fill: #111827;
+    -fx-padding: 6 0 6 0;
+}
+
+/* ===== INFO BANNER ===== */
+.info-banner {
+    -fx-background-color: #EEF2FF;
+    -fx-padding: 10 14 10 14;
+    -fx-border-color: #4F46E5;
+    -fx-border-width: 1;
+}
+
+.info-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4F46E5;
+}
+
+/* ===== SÉPARATEUR ===== */
+.separator-line {
+    -fx-background-color: #E5E7EB;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+}
+
+/* ===== FOOTER ===== */
+.dialog-footer {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 12 20 16 20;
+}
+
+/* ===== BOUTONS ===== */
+.btn-primary {
+    -fx-background-color: #4F46E5;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.25), 4, 0, 0, 2);
+    -fx-min-height: 36;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #4338CA;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.35), 8, 0, 0, 4);
+    -fx-translate-y: -1px;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #3730A3;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.15), 2, 0, 0, 0);
+    -fx-translate-y: 0px;
+}
+
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+    -fx-min-height: 36;
+}
+
+.btn-outline:hover {
+    -fx-background-color: #F3F4F6;
+    -fx-border-color: #D1D5DB;
+    -fx-text-fill: #111827;
+}
+
+.btn-outline:pressed {
+    -fx-background-color: #E5E7EB;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 600px) {
+    .profil-dialog {
+        -fx-min-width: 320;
+        -fx-min-height: 420;
+        -fx-pref-width: 340;
+        -fx-pref-height: 440;
+    }
+    .dialog-body {
+        -fx-padding: 14 16 14 16;
+    }
+    .form-grid {
+        -fx-hgap: 10;
+        -fx-vgap: 10;
+    }
+    .form-label {
+        -fx-font-size: 12px;
+    }
+    .text-field {
+        -fx-font-size: 12px;
+        -fx-min-height: 32;
+    }
+    .dialog-title {
+        -fx-font-size: 17px;
+    }
+    .dialog-subtitle {
+        -fx-font-size: 11px;
+    }
+    .avatar-large {
+        -fx-min-width: 36;
+        -fx-min-height: 36;
+        -fx-max-width: 36;
+        -fx-max-height: 36;
+    }
+    .dialog-header {
+        -fx-padding: 12 14 12 14;
+    }
+    .dialog-footer {
+        -fx-padding: 10 14 12 14;
+    }
+    .btn-primary,
+    .btn-outline {
+        -fx-padding: 6 14 6 14;
+        -fx-font-size: 12px;
+        -fx-min-height: 32;
+    }
+}

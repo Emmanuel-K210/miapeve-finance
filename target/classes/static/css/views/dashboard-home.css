@@ -1,0 +1,47 @@
+/* ==========================================================================
+   VIEWS / DASHBOARD-HOME
+   Classes propres à la page "Tableau de bord" — combinent les layouts et
+   components ci-dessus avec le mapping exact des couleurs de la maquette :
+     Revenus = bleu, Dépenses = vert, Solde net = violet, Transactions = orange
+   ========================================================================== */
+.dash-welcome-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -primary;
+}
+.dash-welcome-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.dash-period-selector {
+    -fx-background-color: -bg-surface;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-padding: -space-2 -space-3;
+    -fx-font-size: 13px;
+}
+
+.dash-table-status.validee { -fx-background-color: -success-muted; -fx-text-fill: -success-dark; }
+
+.dash-account-row {
+    -fx-spacing: -space-3;
+    -fx-alignment: center-left;
+    -fx-padding: -space-2 0;
+}
+.dash-account-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+.dash-account-meta {
+    -fx-font-size: 11px;
+    -fx-text-fill: -text-tertiary;
+}
+.dash-account-balance {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}

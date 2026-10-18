@@ -1,0 +1,839 @@
+/* ==========================================================================
+   VIEWS / DASHBOARD
+   Styles pour la page d'accueil (tableau de bord)
+   ========================================================================== */
+
+/* ===== CONTENEUR PRINCIPAL ===== */
+.dashboard-root {
+    -fx-padding: 20 24 24 24;
+    -fx-background-color: -bg-app;
+}
+
+.dashboard-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
+.dashboard-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ===== EN-TÊTE ===== */
+.dash-page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+    -fx-letter-spacing: -0.5px;
+}
+
+.dash-page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-secondary;
+}
+
+.dash-separator {
+    -fx-background-color: -border-color;
+    -fx-pref-height: 1;
+}
+
+.dash-btn-refresh {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 8 16 8 16;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+}
+
+.dash-btn-refresh:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+    -fx-effect: -shadow-md;
+}
+
+.dash-btn-icon {
+    -fx-fill: -text-secondary;
+}
+
+.dash-btn-refresh:hover .dash-btn-icon {
+    -fx-fill: -primary;
+}
+
+/* ==========================================================================
+   KPI CARDS
+   ========================================================================== */
+
+.dash-kpi-row {
+    -fx-spacing: 16;
+}
+
+.dash-kpi-card {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-padding: 16 18 14 18;
+    -fx-effect: -shadow-sm;
+    -fx-min-height: 90;
+}
+
+.dash-kpi-card:hover {
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -2px;
+}
+
+.dash-kpi-card.dash-kpi-blue .dash-kpi-icon {
+    -fx-background-color: -primary-muted;
+}
+.dash-kpi-card.dash-kpi-blue .dash-kpi-icon-svg {
+    -fx-fill: -primary;
+}
+.dash-kpi-card.dash-kpi-blue .dash-kpi-value {
+    -fx-text-fill: -primary;
+}
+
+.dash-kpi-card.dash-kpi-orange .dash-kpi-icon {
+    -fx-background-color: -orange-muted;
+}
+.dash-kpi-card.dash-kpi-orange .dash-kpi-icon-svg {
+    -fx-fill: -orange;
+}
+.dash-kpi-card.dash-kpi-orange .dash-kpi-value {
+    -fx-text-fill: -orange;
+}
+
+.dash-kpi-card.dash-kpi-green .dash-kpi-icon {
+    -fx-background-color: -success-muted;
+}
+.dash-kpi-card.dash-kpi-green .dash-kpi-icon-svg {
+    -fx-fill: -success;
+}
+.dash-kpi-card.dash-kpi-green .dash-kpi-value {
+    -fx-text-fill: -success;
+}
+
+.dash-kpi-card.dash-kpi-purple .dash-kpi-icon {
+    -fx-background-color: -purple-muted;
+}
+.dash-kpi-card.dash-kpi-purple .dash-kpi-icon-svg {
+    -fx-fill: -purple;
+}
+.dash-kpi-card.dash-kpi-purple .dash-kpi-value {
+    -fx-text-fill: -purple;
+}
+
+.dash-kpi-icon {
+    -fx-min-width: 44;
+    -fx-min-height: 44;
+    -fx-max-width: 44;
+    -fx-max-height: 44;
+    -fx-background-radius: -radius-sm;
+    -fx-alignment: center;
+}
+
+.dash-kpi-icon-svg {
+    -fx-font-size: 18px;
+}
+
+.dash-kpi-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 400;
+    -fx-text-fill: -text-secondary;
+}
+
+.dash-kpi-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.dash-kpi-value-danger {
+    -fx-text-fill: -danger;
+}
+
+.dash-kpi-value-success {
+    -fx-text-fill: -success;
+}
+
+.dash-kpi-progress {
+    -fx-pref-height: 3;
+    -fx-max-height: 3;
+    -fx-background-radius: 2;
+    -fx-border-radius: 2;
+}
+
+.dash-kpi-progress-blue {
+    -fx-background-color: -primary;
+}
+
+.dash-kpi-progress-orange {
+    -fx-background-color: -orange;
+}
+
+.dash-kpi-progress-green {
+    -fx-background-color: -success;
+}
+
+.dash-kpi-progress-purple {
+    -fx-background-color: -purple;
+}
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+
+.dash-card {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-effect: -shadow-sm;
+    -fx-padding: -space-4;
+}
+
+.dash-card:hover {
+    -fx-effect: -shadow-md;
+}
+
+.dash-card-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.dash-card-icon {
+    -fx-fill: -text-tertiary;
+    -fx-font-size: 16px;
+}
+
+/* ==========================================================================
+   CHART WRAPPER
+   ========================================================================== */
+
+.dash-chart-wrapper {
+    -fx-background-color: -bg-app;
+    -fx-background-radius: -radius-sm;
+    -fx-padding: 12;
+    -fx-alignment: CENTER;
+    -fx-min-height: 200;
+}
+
+/* ==========================================================================
+   GRAPHIQUES MODERNISÉS
+   ========================================================================== */
+
+/* --- Pie Chart --- */
+.dash-pie-chart {
+    -fx-pref-width: 350;
+    -fx-pref-height: 220;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.dash-pie-chart .chart-title {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 0 0 8 0;
+}
+
+.dash-pie-chart .chart-content {
+    -fx-padding: 0;
+}
+
+.dash-pie-chart .chart-legend {
+    -fx-padding: 8 0 0 0;
+    -fx-spacing: 4;
+}
+
+.dash-pie-chart .chart-legend-item {
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+    -fx-background-radius: -radius-sm;
+}
+
+.dash-pie-chart .chart-legend-item:hover {
+    -fx-background-color: -bg-hover;
+}
+
+.dash-pie-chart .chart-legend-item .label {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+.dash-pie-chart .chart-pie {
+    -fx-border-color: -bg-surface;
+    -fx-border-width: 2;
+    -fx-effect: -shadow-sm;
+}
+
+.dash-pie-chart .chart-pie:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 3);
+    -fx-cursor: hand;
+}
+
+.dash-pie-chart .chart-pie-label {
+    -fx-fill: -text-primary;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+}
+
+.dash-pie-chart .chart-pie-label-line {
+    -fx-stroke: -text-tertiary;
+    -fx-stroke-width: 1;
+}
+
+/* --- Bar Chart --- */
+.dash-bar-chart {
+    -fx-pref-width: 500;
+    -fx-pref-height: 220;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.dash-bar-chart .chart-title {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 0 0 8 0;
+}
+
+.dash-bar-chart .chart-content {
+    -fx-padding: 0;
+}
+
+.dash-bar-chart .chart-legend {
+    -fx-padding: 8 0 0 0;
+    -fx-spacing: 12;
+}
+
+.dash-bar-chart .chart-legend-item {
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+    -fx-background-radius: -radius-sm;
+}
+
+.dash-bar-chart .chart-legend-item:hover {
+    -fx-background-color: -bg-hover;
+}
+
+.dash-bar-chart .chart-legend-item .label {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+.dash-bar-chart .axis {
+    -fx-tick-label-font-size: 10px;
+    -fx-tick-label-fill: -text-tertiary;
+}
+
+.dash-bar-chart .axis .label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+}
+
+.dash-bar-chart .axis-tick-line {
+    -fx-stroke: -border-color;
+}
+
+.dash-bar-chart .chart-vertical-grid-lines {
+    -fx-stroke: -border-color;
+    -fx-stroke-width: 0.5;
+    -fx-opacity: 0.3;
+}
+
+.dash-bar-chart .chart-horizontal-grid-lines {
+    -fx-stroke: -border-color;
+    -fx-stroke-width: 0.5;
+    -fx-opacity: 0.3;
+}
+
+.dash-bar-chart .default-color0.chart-bar {
+    -fx-bar-fill: -primary;
+    -fx-background-radius: 3 3 0 0;
+}
+
+.dash-bar-chart .default-color0.chart-bar:hover {
+    -fx-bar-fill: -primary-hover;
+    -fx-effect: dropshadow(gaussian, rgba(68, 87, 217, 0.3), 8, 0, 0, 2);
+}
+
+.dash-bar-chart .default-color1.chart-bar {
+    -fx-bar-fill: -success;
+    -fx-background-radius: 3 3 0 0;
+}
+
+.dash-bar-chart .default-color1.chart-bar:hover {
+    -fx-bar-fill: -success-dark;
+    -fx-effect: dropshadow(gaussian, rgba(22, 163, 74, 0.3), 8, 0, 0, 2);
+}
+
+/* ==========================================================================
+   PROGRAMMES RÉCENTS - STYLE MODERNISÉ
+   ========================================================================== */
+
+.dash-programmes-list {
+    -fx-spacing: 10;
+    -fx-padding: 0;
+}
+
+/* ===== CARTE PROGRAMME RÉCENT ===== */
+.dash-programme-item {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 12 16 12 16;
+    -fx-effect: -shadow-sm;
+    -fx-spacing: 8;
+}
+
+.dash-programme-item:hover {
+    -fx-border-color: -primary;
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -1px;
+}
+
+.dash-programme-item-header {
+    -fx-spacing: 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.dash-programme-item-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.dash-programme-item-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+.dash-programme-item-status {
+    -fx-padding: 2 10 2 10;
+    -fx-background-radius: -radius-pill;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+}
+
+.dash-programme-item-status-planifie {
+    -fx-background-color: -info-muted;
+    -fx-text-fill: -info;
+}
+
+.dash-programme-item-status-termine {
+    -fx-background-color: -success-muted;
+    -fx-text-fill: -success-dark;
+}
+
+.dash-programme-item-status-aujourdhui {
+    -fx-background-color: -warning-muted;
+    -fx-text-fill: -warning-dark;
+}
+
+.dash-programme-item-footer {
+    -fx-spacing: 8;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-padding: 6 0 0 0;
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: -border-color;
+}
+
+.dash-btn-item-primary {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 14 4 14;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+}
+
+.dash-btn-item-primary:hover {
+    -fx-background-color: -primary-hover;
+}
+
+.dash-btn-item-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: -primary;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 14 4 14;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-cursor: hand;
+}
+
+.dash-btn-item-outline:hover {
+    -fx-background-color: -primary-muted;
+    -fx-border-color: -primary;
+}
+
+/* ==========================================================================
+   BADGES
+   ========================================================================== */
+
+.dash-badge-success {
+    -fx-background-color: -success-muted;
+    -fx-text-fill: -success-dark;
+    -fx-padding: 2 10 2 10;
+    -fx-background-radius: -radius-pill;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.dash-badge-danger {
+    -fx-background-color: -danger-muted;
+    -fx-text-fill: -danger-dark;
+    -fx-padding: 2 10 2 10;
+    -fx-background-radius: -radius-pill;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.dash-badge-soft {
+    -fx-background-color: -primary-muted;
+    -fx-text-fill: -primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 2 12 2 12;
+    -fx-background-radius: -radius-pill;
+}
+
+/* ==========================================================================
+   COMPTES MOUVEMENTÉS
+   ========================================================================== */
+
+.dash-comptes-grid {
+    -fx-spacing: 16;
+    -fx-wrap: true;
+}
+
+.dash-empty-state {
+    -fx-background-color: -bg-subtle;
+    -fx-background-radius: -radius-md;
+    -fx-padding: -space-5;
+    -fx-alignment: center;
+}
+
+.dash-icon-muted {
+    -fx-fill: -text-tertiary;
+}
+
+.dash-body-text {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+}
+
+/* ==========================================================================
+   BOUTONS OUTLINE
+   ========================================================================== */
+
+.dash-btn-outline-sm {
+    -fx-background-color: transparent;
+    -fx-background-radius: -radius-sm;
+    -fx-border-radius: -radius-sm;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 4 12 4 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+    -fx-cursor: hand;
+}
+
+.dash-btn-outline-sm:hover {
+    -fx-background-color: -bg-hover;
+    -fx-border-color: -border-strong;
+    -fx-text-fill: -text-primary;
+}
+
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+
+.dash-section-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.dash-small-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-tertiary;
+}
+
+/* ==========================================================================
+   ACTIONS RAPIDES
+   ========================================================================== */
+
+.dash-actions-container {
+    -fx-padding: 4 0 4 0;
+    -fx-spacing: 12;
+    -fx-wrap: true;
+}
+
+.dash-action-btn {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-md;
+    -fx-border-radius: -radius-md;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: 12 20 12 20;
+    -fx-cursor: hand;
+    -fx-effect: -shadow-sm;
+    -fx-min-width: 80;
+    -fx-alignment: CENTER;
+}
+
+.dash-action-btn:hover {
+    -fx-effect: -shadow-md;
+    -fx-translate-y: -2px;
+    -fx-border-color: transparent;
+}
+
+.dash-action-btn:pressed {
+    -fx-effect: -shadow-sm;
+    -fx-translate-y: 0px;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.dash-action-btn-primary {
+    -fx-border-color: -primary;
+    -fx-background-color: -primary-muted;
+}
+
+.dash-action-btn-primary:hover {
+    -fx-background-color: -primary;
+    -fx-border-color: -primary;
+}
+
+.dash-action-btn-primary:hover .dash-action-label {
+    -fx-text-fill: white;
+}
+
+.dash-action-btn-primary .dash-action-icon-wrapper {
+    -fx-background-color: -primary;
+}
+
+.dash-action-btn-primary:hover .dash-action-icon-wrapper {
+    -fx-background-color: white;
+}
+
+.dash-action-btn-primary:hover .dash-action-icon-wrapper .dash-action-icon {
+    -fx-fill: -primary;
+}
+
+.dash-action-btn-danger {
+    -fx-border-color: -danger;
+    -fx-background-color: -danger-muted;
+}
+
+.dash-action-btn-danger:hover {
+    -fx-background-color: -danger;
+    -fx-border-color: -danger;
+}
+
+.dash-action-btn-danger:hover .dash-action-label {
+    -fx-text-fill: white;
+}
+
+.dash-action-btn-danger .dash-action-icon-wrapper {
+    -fx-background-color: -danger;
+}
+
+.dash-action-btn-danger:hover .dash-action-icon-wrapper {
+    -fx-background-color: white;
+}
+
+.dash-action-btn-danger:hover .dash-action-icon-wrapper .dash-action-icon {
+    -fx-fill: -danger;
+}
+
+.dash-action-btn-success {
+    -fx-border-color: -success;
+    -fx-background-color: -success-muted;
+}
+
+.dash-action-btn-success:hover {
+    -fx-background-color: -success;
+    -fx-border-color: -success;
+}
+
+.dash-action-btn-success:hover .dash-action-label {
+    -fx-text-fill: white;
+}
+
+.dash-action-btn-success .dash-action-icon-wrapper {
+    -fx-background-color: -success;
+}
+
+.dash-action-btn-success:hover .dash-action-icon-wrapper {
+    -fx-background-color: white;
+}
+
+.dash-action-btn-success:hover .dash-action-icon-wrapper .dash-action-icon {
+    -fx-fill: -success;
+}
+
+.dash-action-btn-outline {
+    -fx-border-color: -border-color;
+    -fx-background-color: -bg-surface;
+}
+
+.dash-action-btn-outline:hover {
+    -fx-border-color: -primary;
+    -fx-background-color: -primary-muted;
+}
+
+.dash-action-btn-outline:hover .dash-action-icon-wrapper {
+    -fx-background-color: -primary;
+}
+
+.dash-action-btn-outline:hover .dash-action-icon-wrapper .dash-action-icon {
+    -fx-fill: white;
+}
+
+.dash-action-btn-outline .dash-action-icon-wrapper {
+    -fx-background-color: -bg-subtle;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+}
+
+.dash-action-btn-outline .dash-action-icon-wrapper .dash-action-icon {
+    -fx-fill: -text-secondary;
+}
+
+.dash-action-icon-wrapper {
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-max-width: 40;
+    -fx-max-height: 40;
+    -fx-background-radius: -radius-pill;
+    -fx-alignment: center;
+    -fx-effect: -shadow-sm;
+}
+
+.dash-action-icon {
+    -fx-fill: white;
+    -fx-font-size: 18px;
+}
+
+.dash-action-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-secondary;
+}
+
+.dash-action-btn-primary .dash-action-label {
+    -fx-text-fill: -primary;
+}
+
+.dash-action-btn-danger .dash-action-label {
+    -fx-text-fill: -danger;
+}
+
+.dash-action-btn-success .dash-action-label {
+    -fx-text-fill: -success;
+}
+
+.dash-action-btn-outline .dash-action-label {
+    -fx-text-fill: -text-secondary;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media screen and (max-width: 900px) {
+    .dashboard-root {
+        -fx-padding: 12 16 16 16;
+    }
+    .dash-kpi-row {
+        -fx-wrap: true;
+    }
+    .dash-kpi-card {
+        -fx-min-height: 75;
+        -fx-pref-width: 180;
+    }
+    .dash-kpi-value {
+        -fx-font-size: 17px;
+    }
+    .dash-chart-row {
+        -fx-wrap: true;
+    }
+    .dash-page-title {
+        -fx-font-size: 22px;
+    }
+    .dash-pie-chart {
+        -fx-pref-width: 280;
+        -fx-pref-height: 200;
+    }
+    .dash-bar-chart {
+        -fx-pref-width: 380;
+        -fx-pref-height: 200;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .dash-kpi-card {
+        -fx-min-height: 65;
+        -fx-pref-width: 140;
+        -fx-padding: 12 14 10 14;
+    }
+    .dash-kpi-icon {
+        -fx-min-width: 36;
+        -fx-min-height: 36;
+        -fx-max-width: 36;
+        -fx-max-height: 36;
+    }
+    .dash-kpi-icon-svg {
+        -fx-font-size: 15px;
+    }
+    .dash-kpi-value {
+        -fx-font-size: 15px;
+    }
+    .dash-kpi-label {
+        -fx-font-size: 10px;
+    }
+    .dash-action-btn {
+        -fx-padding: 8 14 8 14;
+        -fx-min-width: 60;
+    }
+    .dash-action-icon-wrapper {
+        -fx-min-width: 32;
+        -fx-min-height: 32;
+        -fx-max-width: 32;
+        -fx-max-height: 32;
+    }
+    .dash-action-icon {
+        -fx-font-size: 14px;
+    }
+    .dash-action-label {
+        -fx-font-size: 10px;
+    }
+    .dash-pie-chart {
+        -fx-pref-width: 220;
+        -fx-pref-height: 180;
+    }
+    .dash-bar-chart {
+        -fx-pref-width: 280;
+        -fx-pref-height: 180;
+    }
+}

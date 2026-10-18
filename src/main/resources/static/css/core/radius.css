@@ -1,0 +1,14 @@
+/* ==========================================================================
+   CORE / RADIUS
+   NB JavaFX : une taille doit être déclarée avec unité explicite (px) pour
+   être typée "Size" et rester utilisable dans -fx-background-radius /
+   -fx-border-radius. Ne jamais déclarer "8" sans unité ici.
+   ========================================================================== */
+.root {
+    -radius-xs:   4px;   /* champs, badges rectangulaires */
+    -radius-sm:   8px;   /* boutons, inputs */
+    -radius-md:  12px;   /* tables, petites cartes */
+    -radius-lg:  16px;   /* cartes, dialogues, panneaux */
+    -radius-xl:  24px;   /* login card, gros panneaux */
+    -radius-pill: 999px; /* badges pilule, avatars ronds */
+}

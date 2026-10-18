@@ -1,0 +1,130 @@
+/* ==========================================================================
+   VIEWS / LOADING
+   Écran de chargement avec style moderne
+   ========================================================================== */
+
+.loading-screen {
+    -fx-background-color: #F9FAFB;
+}
+
+.loading-container {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 24, 0, 0, 8);
+    -fx-padding: 48 56 40 56;
+    -fx-min-width: 400;
+    -fx-min-height: 380;
+}
+
+/* ===== LOGO ===== */
+.loading-logo-wrapper {
+    -fx-min-width: 72;
+    -fx-min-height: 72;
+    -fx-max-width: 72;
+    -fx-max-height: 72;
+    -fx-background-color: #EEF2FF;
+    -fx-alignment: center;
+}
+
+.loading-logo-icon {
+    -fx-fill: #4F46E5;
+}
+
+/* ===== TITRE ===== */
+.loading-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #111827;
+    -fx-letter-spacing: -0.3px;
+}
+
+/* ===== SPINNER ===== */
+.loading-spinner {
+    -fx-pref-width: 48;
+    -fx-pref-height: 48;
+    -fx-progress-color: #4F46E5;
+}
+
+.loading-spinner .determinate-indicator {
+    -fx-progress-color: #4F46E5;
+}
+
+.loading-spinner .determinate-indicator .indicator {
+    -fx-background-color: #4F46E5;
+}
+
+/* ===== MESSAGES ===== */
+.loading-message {
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #111827;
+}
+
+.loading-submessage {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7280;
+}
+
+/* ===== BARRE DE PROGRESSION ===== */
+.loading-progress-bar {
+    -fx-background-color: #F3F4F6;
+    -fx-pref-height: 6;
+    -fx-max-height: 6;
+}
+
+.loading-progress-bar .track {
+    -fx-background-color: #F3F4F6;
+}
+
+.loading-progress-bar .bar {
+    -fx-background-color: #4F46E5;
+}
+
+/* ===== POURCENTAGE ===== */
+.loading-percent {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #4F46E5;
+}
+
+/* ===== VERSION ===== */
+.loading-version {
+    -fx-font-size: 12px;
+    -fx-text-fill: #9CA3AF;
+    -fx-padding: 8 0 0 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 500px) {
+    .loading-container {
+        -fx-padding: 32 24 28 24;
+        -fx-min-width: 280;
+        -fx-min-height: 300;
+    }
+    .loading-title {
+        -fx-font-size: 20px;
+    }
+    .loading-logo-wrapper {
+        -fx-min-width: 56;
+        -fx-min-height: 56;
+        -fx-max-width: 56;
+        -fx-max-height: 56;
+    }
+    .loading-logo-icon {
+        -fx-glyph-size: 28px;
+    }
+    .loading-spinner {
+        -fx-pref-width: 36;
+        -fx-pref-height: 36;
+    }
+    .loading-message {
+        -fx-font-size: 14px;
+    }
+    .loading-submessage {
+        -fx-font-size: 12px;
+    }
+    .loading-progress-bar {
+        -fx-pref-width: 200;
+    }
+}

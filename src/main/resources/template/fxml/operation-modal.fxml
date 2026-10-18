@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.miapeve.finance.ui.OperationModalController"
+      spacing="20" styleClass="compte-modal-root">
+   
+   <padding>
+      <Insets top="25" right="25" bottom="25" left="25"/>
+   </padding>
+
+   <!-- En-tête -->
+   <HBox spacing="15" alignment="CENTER_LEFT">
+      <StackPane fx:id="iconWrapper" styleClass="modal-icon-wrapper, success">
+         <FontAwesomeIconView fx:id="operationIcon" glyphName="ARROW_UP" styleClass="modal-icon" glyphSize="20"/>
+      </StackPane>
+      <VBox spacing="2">
+         <Label fx:id="titreLabel" text="Opération" styleClass="modal-title"/>
+         <Label fx:id="sousTitreLabel" text="Compte: Caisse" styleClass="modal-subtitle"/>
+      </VBox>
+   </HBox>
+   
+   <Separator styleClass="modal-separator"/>
+   
+   <!-- Formulaire -->
+   <VBox spacing="14">
+      
+      <!-- Solde actuel -->
+      <HBox spacing="10" alignment="CENTER_LEFT" styleClass="modal-info-row">
+         <Label text="Solde actuel:" styleClass="modal-info-label"/>
+         <Label fx:id="soldeActuelLabel" text="0 F CFA" styleClass="modal-info-value"/>
+      </HBox>
+      
+      <!-- Montant -->
+      <VBox spacing="4">
+         <Label text="Montant *" styleClass="form-label-required"/>
+         <TextField fx:id="montantField" styleClass="modal-field" promptText="Saisir le montant en F CFA"/>
+      </VBox>
+      
+      <!-- Description (optionnelle) -->
+      <VBox spacing="4">
+         <Label text="Description (optionnelle)" styleClass="form-label"/>
+         <TextField fx:id="descriptionField" styleClass="modal-field" promptText="Motif de l'opération"/>
+      </VBox>
+      
+   </VBox>
+   
+   <!-- Message d'erreur -->
+   <Label fx:id="messageLabel" styleClass="modal-message" visible="false" managed="false"/>
+   
+   <!-- Boutons -->
+   <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="modal-actions">
+      <Button text="Annuler" styleClass="btn-outline" onAction="#handleAnnuler">
+         <graphic>
+            <FontAwesomeIconView glyphName="TIMES" styleClass="icon-secondary" glyphSize="12"/>
+         </graphic>
+      </Button>
+      <Button fx:id="validerButton" text="Valider" styleClass="btn-primary" onAction="#handleValider">
+         <graphic>
+            <FontAwesomeIconView glyphName="CHECK" styleClass="icon-white" glyphSize="12"/>
+         </graphic>
+      </Button>
+   </HBox>
+</VBox>

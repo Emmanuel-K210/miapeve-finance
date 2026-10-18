@@ -1,0 +1,59 @@
+/* ==========================================================================
+   LAYOUTS / DASHBOARD
+   Structure de la page d'accueil : rangée de KPI, rangée graphiques,
+   rangée tables (dernières transactions / comptes).
+   ========================================================================== */
+.dashboard-root {
+    -fx-background-color: -bg-app;
+    -fx-padding: -space-5;
+    -fx-spacing: -space-5;
+}
+
+.kpi-row {
+    -fx-spacing: -space-4;
+}
+
+.chart-row {
+    -fx-spacing: -space-4;
+}
+
+.chart-card {
+    -fx-background-color: -bg-surface;
+    -fx-background-radius: -radius-lg;
+    -fx-border-radius: -radius-lg;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1;
+    -fx-padding: -space-4;
+    -fx-effect: -shadow-sm;
+}
+
+.chart-card .chart {
+    -fx-background-color: transparent;
+}
+.chart-card .axis {
+    -fx-tick-label-fill: -text-tertiary;
+    -fx-font-size: 11px;
+}
+.chart-card .chart-legend {
+    -fx-background-color: transparent;
+}
+
+/* Séries du line-chart Revenus/Dépenses */
+.default-color0.chart-series-line { -fx-stroke: -primary; }
+.default-color1.chart-series-line { -fx-stroke: -danger; }
+.default-color0.chart-line-symbol { -fx-background-color: -primary, white; }
+.default-color1.chart-line-symbol { -fx-background-color: -danger, white; }
+
+/* Secteurs du donut "Répartition des dépenses" */
+.default-color0.chart-pie { -fx-pie-color: -primary; }
+.default-color1.chart-pie { -fx-pie-color: -success; }
+.default-color2.chart-pie { -fx-pie-color: -purple; }
+.default-color3.chart-pie { -fx-pie-color: -orange; }
+
+.bottom-row {
+    -fx-spacing: -space-4;
+}
+
+.panel-title-row {
+    -fx-padding: 0 0 -space-3 0;
+}

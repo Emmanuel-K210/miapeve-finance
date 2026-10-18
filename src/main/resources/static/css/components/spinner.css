@@ -1,0 +1,20 @@
+/* ==========================================================================
+   COMPONENTS / SPINNER (ProgressIndicator)
+   ========================================================================== */
+.progress-indicator {
+    -fx-progress-color: -primary;
+}
+.progress-indicator .percentage {
+    -fx-fill: -text-secondary;
+}
+.spinner {
+    -fx-background-color: transparent;
+}
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: -bg-subtle;
+}
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: -bg-hover;
+}
