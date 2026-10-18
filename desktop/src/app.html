@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIAPEVE Finance</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="assets/logo.png" alt="" onerror="this.style.display='none'" />
+        <span>MIAPEVE Finance</span>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item active" data-page="dashboard"><span class="nav-icon">🏠</span> Tableau de bord</div>
+        <div class="nav-item" data-page="comptes"><span class="nav-icon">🏦</span> Comptes</div>
+        <div class="nav-item" data-page="soon"><span class="nav-icon">💱</span> Transactions</div>
+        <div class="nav-item" data-page="soon"><span class="nav-icon">📅</span> Programmes</div>
+        <div class="nav-item" data-page="soon"><span class="nav-icon">🌱</span> Semences</div>
+        <div class="nav-item" data-page="soon"><span class="nav-icon">🧾</span> Dépenses</div>
+        <div class="nav-item" data-page="soon"><span class="nav-icon">👥</span> Utilisateurs</div>
+        <div class="nav-item" data-page="soon"><span class="nav-icon">⚙️</span> Paramètres</div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-chip">
+          <div class="user-avatar" id="user-avatar">?</div>
+          <div>
+            <div class="user-name" id="user-name">—</div>
+            <div class="user-role" id="user-role">—</div>
+          </div>
+          <button class="btn btn-ghost" id="logout-btn" style="margin-left:auto" title="Se déconnecter">⏻</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <h2 id="page-title">Tableau de bord</h2>
+      </header>
+
+      <main class="page-content">
+        <section id="page-dashboard">
+          <div class="stats-grid" id="stats-grid"></div>
+          <div class="content-grid">
+            <div class="card">
+              <div class="card-header"><h3>Comptes</h3></div>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead><tr><th>Compte</th><th>Type</th><th>Solde</th></tr></thead>
+                  <tbody id="dashboard-comptes-body"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><h3>Résumé</h3></div>
+              <p style="color: var(--color-text-muted); font-size: var(--font-size-sm); line-height: 1.6;">
+                Ce tableau de bord regroupe le solde global de l'église, le total des semences collectées
+                et le total des dépenses enregistrées. Les prochains modules (transactions, graphiques,
+                exports) viendront enrichir cette vue.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="page-comptes" class="hidden">
+          <div class="page-toolbar">
+            <div></div>
+            <button class="btn btn-primary" id="new-compte-btn">+ Nouveau compte</button>
+          </div>
+          <div class="card">
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Nom</th><th>Type</th><th>Solde</th><th></th></tr></thead>
+                <tbody id="comptes-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="page-soon" class="hidden">
+          <div class="card">
+            <div class="empty-state">
+              <h3 style="color: var(--color-text); margin-bottom: 8px;">Module en cours de refonte</h3>
+              <p>Cette section sera migrée dans une prochaine étape de la refonte.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="compte-modal-root"></div>
+  <div id="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/comptes.js"></script>
+</body>
+</html>

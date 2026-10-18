@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "MIAPEVE Finance",
+  "version": "1.0.0",
+  "identifier": "com.miapeve.finance",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "MIAPEVE Finance",
+        "width": 1366,
+        "height": 850,
+        "minWidth": 1024,
+        "minHeight": 700,
+        "url": "login.html",
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' http://127.0.0.1:8787; img-src 'self' data:; style-src 'self' 'unsafe-inline'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "icon": [
+      "icons/icon.png"
+    ],
+    "resources": [
+      "resources/miapeve-finance-backend.jar"
+    ],
+    "targets": "all"
+  }
+}
