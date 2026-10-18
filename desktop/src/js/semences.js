@@ -10,26 +10,22 @@ let semencesComptesCache = [];
 let semencesProgrammesCache = [];
 
 document.getElementById("new-semence-btn").addEventListener("click", () => openSemenceDrawer());
+document.getElementById("semence-type-filter").addEventListener("change", loadSemences);
 
 /**
  * Permet d'ajouter une semence depuis un programme (comme dans l'ancienne
  * version) : charge les caches si besoin puis ouvre le drawer avec le
- * programme déjà sélectionné.
+ * programme déjà connu (pas besoin de le resélectionner).
  */
 async function openSemenceDrawerForProgramme(programmeId) {
-  if (!semencesComptesCache.length || !semencesProgrammesCache.find((p) => p.id === programmeId)) {
-    try {
-      const [comptes, programmes] = await Promise.all([api.getComptes(), api.getProgrammes()]);
-      semencesComptesCache = comptes;
-      semencesProgrammesCache = programmes;
-    } catch (err) {
-      showToast(err.message, "error");
-      return;
-    }
-  }
+  await ensureSemenceRefCaches();
   openSemenceDrawer(programmeId);
 }
-document.getElementById("semence-type-filter").addEventListener("change", loadSemences);
+
+async function ensureSemenceRefCaches() {
+  if (!semencesComptesCache.length) semencesComptesCache = await api.getComptes();
+  if (!semencesProgrammesCache.length) semencesProgrammesCache = await api.getProgrammes();
+}
 
 async function loadSemences() {
   const body = document.getElementById("semences-body");
@@ -75,76 +71,69 @@ function renderSemenceRow(s) {
   `;
 }
 
+/**
+ * Formulaire volontairement simple (type, montant, programme, compte) —
+ * fidèle à l'ancien formulaire de semence. Si aucun programme ou compte
+ * n'existe encore, on invite à en créer un depuis sa propre page plutôt
+ * que d'alourdir ce formulaire avec des panneaux de création imbriqués.
+ */
 function openSemenceDrawer(preselectedProgrammeId) {
+  if (!semencesComptesCache.length) {
+    showToast("Créez d'abord un compte (page Comptes)", "error");
+    return;
+  }
+  if (!semencesProgrammesCache.length) {
+    showToast("Créez d'abord un programme (page Programmes)", "error");
+    return;
+  }
+
+  const programmeConnu = preselectedProgrammeId
+    ? semencesProgrammesCache.find((p) => p.id === preselectedProgrammeId)
+    : null;
+
   const form = openDrawer({
     title: "Nouvelle semence",
-    subtitle: "Dîme, offrande ou autre contribution rattachée à un programme",
+    subtitle: programmeConnu
+      ? `Pour « ${programmeConnu.typeProgramme} » — ${formatDateOnly(programmeConnu.dateProgramme)}`
+      : "Dîme, offrande ou autre contribution",
     formId: "semence-form",
     bodyHtml: `
-      <div class="form-section-title">Type et montant</div>
-      <div class="form-grid">
-        <div class="field">
-          <label>Type</label>
-          <select class="input" id="sem-type" required>
-            ${Object.entries(SEMENCE_TYPE_LABELS)
-              .map(([value, label]) => `<option value="${value}">${label}</option>`)
-              .join("")}
-          </select>
-        </div>
-        <div class="field">
-          <label>Montant (FCFA)</label>
-          <input class="input" id="sem-montant" type="number" min="1" step="1" required />
-        </div>
-        <div class="field field-full">
-          <label>Date</label>
-          <input class="input" id="sem-date" type="date" required value="${todayIso()}" />
-        </div>
-      </div>
-
-      <div class="form-section-title">Compte à créditer</div>
-      ${quickCreateCompteBlock("sem-compte")}
-
-      <div class="form-section-title">Programme</div>
-      <div class="inline-action-row">
-        <label style="margin:0;">Associer à un programme existant ou en créer un</label>
-        <button type="button" class="link-btn" id="sem-new-programme-toggle">+ créer un programme</button>
-      </div>
-      <div class="field field-full" style="margin-top: var(--space-2);">
-        <select class="input" id="sem-programme" required>
-          ${renderProgrammeOptions()}
+      <div class="field">
+        <label>Type</label>
+        <select class="input" id="sem-type" required>
+          ${Object.entries(SEMENCE_TYPE_LABELS)
+            .map(([value, label]) => `<option value="${value}">${label}</option>`)
+            .join("")}
         </select>
       </div>
 
-      <div class="quick-panel hidden" id="sem-new-programme-fields">
-        <div class="form-grid">
-          <div class="field field-full">
-            <label>Type de programme</label>
-            <select class="input" id="np-type">
-              ${PROGRAMME_TYPES.map((t) => `<option value="${t}">${t}</option>`).join("")}
-            </select>
-          </div>
-          <div class="field">
-            <label>Date du programme</label>
-            <input class="input" id="np-date" type="date" value="${todayIso()}" />
-          </div>
-          <div></div>
-          <div class="field">
-            <label>Heure début</label>
-            <input class="input" id="np-debut" type="time" value="09:00" />
-          </div>
-          <div class="field">
-            <label>Heure fin</label>
-            <input class="input" id="np-fin" type="time" value="11:00" />
-          </div>
-        </div>
-        <button type="button" class="btn btn-secondary btn-block" id="np-create">Créer ce programme</button>
+      <div class="field">
+        <label>Montant (FCFA)</label>
+        <input class="input" id="sem-montant" type="number" min="1" step="1" required autofocus />
       </div>
 
-      <div class="form-section-title">Description</div>
-      <div class="form-grid">
-        <div class="field field-full">
-          <input class="input" id="sem-description" placeholder="Optionnel" />
-        </div>
+      ${
+        programmeConnu
+          ? ""
+          : `<div class="field">
+               <label>Programme</label>
+               <select class="input" id="sem-programme" required>${renderProgrammeOptions()}</select>
+             </div>`
+      }
+
+      <div class="field">
+        <label>Compte</label>
+        <select class="input" id="sem-compte" required>${renderCompteSelectOptions(semencesComptesCache)}</select>
+      </div>
+
+      <div class="field">
+        <label>Date</label>
+        <input class="input" id="sem-date" type="date" required value="${todayIso()}" />
+      </div>
+
+      <div class="field">
+        <label>Description (optionnel)</label>
+        <input class="input" id="sem-description" placeholder="ex. Culte du dimanche matin" />
       </div>
     `,
     footerHtml: `
@@ -155,53 +144,10 @@ function openSemenceDrawer(preselectedProgrammeId) {
 
   document.getElementById("sem-cancel").addEventListener("click", closeDrawer);
 
-  if (preselectedProgrammeId) {
-    document.getElementById("sem-programme").value = preselectedProgrammeId;
-  }
-
-  document.getElementById("sem-new-programme-toggle").addEventListener("click", () => {
-    document.getElementById("sem-new-programme-fields").classList.toggle("hidden");
-  });
-
-  document.getElementById("np-create").addEventListener("click", async () => {
-    const payload = {
-      typeProgramme: document.getElementById("np-type").value,
-      dateProgramme: document.getElementById("np-date").value,
-      heureDebut: document.getElementById("np-debut").value,
-      heureFin: document.getElementById("np-fin").value,
-    };
-    try {
-      const programme = await api.createProgramme(payload);
-      semencesProgrammesCache.push(programme);
-      const select = document.getElementById("sem-programme");
-      select.innerHTML = renderProgrammeOptions();
-      select.value = programme.id;
-      document.getElementById("sem-new-programme-fields").classList.add("hidden");
-      showToast("Programme créé");
-    } catch (err) {
-      showToast(err.message, "error");
-    }
-  });
-
-  wireQuickCreateCompte({
-    selectId: "sem-compte",
-    getCache: () => semencesComptesCache,
-    setCache: (next) => (semencesComptesCache = next),
-  });
-
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const compteId = document.getElementById("sem-compte").value;
-    if (!compteId) {
-      showToast("Sélectionnez ou créez un compte", "error");
-      return;
-    }
-
-    if (!semencesProgrammesCache.length) {
-      showToast("Créez d'abord un programme pour cette semence", "error");
-      return;
-    }
+    const programmeId = programmeConnu ? programmeConnu.id : Number(document.getElementById("sem-programme").value);
 
     const payload = {
       typeSemence: document.getElementById("sem-type").value,
@@ -209,7 +155,7 @@ function openSemenceDrawer(preselectedProgrammeId) {
       dateSemence: document.getElementById("sem-date").value,
       description: document.getElementById("sem-description").value.trim(),
       compteId: Number(document.getElementById("sem-compte").value),
-      programmeId: Number(document.getElementById("sem-programme").value),
+      programmeId,
     };
 
     try {
@@ -224,9 +170,6 @@ function openSemenceDrawer(preselectedProgrammeId) {
 }
 
 function renderProgrammeOptions() {
-  if (!semencesProgrammesCache.length) {
-    return `<option value="">Aucun programme — créez-en un</option>`;
-  }
   return semencesProgrammesCache
     .map((p) => `<option value="${p.id}">${escapeHtml(p.typeProgramme)} — ${formatDateOnly(p.dateProgramme)}</option>`)
     .join("");
