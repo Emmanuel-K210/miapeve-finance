@@ -1,4 +1,5 @@
-use std::process::{Child, Command};
+use std::fs::File;
+use std::process::{Child, Command, Stdio};
 use std::sync::Mutex;
 use std::time::Duration;
 
@@ -28,16 +29,32 @@ pub fn run() {
                 .path()
                 .app_data_dir()
                 .expect("impossible de résoudre le dossier de données de l'application");
-            std::fs::create_dir_all(&data_dir).ok();
+            std::fs::create_dir_all(&data_dir)
+                .expect("impossible de créer le dossier de données de l'application");
             let db_path = data_dir.join("miapeve_finance.db");
+
+            // Toute la sortie du backend Java est capturée dans ce fichier,
+            // car l'application n'a pas de console visible une fois lancée.
+            let log_path = data_dir.join("backend.log");
+            let stdout_log = File::create(&log_path)
+                .expect("impossible de créer le fichier de log du backend");
+            let stderr_log = stdout_log
+                .try_clone()
+                .expect("impossible de dupliquer le descripteur de log");
 
             let child = Command::new("java")
                 .arg("-jar")
                 .arg(&jar_path)
                 .env("MIAPEVE_DB_PATH", &db_path)
                 .env("MIAPEVE_PORT", BACKEND_PORT.to_string())
+                .stdout(Stdio::from(stdout_log))
+                .stderr(Stdio::from(stderr_log))
                 .spawn()
-                .expect("impossible de démarrer le backend Java (vérifiez qu'un JRE 21+ est installé)");
+                .unwrap_or_else(|e| {
+                    panic!(
+                        "impossible de démarrer le backend Java (vérifiez qu'un JRE 21+ est installé) : {e}"
+                    )
+                });
 
             if let Some(state) = handle.try_state::<BackendProcess>() {
                 *state.0.lock().unwrap() = Some(child);
