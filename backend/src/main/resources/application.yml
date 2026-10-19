@@ -24,4 +24,8 @@ logging:
 
 miapeve:
   cors:
-    allowed-origins: ${MIAPEVE_FRONTEND_ORIGIN:tauri://localhost,http://localhost:1420,http://localhost:5173}
+    # En production Windows, la webview Tauri sert l'UI depuis l'origine
+    # https://tauri.localhost (et non tauri://localhost, utilisée sur
+    # macOS/Linux) : sans cette origine ici, le navigateur bloque les
+    # requêtes CORS du frontend alors que le backend répond normalement.
+    allowed-origins: ${MIAPEVE_FRONTEND_ORIGIN:tauri://localhost,https://tauri.localhost,http://localhost:1420,http://localhost:5173}

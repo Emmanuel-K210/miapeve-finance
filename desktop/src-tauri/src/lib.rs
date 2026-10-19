@@ -4,6 +4,15 @@ use std::process::{Child, Command, Stdio};
 use std::sync::Mutex;
 use std::time::Duration;
 
+#[cfg(windows)]
+use std::os::windows::process::CommandExt;
+
+// Empêche Windows d'ouvrir une fenêtre de console noire pour le process
+// Java, qui n'a pas de GUI et dont la sortie est déjà redirigée vers
+// backend.log.
+#[cfg(windows)]
+const CREATE_NO_WINDOW: u32 = 0x08000000;
+
 use tauri::{Manager, RunEvent};
 
 const BACKEND_PORT: u16 = 8787;
@@ -74,13 +83,18 @@ pub fn run() {
                 .try_clone()
                 .expect("impossible de dupliquer le descripteur de log");
 
-            let child = Command::new(&java_bin)
+            let mut command = Command::new(&java_bin);
+            command
                 .arg("-jar")
                 .arg(&jar_path)
                 .env("MIAPEVE_DB_PATH", &db_path)
                 .env("MIAPEVE_PORT", BACKEND_PORT.to_string())
                 .stdout(Stdio::from(stdout_log))
-                .stderr(Stdio::from(stderr_log))
+                .stderr(Stdio::from(stderr_log));
+            #[cfg(windows)]
+            command.creation_flags(CREATE_NO_WINDOW);
+
+            let child = command
                 .spawn()
                 .unwrap_or_else(|e| {
                     panic!(
