@@ -1,5 +1,4 @@
 use std::fs::File;
-use std::io::Write;
 use std::process::{Child, Command, Stdio};
 use std::sync::Mutex;
 use std::time::Duration;
@@ -13,17 +12,30 @@ const BACKEND_HEALTH_URL: &str = "http://127.0.0.1:8787/api/health";
 /// proprement à la fermeture de l'application.
 struct BackendProcess(Mutex<Option<Child>>);
 
+/// Les chemins résolus par Tauri sur Windows portent le préfixe `\\?\`
+/// (chemin étendu). Ce préfixe est compris par les API Win32 mais pas par
+/// le lanceur/zip de la JVM, qui échoue alors à lire le jar (symptôme :
+/// ClassNotFoundException sur une classe pourtant présente dans l'archive).
+/// On le retire avant de transmettre un chemin à Java.
+fn strip_verbatim_prefix(path: &std::path::Path) -> std::path::PathBuf {
+    match path.to_str() {
+        Some(s) => std::path::PathBuf::from(s.strip_prefix(r"\\?\").unwrap_or(s)),
+        None => path.to_path_buf(),
+    }
+}
+
 pub fn run() {
     tauri::Builder::default()
         .manage(BackendProcess(Mutex::new(None)))
         .setup(|app| {
             let handle = app.handle().clone();
 
-            let raw_resource_dir = app
-                .path()
-                .resource_dir()
-                .expect("impossible de résoudre le dossier des ressources");
-            let resources_dir = raw_resource_dir.join("resources");
+            let resource_dir = strip_verbatim_prefix(
+                &app.path()
+                    .resource_dir()
+                    .expect("impossible de résoudre le dossier des ressources"),
+            );
+            let resources_dir = resource_dir.join("resources");
             let jar_path = resources_dir.join("miapeve-finance-backend.jar");
 
             // Utilise le JRE embarqué (généré par jlink au moment du build)
@@ -41,10 +53,11 @@ pub fn run() {
                 std::path::PathBuf::from("java")
             };
 
-            let data_dir = app
-                .path()
-                .app_data_dir()
-                .expect("impossible de résoudre le dossier de données de l'application");
+            let data_dir = strip_verbatim_prefix(
+                &app.path()
+                    .app_data_dir()
+                    .expect("impossible de résoudre le dossier de données de l'application"),
+            );
             std::fs::create_dir_all(&data_dir)
                 .expect("impossible de créer le dossier de données de l'application");
             let db_path = data_dir.join("miapeve_finance.db");
@@ -52,24 +65,8 @@ pub fn run() {
             // Toute la sortie du backend Java est capturée dans ce fichier,
             // car l'application n'a pas de console visible une fois lancée.
             let log_path = data_dir.join("backend.log");
-            let mut stdout_log = File::create(&log_path)
+            let stdout_log = File::create(&log_path)
                 .expect("impossible de créer le fichier de log du backend");
-
-            // Diagnostic : les chemins résolus, pour comparer avec un lancement manuel.
-            let _ = writeln!(
-                stdout_log,
-                "--- Diagnostic de démarrage ---\n\
-                 resource_dir (brut) = {raw_resource_dir:?}\n\
-                 resources_dir       = {resources_dir:?}\n\
-                 jar_path            = {jar_path:?} (existe: {})\n\
-                 java_bin            = {java_bin:?} (existe: {})\n\
-                 current_dir         = {:?}\n\
-                 --------------------------------",
-                jar_path.exists(),
-                java_bin.exists(),
-                std::env::current_dir(),
-            );
-
             let stderr_log = stdout_log
                 .try_clone()
                 .expect("impossible de dupliquer le descripteur de log");
