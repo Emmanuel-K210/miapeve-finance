@@ -18,12 +18,27 @@ pub fn run() {
         .setup(|app| {
             let handle = app.handle().clone();
 
-            let jar_path = app
+            let resources_dir = app
                 .path()
                 .resource_dir()
                 .expect("impossible de résoudre le dossier des ressources")
-                .join("resources")
-                .join("miapeve-finance-backend.jar");
+                .join("resources");
+            let jar_path = resources_dir.join("miapeve-finance-backend.jar");
+
+            // Utilise le JRE embarqué (généré par jlink au moment du build)
+            // s'il est présent, pour ne pas dépendre d'une installation Java
+            // sur le poste de l'utilisateur. En développement local, où le
+            // JRE n'a pas été embarqué, on retombe sur le `java` du PATH.
+            let bundled_java = resources_dir.join("jre").join("bin").join(if cfg!(windows) {
+                "java.exe"
+            } else {
+                "java"
+            });
+            let java_bin = if bundled_java.exists() {
+                bundled_java
+            } else {
+                std::path::PathBuf::from("java")
+            };
 
             let data_dir = app
                 .path()
@@ -42,7 +57,7 @@ pub fn run() {
                 .try_clone()
                 .expect("impossible de dupliquer le descripteur de log");
 
-            let child = Command::new("java")
+            let child = Command::new(&java_bin)
                 .arg("-jar")
                 .arg(&jar_path)
                 .env("MIAPEVE_DB_PATH", &db_path)

@@ -32,7 +32,8 @@
       "icons/icon.ico"
     ],
     "resources": [
-      "resources/miapeve-finance-backend.jar"
+      "resources/miapeve-finance-backend.jar",
+      "resources/jre/**/*"
     ],
     "targets": "all"
   }
