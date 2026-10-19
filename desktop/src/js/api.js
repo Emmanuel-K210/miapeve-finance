@@ -26,11 +26,18 @@ async function apiRequest(path, { method = "GET", body } = {}) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    method,
-    headers,
-    body: body ? JSON.stringify(body) : undefined,
-  });
+  let response;
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      method,
+      headers,
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  } catch {
+    throw new Error(
+      "Impossible de contacter le service de l'application. Le backend n'a peut-être pas démarré correctement (consultez backend.log dans le dossier de données de l'application)."
+    );
+  }
 
   if (response.status === 401) {
     clearSession();
@@ -77,6 +84,13 @@ const api = {
   deleteBudget: (id) => apiRequest(`/budgets/${id}`, { method: "DELETE" }),
 
   getDashboardSummary: () => apiRequest("/dashboard/summary"),
+
+  getDepenses: (compteId) => apiRequest(compteId ? `/depenses?compteId=${compteId}` : "/depenses"),
+  createDepense: (data) => apiRequest("/depenses", { method: "POST", body: data }),
+  deleteDepense: (id) => apiRequest(`/depenses/${id}`, { method: "DELETE" }),
+
+  changeOwnPassword: (motDePasseActuel, nouveauMotDePasse) =>
+    apiRequest("/auth/me/password", { method: "PUT", body: { motDePasseActuel, nouveauMotDePasse } }),
 
   getUtilisateurs: () => apiRequest("/utilisateurs"),
   createUtilisateur: (data) => apiRequest("/utilisateurs", { method: "POST", body: data }),

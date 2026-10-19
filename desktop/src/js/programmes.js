@@ -16,6 +16,9 @@ async function loadProgrammes() {
     body.querySelectorAll("[data-add-semence]").forEach((btn) =>
       btn.addEventListener("click", () => openSemenceDrawerForProgramme(Number(btn.dataset.addSemence)))
     );
+    body.querySelectorAll("[data-print-programme]").forEach((btn) =>
+      btn.addEventListener("click", () => printProgrammeReceipt(Number(btn.dataset.printProgramme)))
+    );
   } catch (err) {
     showToast(err.message, "error");
   }
@@ -30,6 +33,7 @@ function renderProgrammeRow(p) {
       <td>${formatHeure(p.heureFin)}</td>
       <td style="text-align:right">
         ${canManage("SEMENCES") ? `<button class="btn btn-ghost" data-add-semence="${p.id}">Ajouter une semence</button>` : ""}
+        <button class="btn btn-ghost" data-print-programme="${p.id}">Imprimer</button>
         ${canManage("PROGRAMMES") ? `<button class="btn btn-ghost" data-delete-programme="${p.id}">Supprimer</button>` : ""}
       </td>
     </tr>

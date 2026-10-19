@@ -23,9 +23,11 @@ const PAGE_TITLES = {
   comptes: "Comptes",
   transactions: "Transactions",
   semences: "Semences",
+  depenses: "Dépenses",
   programmes: "Programmes",
   utilisateurs: "Utilisateurs",
   roles: "Rôles et permissions",
+  parametres: "Paramètres",
   soon: "À venir",
 };
 
@@ -35,11 +37,15 @@ const PAGE_SUBTITLES = {
   comptes: "Caisses, banques et portefeuilles de l'église",
   transactions: "Historique des entrées et sorties manuelles",
   semences: "Dîmes, offrandes et contributions des fidèles",
+  depenses: "Sorties d'argent débitées d'un compte",
   programmes: "Cultes, collectes et évènements de l'église",
   utilisateurs: "Comptes d'accès à l'application",
   roles: "Définissez qui peut voir et faire quoi",
+  parametres: "Votre compte et vos préférences",
   soon: "Ce module arrive dans une prochaine mise à jour",
 };
+
+document.getElementById("topbar-print-btn").addEventListener("click", () => printDashboardReport());
 
 document.querySelectorAll(".nav-item").forEach((item) => {
   item.addEventListener("click", () => {
@@ -54,15 +60,18 @@ function navigateTo(page) {
   document.getElementById(`page-${page}`).classList.remove("hidden");
   document.getElementById("page-title").textContent = PAGE_TITLES[page] || "";
   document.getElementById("page-subtitle").textContent = PAGE_SUBTITLES[page] || "";
+  document.getElementById("topbar-print-btn").classList.toggle("hidden", page !== "dashboard");
 
   if (page === "dashboard") loadDashboard();
   if (page === "budgets") loadBudgets();
   if (page === "comptes") loadComptes();
   if (page === "transactions") loadTransactions();
   if (page === "semences") loadSemences();
+  if (page === "depenses") loadDepenses();
   if (page === "programmes") loadProgrammes();
   if (page === "utilisateurs") loadUtilisateurs();
   if (page === "roles") loadRoles();
+  if (page === "parametres") loadParametres();
 }
 
 /**

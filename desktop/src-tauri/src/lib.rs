@@ -1,4 +1,6 @@
-use std::process::{Child, Command};
+use std::fs::File;
+use std::io::Write;
+use std::process::{Child, Command, Stdio};
 use std::sync::Mutex;
 use std::time::Duration;
 
@@ -17,27 +19,74 @@ pub fn run() {
         .setup(|app| {
             let handle = app.handle().clone();
 
-            let jar_path = app
+            let raw_resource_dir = app
                 .path()
                 .resource_dir()
-                .expect("impossible de résoudre le dossier des ressources")
-                .join("resources")
-                .join("miapeve-finance-backend.jar");
+                .expect("impossible de résoudre le dossier des ressources");
+            let resources_dir = raw_resource_dir.join("resources");
+            let jar_path = resources_dir.join("miapeve-finance-backend.jar");
+
+            // Utilise le JRE embarqué (généré par jlink au moment du build)
+            // s'il est présent, pour ne pas dépendre d'une installation Java
+            // sur le poste de l'utilisateur. En développement local, où le
+            // JRE n'a pas été embarqué, on retombe sur le `java` du PATH.
+            let bundled_java = resources_dir.join("jre").join("bin").join(if cfg!(windows) {
+                "java.exe"
+            } else {
+                "java"
+            });
+            let java_bin = if bundled_java.exists() {
+                bundled_java
+            } else {
+                std::path::PathBuf::from("java")
+            };
 
             let data_dir = app
                 .path()
                 .app_data_dir()
                 .expect("impossible de résoudre le dossier de données de l'application");
-            std::fs::create_dir_all(&data_dir).ok();
+            std::fs::create_dir_all(&data_dir)
+                .expect("impossible de créer le dossier de données de l'application");
             let db_path = data_dir.join("miapeve_finance.db");
 
-            let child = Command::new("java")
+            // Toute la sortie du backend Java est capturée dans ce fichier,
+            // car l'application n'a pas de console visible une fois lancée.
+            let log_path = data_dir.join("backend.log");
+            let mut stdout_log = File::create(&log_path)
+                .expect("impossible de créer le fichier de log du backend");
+
+            // Diagnostic : les chemins résolus, pour comparer avec un lancement manuel.
+            let _ = writeln!(
+                stdout_log,
+                "--- Diagnostic de démarrage ---\n\
+                 resource_dir (brut) = {raw_resource_dir:?}\n\
+                 resources_dir       = {resources_dir:?}\n\
+                 jar_path            = {jar_path:?} (existe: {})\n\
+                 java_bin            = {java_bin:?} (existe: {})\n\
+                 current_dir         = {:?}\n\
+                 --------------------------------",
+                jar_path.exists(),
+                java_bin.exists(),
+                std::env::current_dir(),
+            );
+
+            let stderr_log = stdout_log
+                .try_clone()
+                .expect("impossible de dupliquer le descripteur de log");
+
+            let child = Command::new(&java_bin)
                 .arg("-jar")
                 .arg(&jar_path)
                 .env("MIAPEVE_DB_PATH", &db_path)
                 .env("MIAPEVE_PORT", BACKEND_PORT.to_string())
+                .stdout(Stdio::from(stdout_log))
+                .stderr(Stdio::from(stderr_log))
                 .spawn()
-                .expect("impossible de démarrer le backend Java (vérifiez qu'un JRE 21+ est installé)");
+                .unwrap_or_else(|e| {
+                    panic!(
+                        "impossible de démarrer le backend Java (vérifiez qu'un JRE 21+ est installé) : {e}"
+                    )
+                });
 
             if let Some(state) = handle.try_state::<BackendProcess>() {
                 *state.0.lock().unwrap() = Some(child);

@@ -1,10 +1,17 @@
+let currentCompteDetailId = null;
+
 document.getElementById("compte-detail-back").addEventListener("click", () => {
   document.querySelectorAll(".nav-item").forEach((el) => el.classList.remove("active"));
   document.querySelector(".nav-item[data-page='comptes']")?.classList.add("active");
   navigateTo("comptes");
 });
 
+document.getElementById("compte-detail-print").addEventListener("click", () => {
+  if (currentCompteDetailId) printCompteStatement(currentCompteDetailId);
+});
+
 async function openCompteDetail(compteId) {
+  currentCompteDetailId = compteId;
   document.querySelectorAll(".page-content > section").forEach((el) => el.classList.add("hidden"));
   document.querySelectorAll(".nav-item").forEach((el) => el.classList.remove("active"));
   document.getElementById("page-compte-detail").classList.remove("hidden");
