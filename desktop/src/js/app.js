@@ -48,6 +48,7 @@ const PAGE_SUBTITLES = {
 };
 
 document.getElementById("topbar-print-btn").addEventListener("click", () => printDashboardReport());
+document.getElementById("topbar-etat-financier-btn").addEventListener("click", () => openEtatFinancierDrawer());
 
 document.querySelectorAll(".nav-item").forEach((item) => {
   item.addEventListener("click", () => {
@@ -63,6 +64,7 @@ function navigateTo(page) {
   document.getElementById("page-title").textContent = PAGE_TITLES[page] || "";
   document.getElementById("page-subtitle").textContent = PAGE_SUBTITLES[page] || "";
   document.getElementById("topbar-print-btn").classList.toggle("hidden", page !== "dashboard");
+  document.getElementById("topbar-etat-financier-btn").classList.toggle("hidden", page !== "dashboard");
 
   if (page === "dashboard") loadDashboard();
   if (page === "budgets") loadBudgets();
