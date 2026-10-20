@@ -109,6 +109,7 @@ const api = {
 
   getProgrammes: () => apiRequest("/programmes"),
   createProgramme: (data) => apiRequest("/programmes", { method: "POST", body: data }),
+  updateProgramme: (id, data) => apiRequest(`/programmes/${id}`, { method: "PUT", body: data }),
   deleteProgramme: (id) => apiRequest(`/programmes/${id}`, { method: "DELETE" }),
 
   getSemences: (compteId) => apiRequest(compteId ? `/semences?compteId=${compteId}` : "/semences"),

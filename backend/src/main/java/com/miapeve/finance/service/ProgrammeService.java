@@ -10,6 +10,7 @@ import com.miapeve.finance.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,6 +43,21 @@ public class ProgrammeService {
         programme.setHeureFin(request.heureFin());
         programme.setUtilisateur(utilisateur);
         programme.setCreePar(utilisateurId);
+
+        return toDTO(programmeRepository.save(programme));
+    }
+
+    @Transactional
+    public ProgrammeDTO update(Long id, ProgrammeRequest request, Long utilisateurId) {
+        Programme programme = programmeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Programme introuvable: " + id));
+
+        programme.setTypeProgramme(request.typeProgramme());
+        programme.setDateProgramme(request.dateProgramme());
+        programme.setHeureDebut(request.heureDebut());
+        programme.setHeureFin(request.heureFin());
+        programme.setModifiePar(utilisateurId);
+        programme.setDateModification(LocalDateTime.now());
 
         return toDTO(programmeRepository.save(programme));
     }
