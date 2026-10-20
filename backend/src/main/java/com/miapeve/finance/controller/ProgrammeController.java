@@ -31,6 +31,12 @@ public class ProgrammeController {
         return programmeService.create(request, utilisateurId);
     }
 
+    @PutMapping("/{id}")
+    public ProgrammeDTO update(@PathVariable Long id, @Valid @RequestBody ProgrammeRequest request, HttpServletRequest httpRequest) {
+        Long utilisateurId = (Long) httpRequest.getAttribute(AuthInterceptor.UTILISATEUR_ID_ATTR);
+        return programmeService.update(id, request, utilisateurId);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         programmeService.delete(id);

@@ -87,6 +87,9 @@ public class Programme {
     public Long getModifiePar() { return modifiePar; }
     public void setModifiePar(Long modifiePar) { this.modifiePar = modifiePar; }
 
+    public LocalDateTime getDateModification() { return dateModification; }
+    public void setDateModification(LocalDateTime dateModification) { this.dateModification = dateModification; }
+
     public boolean isEstArchive() { return estArchive; }
     public void setEstArchive(boolean estArchive) { this.estArchive = estArchive; }
 

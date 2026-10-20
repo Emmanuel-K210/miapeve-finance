@@ -10,6 +10,12 @@ async function loadProgrammes() {
       ? programmes.map(renderProgrammeRow).join("")
       : `<tr><td colspan="5" class="empty-state">Aucun programme. Créez-en un pour y rattacher des semences.</td></tr>`;
 
+    body.querySelectorAll("[data-edit-programme]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const programme = programmes.find((p) => p.id === Number(btn.dataset.editProgramme));
+        if (programme) openProgrammeDrawer(programme);
+      })
+    );
     body.querySelectorAll("[data-delete-programme]").forEach((btn) =>
       btn.addEventListener("click", () => deleteProgramme(Number(btn.dataset.deleteProgramme)))
     );
@@ -34,6 +40,7 @@ function renderProgrammeRow(p) {
       <td style="text-align:right">
         ${canManage("SEMENCES") ? `<button class="btn btn-ghost" data-add-semence="${p.id}">Ajouter une semence</button>` : ""}
         <button class="btn btn-ghost" data-print-programme="${p.id}">Imprimer</button>
+        ${canManage("PROGRAMMES") ? `<button class="btn btn-ghost" data-edit-programme="${p.id}">Modifier</button>` : ""}
         ${canManage("PROGRAMMES") ? `<button class="btn btn-ghost" data-delete-programme="${p.id}">Supprimer</button>` : ""}
       </td>
     </tr>
@@ -46,9 +53,10 @@ function renderProgrammeRow(p) {
  * ajoutée dans une petite liste avant validation), plutôt que de devoir
  * créer le programme puis revenir les ajouter une par une.
  */
-async function openProgrammeDrawer() {
+async function openProgrammeDrawer(programme = null) {
+  const isEdit = Boolean(programme);
   const lignesSemences = [];
-  const peutAjouterSemences = canManage("SEMENCES");
+  const peutAjouterSemences = canManage("SEMENCES") && !isEdit;
   let comptesDisponibles = [];
 
   if (peutAjouterSemences) {
@@ -60,28 +68,28 @@ async function openProgrammeDrawer() {
   }
 
   const form = openDrawer({
-    title: "Nouveau programme",
+    title: isEdit ? "Modifier le programme" : "Nouveau programme",
     subtitle: "Un culte, une collecte ou un évènement de l'église",
     formId: "programme-form",
     bodyHtml: `
       <div class="field">
         <label>Type de programme</label>
         <select class="input" id="pr-type">
-          ${PROGRAMME_TYPES.map((t) => `<option value="${t}">${t}</option>`).join("")}
+          ${PROGRAMME_TYPES.map((t) => `<option value="${t}" ${isEdit && programme.typeProgramme === t ? "selected" : ""}>${t}</option>`).join("")}
         </select>
       </div>
       <div class="field">
         <label>Date</label>
-        <input class="input" id="pr-date" type="date" required value="${todayIso()}" />
+        <input class="input" id="pr-date" type="date" required value="${isEdit ? programme.dateProgramme : todayIso()}" />
       </div>
       <div style="display:flex; gap: var(--space-3);">
         <div class="field" style="flex:1">
           <label>Heure début</label>
-          <input class="input" id="pr-debut" type="time" value="09:00" required />
+          <input class="input" id="pr-debut" type="time" value="${isEdit ? formatHeure(programme.heureDebut) : "09:00"}" required />
         </div>
         <div class="field" style="flex:1">
           <label>Heure fin</label>
-          <input class="input" id="pr-fin" type="time" value="11:00" required />
+          <input class="input" id="pr-fin" type="time" value="${isEdit ? formatHeure(programme.heureFin) : "11:00"}" required />
         </div>
       </div>
 
@@ -118,7 +126,7 @@ async function openProgrammeDrawer() {
     `,
     footerHtml: `
       <button type="button" class="btn btn-secondary" id="pr-cancel">Annuler</button>
-      <button type="submit" class="btn btn-primary">Créer le programme</button>
+      <button type="submit" class="btn btn-primary">${isEdit ? "Enregistrer" : "Créer le programme"}</button>
     `,
   });
 
@@ -192,7 +200,15 @@ async function openProgrammeDrawer() {
     };
 
     try {
-      const programme = await api.createProgramme(payload);
+      if (isEdit) {
+        await api.updateProgramme(programme.id, payload);
+        showToast("Programme modifié");
+        closeDrawer();
+        loadProgrammes();
+        return;
+      }
+
+      const created = await api.createProgramme(payload);
 
       for (const ligne of lignesSemences) {
         await api.createSemence({
@@ -201,7 +217,7 @@ async function openProgrammeDrawer() {
           dateSemence: payload.dateProgramme,
           description: "",
           compteId: ligne.compteId,
-          programmeId: programme.id,
+          programmeId: created.id,
         });
       }
 
