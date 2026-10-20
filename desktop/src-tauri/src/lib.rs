@@ -1,4 +1,5 @@
 use std::fs::File;
+use std::net::TcpListener;
 use std::process::{Child, Command, Stdio};
 use std::sync::Mutex;
 use std::time::Duration;
@@ -14,8 +15,17 @@ const CREATE_NO_WINDOW: u32 = 0x08000000;
 
 use tauri::{Manager, RunEvent};
 
-const BACKEND_PORT: u16 = 8787;
-const BACKEND_HEALTH_URL: &str = "http://127.0.0.1:8787/api/health";
+const BACKEND_PORT_START: u16 = 8787;
+const BACKEND_PORT_END: u16 = 8820;
+
+fn find_available_backend_port() -> u16 {
+    for port in BACKEND_PORT_START..=BACKEND_PORT_END {
+        if TcpListener::bind(("127.0.0.1", port)).is_ok() {
+            return port;
+        }
+    }
+    BACKEND_PORT_START
+}
 
 /// Garde une référence au process du backend Java pour pouvoir l'arrêter
 /// proprement à la fermeture de l'application.
@@ -28,7 +38,7 @@ struct BackendProcess(Mutex<Option<Child>>);
 /// On le retire avant de transmettre un chemin à Java.
 fn strip_verbatim_prefix(path: &std::path::Path) -> std::path::PathBuf {
     match path.to_str() {
-        Some(s) => std::path::PathBuf::from(s.strip_prefix(r"\\?\").unwrap_or(s)),
+        Some(s) => std::path::PathBuf::from(s.strip_prefix(r"\\?").unwrap_or(s)),
         None => path.to_path_buf(),
     }
 }
@@ -94,6 +104,9 @@ pub fn run() {
             let db_path = data_dir.join("miapeve_finance.db");
             apply_pending_restore(&db_path);
 
+            let backend_port = find_available_backend_port();
+            let backend_health_url = format!("http://127.0.0.1:{backend_port}/api/health");
+
             // Toute la sortie du backend Java est capturée dans ce fichier,
             // car l'application n'a pas de console visible une fois lancée.
             let log_path = data_dir.join("backend.log");
@@ -108,7 +121,7 @@ pub fn run() {
                 .arg("-jar")
                 .arg(&jar_path)
                 .env("MIAPEVE_DB_PATH", &db_path)
-                .env("MIAPEVE_PORT", BACKEND_PORT.to_string())
+                .env("MIAPEVE_PORT", backend_port.to_string())
                 .stdout(Stdio::from(stdout_log))
                 .stderr(Stdio::from(stderr_log));
             #[cfg(windows)]
@@ -132,7 +145,7 @@ pub fn run() {
                 let client = reqwest::Client::new();
                 for _ in 0..60 {
                     if client
-                        .get(BACKEND_HEALTH_URL)
+                        .get(&backend_health_url)
                         .timeout(Duration::from_secs(1))
                         .send()
                         .await
@@ -165,3 +178,431 @@ pub fn run() {
             }
         });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
