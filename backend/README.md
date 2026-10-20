@@ -15,7 +15,7 @@ Variables d'environnement utiles :
 
 - `MIAPEVE_DB_PATH` — chemin du fichier SQLite (défaut `./data/miapeve_finance.db`)
 - `MIAPEVE_PORT` — port d'écoute (défaut `8787`)
-- `MIAPEVE_FRONTEND_ORIGIN` — origines autorisées en CORS, séparées par des virgules (défaut `*` : l'API n'est accessible que depuis 127.0.0.1 et n'utilise pas de cookies, donc un joker ne l'expose pas davantage)
+- `MIAPEVE_FRONTEND_ORIGIN` — origines autorisées en CORS, séparées par des virgules
 
 Au premier démarrage, les rôles par défaut, le compte `admin` / `admin123`
 et une caisse principale sont créés automatiquement (`DataSeeder`).

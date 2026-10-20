@@ -30,11 +30,10 @@ miapeve:
   db-path: ${MIAPEVE_DB_PATH:./data/miapeve_finance.db}
   cors:
     # L'origine exacte utilisée par la webview Tauri en production varie
-    # selon l'OS et la version de Tauri (tauri://localhost sur macOS/Linux,
-    # https://tauri.localhost sur Windows avec WebView2, et ça a déjà changé
-    # d'une version à l'autre). Plutôt que de deviner la bonne valeur à
-    # chaque régression, on autorise toutes les origines : l'API n'est de
-    # toute façon accessible que depuis 127.0.0.1 (server.address dans ce
-    # fichier) et n'utilise pas de cookies (allowCredentials reste à false),
-    # donc un joker ne l'expose pas davantage.
-    allowed-origins: ${MIAPEVE_FRONTEND_ORIGIN:*}
+    # selon l'OS et la version de Tauri (tauri://localhost sur macOS/Linux ;
+    # sur Windows avec WebView2 ça peut être http://tauri.localhost ou
+    # https://tauri.localhost selon la version de Tauri — le précédent
+    # correctif n'avait ajouté que la variante https, qui n'a pas suffi).
+    # On liste toutes les variantes connues plutôt que de ne parier que sur
+    # une seule.
+    allowed-origins: ${MIAPEVE_FRONTEND_ORIGIN:tauri://localhost,http://tauri.localhost,https://tauri.localhost,http://localhost:1420,http://localhost:5173}
