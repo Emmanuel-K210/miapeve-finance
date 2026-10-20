@@ -103,7 +103,65 @@ const api = {
   createRole: (data) => apiRequest("/roles", { method: "POST", body: data }),
   updateRole: (id, data) => apiRequest(`/roles/${id}`, { method: "PUT", body: data }),
   deleteRole: (id) => apiRequest(`/roles/${id}`, { method: "DELETE" }),
+
+  getAuditLog: () => apiRequest("/audit/entries"),
+
+  downloadBackup: () => downloadFile("/parametres/backup", "miapeve-finance-backup.db"),
+  restoreBackup: (file) => {
+    const formData = new FormData();
+    formData.append("fichier", file);
+    return apiRequestMultipart("/parametres/restore", formData);
+  },
 };
+
+async function downloadFile(path, fallbackName) {
+  const token = getToken();
+  let response;
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
+  } catch {
+    throw new Error("Impossible de contacter le service de l'application.");
+  }
+
+  if (!response.ok) {
+    const payload = await response.json().catch(() => ({}));
+    throw new Error(payload.message || `Erreur ${response.status}`);
+  }
+
+  const disposition = response.headers.get("Content-Disposition") || "";
+  const match = disposition.match(/filename="?([^"]+)"?/);
+  const filename = match ? match[1] : fallbackName;
+
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function apiRequestMultipart(path, formData) {
+  const token = getToken();
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+  let response;
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, { method: "POST", headers, body: formData });
+  } catch {
+    throw new Error("Impossible de contacter le service de l'application.");
+  }
+
+  if (!response.ok) {
+    const payload = await response.json().catch(() => ({}));
+    throw new Error(payload.message || `Erreur ${response.status}`);
+  }
+  return response.json().catch(() => null);
+}
 
 function requireAuth() {
   if (!getToken()) {

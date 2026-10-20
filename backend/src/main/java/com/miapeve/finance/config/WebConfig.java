@@ -1,5 +1,6 @@
 package com.miapeve.finance.config;
 
+import com.miapeve.finance.repository.AuditLogRepository;
 import com.miapeve.finance.repository.UtilisateurRepository;
 import com.miapeve.finance.security.AuthInterceptor;
 import com.miapeve.finance.security.SessionService;
@@ -14,13 +15,15 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final SessionService sessionService;
     private final UtilisateurRepository utilisateurRepository;
+    private final AuditLogRepository auditLogRepository;
 
     @Value("${miapeve.cors.allowed-origins}")
     private String allowedOrigins;
 
-    public WebConfig(SessionService sessionService, UtilisateurRepository utilisateurRepository) {
+    public WebConfig(SessionService sessionService, UtilisateurRepository utilisateurRepository, AuditLogRepository auditLogRepository) {
         this.sessionService = sessionService;
         this.utilisateurRepository = utilisateurRepository;
+        this.auditLogRepository = auditLogRepository;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AuthInterceptor(sessionService, utilisateurRepository))
+        registry.addInterceptor(new AuthInterceptor(sessionService, utilisateurRepository, auditLogRepository))
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/auth/login", "/api/health");
     }

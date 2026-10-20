@@ -25,6 +25,9 @@ const Icons = {
   check: () => svg(`<path d="M5 12l5 5L19 7"/>`),
   sun: () => svg(`<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>`),
   moon: () => svg(`<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/>`),
+  download: () => svg(`<path d="M12 4v11"/><path d="M7.5 11 12 15.5 16.5 11"/><path d="M5 19.5h14"/>`),
+  upload: () => svg(`<path d="M12 15V4"/><path d="M7.5 8 12 3.5 16.5 8"/><path d="M5 19.5h14"/>`),
+  history: () => svg(`<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M4 5v4h4"/><path d="M5.5 8.5A8 8 0 0 1 12 5"/>`),
 };
 
 function svg(innerPaths) {

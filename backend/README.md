@@ -22,11 +22,22 @@ et une caisse principale sont créés automatiquement (`DataSeeder`).
 
 ## Endpoints disponibles
 
-- `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`
+- `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`,
+  `PUT /api/auth/me/password`
 - `GET/POST/PUT/DELETE /api/comptes[/{id}]`
+- `GET/POST/PUT/DELETE /api/transactions[/{id}]`
+- `GET/POST/DELETE /api/semences[/{id}]`
+- `GET/POST/DELETE /api/depenses[/{id}]`
+- `GET/POST/PUT/DELETE /api/programmes[/{id}]`
+- `GET/POST/DELETE /api/budgets[/{id}]`
+- `GET/POST/PUT/DELETE /api/utilisateurs[/{id}]`
+- `GET/POST/PUT/DELETE /api/roles[/{id}]`
 - `GET /api/dashboard/summary`
 - `GET /api/health`
 
-Les modules transactions, programmes, semences, dépenses et utilisateurs
-restent à migrer (entités JPA déjà créées dans `entity/`, repositories dans
-`repository/`) ; il manque les services/contrôleurs correspondants.
+Toutes les routes sous `/api/**` (sauf `/api/auth/login` et `/api/health`)
+exigent un en-tête `Authorization: Bearer <token>` obtenu via le login, et
+sont filtrées par les permissions du rôle de l'utilisateur
+(`permission/PermissionCatalog.java` + `security/AuthInterceptor.java`) :
+chaque module expose une permission `_VIEW` (routes `GET`) et `_MANAGE`
+(routes de mutation).

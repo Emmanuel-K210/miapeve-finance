@@ -27,6 +27,7 @@ const PAGE_TITLES = {
   programmes: "Programmes",
   utilisateurs: "Utilisateurs",
   roles: "Rôles et permissions",
+  audit: "Journal d'activité",
   parametres: "Paramètres",
   soon: "À venir",
 };
@@ -41,6 +42,7 @@ const PAGE_SUBTITLES = {
   programmes: "Cultes, collectes et évènements de l'église",
   utilisateurs: "Comptes d'accès à l'application",
   roles: "Définissez qui peut voir et faire quoi",
+  audit: "Qui a fait quoi, et quand",
   parametres: "Votre compte et vos préférences",
   soon: "Ce module arrive dans une prochaine mise à jour",
 };
@@ -71,6 +73,7 @@ function navigateTo(page) {
   if (page === "programmes") loadProgrammes();
   if (page === "utilisateurs") loadUtilisateurs();
   if (page === "roles") loadRoles();
+  if (page === "audit") loadAuditLog();
   if (page === "parametres") loadParametres();
 }
 
