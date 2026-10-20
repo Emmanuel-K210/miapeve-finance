@@ -26,7 +26,8 @@ public final class PermissionCatalog {
             new Module("BUDGETS", "Budgets"),
             new Module("UTILISATEURS", "Utilisateurs"),
             new Module("ROLES", "Rôles et permissions"),
-            new Module("PARAMETRES", "Paramètres")
+            new Module("PARAMETRES", "Paramètres"),
+            new Module("AUDIT", "Journal d'activité")
     );
 
     private PermissionCatalog() {

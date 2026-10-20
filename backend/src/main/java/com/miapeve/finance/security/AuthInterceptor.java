@@ -1,7 +1,9 @@
 package com.miapeve.finance.security;
 
+import com.miapeve.finance.entity.AuditLog;
 import com.miapeve.finance.entity.Utilisateur;
 import com.miapeve.finance.permission.PermissionCatalog;
+import com.miapeve.finance.repository.AuditLogRepository;
 import com.miapeve.finance.repository.UtilisateurRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     public static final String UTILISATEUR_ID_ATTR = "utilisateurId";
     public static final String PERMISSIONS_ATTR = "permissions";
+    private static final String NOM_COMPLET_ATTR = "nomCompletUtilisateur";
 
     /**
      * Fait correspondre le premier segment de chemin d'une route /api/...
@@ -29,15 +32,19 @@ public class AuthInterceptor implements HandlerInterceptor {
             "programmes", "PROGRAMMES",
             "budgets", "BUDGETS",
             "utilisateurs", "UTILISATEURS",
-            "roles", "ROLES"
+            "roles", "ROLES",
+            "parametres", "PARAMETRES",
+            "audit", "AUDIT"
     );
 
     private final SessionService sessionService;
     private final UtilisateurRepository utilisateurRepository;
+    private final AuditLogRepository auditLogRepository;
 
-    public AuthInterceptor(SessionService sessionService, UtilisateurRepository utilisateurRepository) {
+    public AuthInterceptor(SessionService sessionService, UtilisateurRepository utilisateurRepository, AuditLogRepository auditLogRepository) {
         this.sessionService = sessionService;
         this.utilisateurRepository = utilisateurRepository;
+        this.auditLogRepository = auditLogRepository;
     }
 
     @Override
@@ -74,7 +81,32 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         request.setAttribute(UTILISATEUR_ID_ATTR, utilisateurId);
         request.setAttribute(PERMISSIONS_ATTR, permissions);
+        request.setAttribute(NOM_COMPLET_ATTR, utilisateur.getPrenom() + " " + utilisateur.getNom());
         return true;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        if ("GET".equalsIgnoreCase(request.getMethod()) || "OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            return;
+        }
+        String module = resolveModule(request.getRequestURI());
+        if (module == null || response.getStatus() < 200 || response.getStatus() >= 300) {
+            return;
+        }
+        try {
+            AuditLog log = new AuditLog();
+            log.setUtilisateurId((Long) request.getAttribute(UTILISATEUR_ID_ATTR));
+            log.setNomUtilisateur((String) request.getAttribute(NOM_COMPLET_ATTR));
+            log.setModule(module);
+            log.setMethode(request.getMethod());
+            log.setChemin(request.getRequestURI());
+            log.setStatut(response.getStatus());
+            auditLogRepository.save(log);
+        } catch (Exception e) {
+            // Le journal d'activité est accessoire : une erreur ici ne doit
+            // jamais faire échouer la requête métier qu'elle décrit.
+        }
     }
 
     private String resolveModule(String uri) {

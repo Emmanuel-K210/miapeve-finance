@@ -24,6 +24,28 @@ fn strip_verbatim_prefix(path: &std::path::Path) -> std::path::PathBuf {
     }
 }
 
+/// Une restauration demandée depuis l'app (Paramètres) est écrite par le
+/// backend à côté de la base active, sous `<db_path>.pending-restore`, car
+/// remplacer le fichier pendant que la JVM l'a ouvert n'est pas sûr. On
+/// applique l'échange ici, avant de lancer le backend, pendant qu'aucun
+/// processus ne tient le fichier.
+fn apply_pending_restore(db_path: &std::path::Path) {
+    let mut pending = db_path.as_os_str().to_owned();
+    pending.push(".pending-restore");
+    let pending = std::path::PathBuf::from(pending);
+    if !pending.exists() {
+        return;
+    }
+
+    if db_path.exists() {
+        let mut backup = db_path.as_os_str().to_owned();
+        backup.push(".before-restore.bak");
+        let _ = std::fs::rename(db_path, std::path::PathBuf::from(backup));
+    }
+    let _ = std::fs::rename(&pending, db_path);
+    let _ = std::fs::remove_file(&pending);
+}
+
 pub fn run() {
     tauri::Builder::default()
         .manage(BackendProcess(Mutex::new(None)))
@@ -61,6 +83,7 @@ pub fn run() {
             std::fs::create_dir_all(&data_dir)
                 .expect("impossible de créer le dossier de données de l'application");
             let db_path = data_dir.join("miapeve_finance.db");
+            apply_pending_restore(&db_path);
 
             // Toute la sortie du backend Java est capturée dans ce fichier,
             // car l'application n'a pas de console visible une fois lancée.
