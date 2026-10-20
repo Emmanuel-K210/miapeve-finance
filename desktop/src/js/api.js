@@ -33,9 +33,10 @@ async function apiRequest(path, { method = "GET", body } = {}) {
       headers,
       body: body ? JSON.stringify(body) : undefined,
     });
-  } catch {
+  } catch (err) {
+    const detail = err && err.message ? ` [${err.message}]` : "";
     throw new Error(
-      "Impossible de contacter le service de l'application. Le backend n'a peut-être pas démarré correctement (consultez backend.log dans le dossier de données de l'application)."
+      `Impossible de contacter le service de l'application${detail}. Le backend n'a peut-être pas démarré correctement (consultez backend.log dans le dossier de données de l'application).`
     );
   }
 
