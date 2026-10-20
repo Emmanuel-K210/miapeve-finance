@@ -129,6 +129,132 @@ async function printCompteStatement(compteId) {
   }
 }
 
+function openEtatFinancierDrawer() {
+  const today = todayIso();
+  const debutDefaut = `${today.slice(0, 7)}-01`;
+
+  const form = openDrawer({
+    title: "État financier",
+    subtitle: "Bilan complet sur une période : semences, dépenses et soldes",
+    formId: "etat-financier-form",
+    bodyHtml: `
+      <div style="display:flex; gap: var(--space-3);">
+        <div class="field" style="flex:1">
+          <label>Date de début</label>
+          <input class="input" id="ef-debut" type="date" required value="${debutDefaut}" />
+        </div>
+        <div class="field" style="flex:1">
+          <label>Date de fin</label>
+          <input class="input" id="ef-fin" type="date" required value="${today}" />
+        </div>
+      </div>
+    `,
+    footerHtml: `
+      <button type="button" class="btn btn-secondary" id="ef-cancel">Annuler</button>
+      <button type="submit" class="btn btn-primary">Générer le rapport</button>
+    `,
+  });
+
+  document.getElementById("ef-cancel").addEventListener("click", closeDrawer);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const debut = document.getElementById("ef-debut").value;
+    const fin = document.getElementById("ef-fin").value;
+
+    if (!debut || !fin || debut > fin) {
+      showToast("Sélectionnez une période valide", "error");
+      return;
+    }
+
+    closeDrawer();
+    await printEtatFinancier(debut, fin);
+  });
+}
+
+async function printEtatFinancier(debut, fin) {
+  try {
+    const [comptes, semences, depenses] = await Promise.all([api.getComptes(), api.getSemences(), api.getDepenses()]);
+
+    const dansPeriode = (dateStr) => dateStr >= debut && dateStr <= fin;
+    const semencesPeriode = semences.filter((s) => dansPeriode(s.dateSemence));
+    const depensesPeriode = depenses.filter((d) => dansPeriode(d.dateDepense));
+
+    const totalSemences = semencesPeriode.reduce((sum, s) => sum + s.montant, 0);
+    const totalDepenses = depensesPeriode.reduce((sum, d) => sum + d.montant, 0);
+    const soldeTotal = comptes.reduce((sum, c) => sum + c.solde, 0);
+
+    const comptesRows = comptes
+      .map((c) => `<tr><td>${escapeHtml(c.nomCompte)}</td><td>${escapeHtml(c.typeCompte)}</td><td>${formatMontant(c.solde)}</td></tr>`)
+      .join("");
+
+    const semencesRows = semencesPeriode.length
+      ? semencesPeriode
+          .slice()
+          .sort((a, b) => new Date(a.dateSemence) - new Date(b.dateSemence))
+          .map(
+            (s) => `
+        <tr>
+          <td>${formatDateOnly(s.dateSemence)}</td>
+          <td>${escapeHtml(SEMENCE_TYPE_LABELS[s.typeSemence] || s.typeSemence)}</td>
+          <td>${escapeHtml(s.nomCompte)}</td>
+          <td>${formatMontant(s.montant)}</td>
+        </tr>`
+          )
+          .join("")
+      : `<tr><td colspan="4">Aucune semence enregistrée sur la période</td></tr>`;
+
+    const depensesParCategorie = {};
+    depensesPeriode.forEach((d) => {
+      depensesParCategorie[d.libelle] = (depensesParCategorie[d.libelle] || 0) + d.montant;
+    });
+    const depensesRows = Object.keys(depensesParCategorie).length
+      ? Object.entries(depensesParCategorie)
+          .map(([categorie, montant]) => `<tr><td>${escapeHtml(categorie)}</td><td>${formatMontant(montant)}</td></tr>`)
+          .join("")
+      : `<tr><td colspan="2">Aucune dépense enregistrée sur la période</td></tr>`;
+
+    triggerPrint(
+      "État financier",
+      `
+        <table class="print-meta">
+          <tr><td>Période</td><td>${formatDateOnly(debut)} — ${formatDateOnly(fin)}</td></tr>
+          <tr><td>Total des semences</td><td>${formatMontant(totalSemences)}</td></tr>
+          <tr><td>Total des dépenses</td><td>${formatMontant(totalDepenses)}</td></tr>
+          <tr><td>Solde (entrées - sorties)</td><td>${formatMontant(totalSemences - totalDepenses)}</td></tr>
+          <tr><td>Solde total actuel (tous comptes)</td><td>${formatMontant(soldeTotal)}</td></tr>
+        </table>
+
+        <h3 class="print-section-title">Soldes par compte</h3>
+        <table class="print-table">
+          <thead><tr><th>Compte</th><th>Type</th><th>Solde</th></tr></thead>
+          <tbody>${comptesRows}</tbody>
+        </table>
+
+        <h3 class="print-section-title">Détail des semences</h3>
+        <table class="print-table">
+          <thead><tr><th>Date</th><th>Type</th><th>Compte</th><th>Montant</th></tr></thead>
+          <tbody>${semencesRows}</tbody>
+          <tfoot>
+            <tr class="print-total-row"><td colspan="3">Total</td><td>${formatMontant(totalSemences)}</td></tr>
+          </tfoot>
+        </table>
+
+        <h3 class="print-section-title">Détail des dépenses par catégorie</h3>
+        <table class="print-table">
+          <thead><tr><th>Catégorie</th><th>Montant</th></tr></thead>
+          <tbody>${depensesRows}</tbody>
+          <tfoot>
+            <tr class="print-total-row"><td>Total</td><td>${formatMontant(totalDepenses)}</td></tr>
+          </tfoot>
+        </table>
+      `
+    );
+  } catch (err) {
+    showToast(err.message, "error");
+  }
+}
+
 async function printDashboardReport() {
   try {
     const summary = await api.getDashboardSummary();
