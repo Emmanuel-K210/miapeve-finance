@@ -19,7 +19,7 @@ async function discoverApiBaseUrl() {
   const candidates = getApiBaseUrlCandidates();
   for (const baseUrl of candidates) {
     try {
-      const healthUrl = `${baseUrl.replace(/\/api$/, "")}/health`;
+      const healthUrl = `${baseUrl}/health`;
       const response = await fetch(healthUrl, { method: "GET", cache: "no-store" });
       if (response.ok) {
         resolvedApiBaseUrl = baseUrl;
