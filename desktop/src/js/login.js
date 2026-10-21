@@ -3,7 +3,7 @@ const errorBox = document.getElementById("login-error");
 const submitBtn = document.getElementById("login-submit");
 
 if (getToken()) {
-  window.location.href = "app.html";
+  window.location.replace("app.html");
 }
 
 form.addEventListener("submit", async (event) => {
@@ -18,7 +18,7 @@ form.addEventListener("submit", async (event) => {
   try {
     const result = await api.login(nomUtilisateur, motDePasse);
     setSession(result.token, result.utilisateur);
-    window.location.href = "app.html";
+    window.location.replace("app.html");
   } catch (err) {
     errorBox.textContent = err.message;
     errorBox.classList.remove("hidden");
